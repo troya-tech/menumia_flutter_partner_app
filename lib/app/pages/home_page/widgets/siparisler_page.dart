@@ -18,27 +18,16 @@ class SiparislerPage extends StatelessWidget {
             bottom: false,
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Padding(
-                    padding: EdgeInsets.only(left: 8.0),
-                    child: Text(
-                      'Siparişler',
-                      style: TextStyle(
-                        color: AppColors.navbarText,
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
+              child: const Padding(
+                padding: EdgeInsets.only(left: 8.0),
+                child: Text(
+                  'Siparişler',
+                  style: TextStyle(
+                    color: AppColors.navbarText,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
                   ),
-                  IconButton(
-                    icon: const Icon(Icons.account_circle, color: AppColors.navbarText),
-                    onPressed: () {
-                      Navigator.pushNamed(context, AppRoutes.profile);
-                    },
-                  ),
-                ],
+                ),
               ),
             ),
           ),
