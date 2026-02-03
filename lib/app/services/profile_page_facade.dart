@@ -1,13 +1,18 @@
 import 'dart:async';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'dart:convert';
 import '../../features/restaurant-user-feature/application/restaurant_user_service.dart';
 import '../../features/restaurant-user-feature/domain/entities/restaurant_user.dart';
 import '../../features/restaurant-user-feature/domain/entities/restaurant.dart';
 import '../../features/restaurant-user-feature/infrastructure/repositories/firebase_restaurant_user_repository.dart';
+import '../../utils/app_logger.dart';
 
 class ProfilePageFacade {
   final RestaurantUserService _userService;
+  
+  // Logger
+  static final _logger = AppLogger('ProfilePageFacade');
   
   // State
   final _currentUserController = StreamController<RestaurantUser?>.broadcast();
@@ -30,16 +35,35 @@ class ProfilePageFacade {
   }
 
   Future<void> _loadUser() async {
-    const userId = "Kj8hLfo5jkb54HtJVXqpbQOJwuX2"; // 'fff' user from export
+    _logger.debug('Loading user data...');
+    
+    // Get the currently authenticated user's UID
+    final currentUser = FirebaseAuth.instance.currentUser;
+    
+    if (currentUser == null) {
+      _logger.warning('No authenticated user found');
+      return;
+    }
+    
+    final userId = currentUser.uid;
+    _logger.data('User UID', userId);
 
     final user = await _userService.getUserById(userId);
     if (user != null) {
+      _logger.success('User data loaded successfully');
+      _logger.data('User display name', user.displayName);
+      _logger.data('Related restaurants', user.relatedRestaurantsIds.length);
+      
       _currentUserController.add(user);
       _loadRestaurants(user.relatedRestaurantsIds);
+    } else {
+      _logger.error('User not found in database for UID: $userId');
     }
   }
 
   Future<void> _loadRestaurants(List<String> restaurantIds) async {
+    _logger.debug('Loading ${restaurantIds.length} restaurant(s)...');
+    
     final db = FirebaseDatabase.instance.ref('restaurants');
     final List<Restaurant> loadedRestaurants = [];
 
@@ -48,23 +72,27 @@ class ProfilePageFacade {
         final snapshot = await db.child(id).get();
         if (snapshot.exists && snapshot.value != null) {
             final jsonMap = jsonDecode(jsonEncode(snapshot.value)) as Map<String, dynamic>;
-            loadedRestaurants.add(Restaurant(
+            final restaurant = Restaurant(
                 id: id,
                 restaurantName: jsonMap['restaurantName'] ?? 'Unknown',
                 menuKey: jsonMap['menuKey'] ?? '',
                 openHour: jsonMap['openHour'] ?? '',
                 closeHour: jsonMap['closeHour'] ?? '',
-            ));
+            );
+            loadedRestaurants.add(restaurant);
+            _logger.data('Loaded restaurant', restaurant.restaurantName);
         }
       } catch (e) {
-        print('Error loading restaurant $id: $e');
+        _logger.error('Error loading restaurant $id', e);
       }
     }
     
+    _logger.success('Loaded ${loadedRestaurants.length} restaurant(s)');
     _relatedRestaurantsController.add(loadedRestaurants);
   }
 
   void setActiveRestaurant(String restaurantId) {
+    _logger.info('Setting active restaurant: $restaurantId');
     _activeRestaurantIdController.add(restaurantId);
   }
 

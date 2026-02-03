@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import '../utils/app_logger.dart';
 
 /// Authentication service for managing user authentication
 ///
@@ -10,6 +11,9 @@ class AuthService {
   AuthService._();
   static final AuthService _instance = AuthService._();
   factory AuthService() => _instance;
+
+  // Logger
+  static final _logger = AppLogger('AuthService');
 
   // Firebase Auth instance
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -41,39 +45,55 @@ class AuthService {
   ///
   /// Throws an exception if any step fails.
   Future<UserCredential> signInWithGoogle() async {
+    _logger.info('Starting Google Sign-In flow');
+    
     try {
       // Authenticate with Google (v7+ API)
+      _logger.debug('Authenticating with Google...');
       final GoogleSignInAccount account = await _googleSignIn.authenticate(
         scopeHint: _scopes,
       );
+      _logger.success('Google authentication successful');
+      _logger.data('Account email', account.email);
 
       // Get authentication details
+      _logger.debug('Getting authentication details...');
       final GoogleSignInAuthentication auth = account.authentication;
       
       // Get authorization with access token
+      _logger.debug('Getting authorization with access token...');
       final authorization = await account.authorizationClient.authorizeScopes(_scopes);
 
       // Ensure we have an ID token
       final String? idToken = auth.idToken;
       if (idToken == null) {
+        _logger.error('Google ID token is null');
         throw StateError(
           'Google ID token is null. Check Firebase/Google setup.',
         );
       }
+      _logger.debug('ID token obtained successfully');
 
       // Create Firebase credential
+      _logger.debug('Creating Firebase credential...');
       final OAuthCredential credential = GoogleAuthProvider.credential(
         idToken: idToken,
         accessToken: authorization.accessToken,
       );
 
       // Sign in to Firebase
+      _logger.debug('Signing in to Firebase...');
       final UserCredential userCredential =
           await _auth.signInWithCredential(credential);
+      
+      _logger.success('Firebase sign-in successful');
+      _logger.data('User UID', userCredential.user?.uid);
+      _logger.data('User email', userCredential.user?.email);
 
       return userCredential;
     } catch (e) {
       // Re-throw with more context
+      _logger.error('Google Sign-In failed', e);
       throw Exception('Google Sign-In failed: $e');
     }
   }
@@ -82,12 +102,17 @@ class AuthService {
   ///
   /// This ensures the user is completely signed out from both services.
   Future<void> signOut() async {
+    _logger.info('Starting sign-out process');
+    
     try {
+      _logger.debug('Signing out from Firebase and Google...');
       await Future.wait([
         _auth.signOut(),
         _googleSignIn.signOut(),
       ]);
+      _logger.success('Sign-out successful');
     } catch (e) {
+      _logger.error('Sign-out failed', e);
       throw Exception('Sign-out failed: $e');
     }
   }

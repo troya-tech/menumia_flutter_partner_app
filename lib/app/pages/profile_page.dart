@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import '../services/profile_page_facade.dart';
 import '../../features/restaurant-user-feature/domain/entities/restaurant_user.dart';
 import '../../features/restaurant-user-feature/domain/entities/restaurant.dart';
+import '../../services/auth_service.dart';
+import '../routing/app_routes.dart';
 
 /// Profile page for user account management
 class ProfilePage extends StatefulWidget {
@@ -124,7 +126,6 @@ class _ProfilePageState extends State<ProfilePage> {
                     width: double.infinity,
                     child: OutlinedButton.icon(
                       onPressed: () {
-                        // TODO: Implement logout
                         _showLogoutDialog(context);
                       },
                       icon: const Icon(Icons.logout),
@@ -164,9 +165,46 @@ class _ProfilePageState extends State<ProfilePage> {
             child: const Text('Cancel'),
           ),
           ElevatedButton(
-            onPressed: () {
-              // TODO: Implement logout logic
-              Navigator.of(context).pop();
+            onPressed: () async {
+              Navigator.of(context).pop(); // Close dialog
+              
+              try {
+                // Show loading indicator
+                showDialog(
+                  context: context,
+                  barrierDismissible: false,
+                  builder: (context) => const Center(
+                    child: CircularProgressIndicator(),
+                  ),
+                );
+                
+                // Sign out
+                await AuthService().signOut();
+                
+                // Close loading indicator
+                if (context.mounted) {
+                  Navigator.of(context).pop();
+                  
+                  // Navigate to auth screen
+                  Navigator.of(context).pushNamedAndRemoveUntil(
+                    AppRoutes.auth,
+                    (route) => false,
+                  );
+                }
+              } catch (e) {
+                // Close loading indicator
+                if (context.mounted) {
+                  Navigator.of(context).pop();
+                  
+                  // Show error
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text('Logout failed: $e'),
+                      backgroundColor: Theme.of(context).colorScheme.error,
+                    ),
+                  );
+                }
+              }
             },
             style: ElevatedButton.styleFrom(
               backgroundColor: Theme.of(context).colorScheme.error,
