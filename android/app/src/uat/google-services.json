@@ -40,10 +40,10 @@
               "client_type": 3
             },
             {
-              "client_id": "296178610293-slt2arfaqg49iosbi6hoiatm1e75sais.apps.googleusercontent.com",
+              "client_id": "296178610293-2nn5j1eblbiu02pt4f1i5g8d5119pfr9.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.example.demo1"
+                "bundle_id": "com.example.menumiaFlutterPartnerApp"
               }
             }
           ]
@@ -76,10 +76,10 @@
               "client_type": 3
             },
             {
-              "client_id": "296178610293-slt2arfaqg49iosbi6hoiatm1e75sais.apps.googleusercontent.com",
+              "client_id": "296178610293-2nn5j1eblbiu02pt4f1i5g8d5119pfr9.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.example.demo1"
+                "bundle_id": "com.example.menumiaFlutterPartnerApp"
               }
             }
           ]
@@ -120,10 +120,10 @@
               "client_type": 3
             },
             {
-              "client_id": "296178610293-slt2arfaqg49iosbi6hoiatm1e75sais.apps.googleusercontent.com",
+              "client_id": "296178610293-2nn5j1eblbiu02pt4f1i5g8d5119pfr9.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.example.demo1"
+                "bundle_id": "com.example.menumiaFlutterPartnerApp"
               }
             }
           ]
@@ -135,6 +135,50 @@
         "mobilesdk_app_id": "1:296178610293:android:f776328f87777ad5cf083c",
         "android_client_info": {
           "package_name": "com.menumia.partner"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "296178610293-a43v21u0tpc8vjegenm23h53p29e881h.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.menumia.partner",
+            "certificate_hash": "5eafd233e51ba607932bf90ea37d23a157bf7edf"
+          }
+        },
+        {
+          "client_id": "296178610293-hgb8vqci3jkv9mgfsj0n7683biq9i5m6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBEhwHAtCCTIx12XfAxavlaIycryJSZMjs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "296178610293-hgb8vqci3jkv9mgfsj0n7683biq9i5m6.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "296178610293-2nn5j1eblbiu02pt4f1i5g8d5119pfr9.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.menumiaFlutterPartnerApp"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:296178610293:android:eefee9cbb847990fcf083c",
+        "android_client_info": {
+          "package_name": "com.menumia.partner.uat"
         }
       },
       "oauth_client": [
@@ -156,10 +200,10 @@
               "client_type": 3
             },
             {
-              "client_id": "296178610293-slt2arfaqg49iosbi6hoiatm1e75sais.apps.googleusercontent.com",
+              "client_id": "296178610293-2nn5j1eblbiu02pt4f1i5g8d5119pfr9.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.example.demo1"
+                "bundle_id": "com.example.menumiaFlutterPartnerApp"
               }
             }
           ]
@@ -200,10 +244,10 @@
               "client_type": 3
             },
             {
-              "client_id": "296178610293-slt2arfaqg49iosbi6hoiatm1e75sais.apps.googleusercontent.com",
+              "client_id": "296178610293-2nn5j1eblbiu02pt4f1i5g8d5119pfr9.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.example.demo1"
+                "bundle_id": "com.example.menumiaFlutterPartnerApp"
               }
             }
           ]

@@ -33,6 +33,23 @@ android {
         versionName = flutter.versionName
     }
 
+    // START: ADDED FOR UAT/PROD FLAVORS
+    flavorDimensions += "environment"
+    
+    productFlavors {
+        create("uat") {
+            dimension = "environment"
+            applicationIdSuffix = ".uat"
+            versionNameSuffix = "-uat"
+            resValue("string", "app_name", "MenuMia Partner UAT")
+        }
+        
+        create("prod") {
+            dimension = "environment"
+            resValue("string", "app_name", "MenuMia Partner")
+        }
+    }
+    // END: ADDED FOR UAT/PROD FLAVORS
     buildTypes {
         release {
             // TODO: Add your own signing config for the release build.

@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "943516634106",
+    "firebase_url": "https://menumia-f10d8-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "menumia-f10d8",
+    "storage_bucket": "menumia-f10d8.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:943516634106:android:67410cf49c482916d67243",
+        "android_client_info": {
+          "package_name": "com.menumia.partner"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "943516634106-pdg8f0bel7s29ks2pgi96b2to0pc8h0n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDwQo33b6MHmUDoRCBAhm3E1aH28cXCO5I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "943516634106-pdg8f0bel7s29ks2pgi96b2to0pc8h0n.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "943516634106-2lcn16h4otb5c39bua50q43pulriarjj.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.menumiaFlutterPartnerApp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

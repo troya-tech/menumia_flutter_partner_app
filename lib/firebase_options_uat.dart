@@ -17,29 +17,17 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      throw UnsupportedError(
-        'DefaultFirebaseOptions have not been configured for web - '
-        'you can reconfigure this by running the FlutterFire CLI again.',
-      );
+      return web;
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
         return android;
       case TargetPlatform.iOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for ios - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return ios;
       case TargetPlatform.macOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for macos - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return macos;
       case TargetPlatform.windows:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for windows - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return windows;
       case TargetPlatform.linux:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for linux - '
@@ -54,10 +42,57 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyBEhwHAtCCTIx12XfAxavlaIycryJSZMjs',
-    appId: '1:296178610293:android:f776328f87777ad5cf083c',
+    appId: '1:296178610293:android:eefee9cbb847990fcf083c',
     messagingSenderId: '296178610293',
     projectId: 'adisyon-project',
     databaseURL: 'https://adisyon-project-default-rtdb.europe-west1.firebasedatabase.app',
     storageBucket: 'adisyon-project.firebasestorage.app',
   );
+
+  static const FirebaseOptions web = FirebaseOptions(
+    apiKey: 'AIzaSyCEbHghNUSZ6juY9bPRWdrmH0xK_FDk5hY',
+    appId: '1:296178610293:web:403ce784fdc59ad4cf083c',
+    messagingSenderId: '296178610293',
+    projectId: 'adisyon-project',
+    authDomain: 'adisyon-project.firebaseapp.com',
+    databaseURL: 'https://adisyon-project-default-rtdb.europe-west1.firebasedatabase.app',
+    storageBucket: 'adisyon-project.firebasestorage.app',
+    measurementId: 'G-93MCX3DR5M',
+  );
+
+  static const FirebaseOptions macos = FirebaseOptions(
+    apiKey: 'AIzaSyDJkP-TzBjtOP9J29qk0ce1Z3Fm2BXIFiw',
+    appId: '1:296178610293:ios:6f7df962738966a8cf083c',
+    messagingSenderId: '296178610293',
+    projectId: 'adisyon-project',
+    databaseURL: 'https://adisyon-project-default-rtdb.europe-west1.firebasedatabase.app',
+    storageBucket: 'adisyon-project.firebasestorage.app',
+    androidClientId: '296178610293-7vl2fe2lri12d5p87k4n2itgecd5i1pj.apps.googleusercontent.com',
+    iosClientId: '296178610293-2nn5j1eblbiu02pt4f1i5g8d5119pfr9.apps.googleusercontent.com',
+    iosBundleId: 'com.example.menumiaFlutterPartnerApp',
+  );
+
+  static const FirebaseOptions ios = FirebaseOptions(
+    apiKey: 'AIzaSyDJkP-TzBjtOP9J29qk0ce1Z3Fm2BXIFiw',
+    appId: '1:296178610293:ios:3871c649d72d2d57cf083c',
+    messagingSenderId: '296178610293',
+    projectId: 'adisyon-project',
+    databaseURL: 'https://adisyon-project-default-rtdb.europe-west1.firebasedatabase.app',
+    storageBucket: 'adisyon-project.firebasestorage.app',
+    androidClientId: '296178610293-7vl2fe2lri12d5p87k4n2itgecd5i1pj.apps.googleusercontent.com',
+    iosClientId: '296178610293-302jv4udv5dt3sartp2amufucv3p4gl7.apps.googleusercontent.com',
+    iosBundleId: 'com.menumia.partner.uat',
+  );
+
+  static const FirebaseOptions windows = FirebaseOptions(
+    apiKey: 'AIzaSyCEbHghNUSZ6juY9bPRWdrmH0xK_FDk5hY',
+    appId: '1:296178610293:web:8a73b177d0a23e6fcf083c',
+    messagingSenderId: '296178610293',
+    projectId: 'adisyon-project',
+    authDomain: 'adisyon-project.firebaseapp.com',
+    databaseURL: 'https://adisyon-project-default-rtdb.europe-west1.firebasedatabase.app',
+    storageBucket: 'adisyon-project.firebasestorage.app',
+    measurementId: 'G-RY71LTM87Z',
+  );
+
 }
