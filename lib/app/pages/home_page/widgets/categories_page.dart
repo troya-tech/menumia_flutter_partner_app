@@ -10,16 +10,16 @@ import '../../../../services/auth_service.dart';
 import 'category_reorder_page.dart';
 import 'category_detail_page.dart';
 
-/// Kategoriler (Categories) page component
+/// Categories page component
 /// Displays and manages menu categories
-class KategorilerPage extends StatefulWidget {
-  const KategorilerPage({super.key});
+class CategoriesPage extends StatefulWidget {
+  const CategoriesPage({super.key});
 
   @override
-  State<KategorilerPage> createState() => _KategorilerPageState();
+  State<CategoriesPage> createState() => _CategoriesPageState();
 }
 
-class _KategorilerPageState extends State<KategorilerPage> {
+class _CategoriesPageState extends State<CategoriesPage> {
   // TODO: In production, inject this service via Riverpod or GetIt
   late final MenuService _menuService;
   late final Stream<Menu> _menuStream;

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../theme/app_colors.dart';
-import 'widgets/kategoriler_page.dart';
+import 'widgets/categories_page.dart';
 import '../orders_page.dart';
 import '../profile_page.dart';
 import '../../services/home_page_facade.dart';
@@ -47,7 +47,7 @@ class _HomePageState extends State<HomePage> {
 
         // Build pages list based on orderingEnabled flag
         final pages = <Widget>[
-          const KategorilerPage(),
+          const CategoriesPage(),
           if (orderingEnabled) const OrdersPage(),
           const ProfilePage(),
         ];
