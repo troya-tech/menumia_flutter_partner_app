@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'package:firebase_database/firebase_database.dart';
-import 'package:menumia_partner_app/features/restaurant-user-feature/domain/entities/restaurant_user.dart';
-import 'package:menumia_partner_app/features/restaurant-user-feature/domain/repositories/restaurant_user_repository.dart';
-import 'package:menumia_partner_app/features/restaurant-user-feature/infrastructure/dtos/restaurant_user_dto.dart';
+import 'package:menumia_flutter_partner_app/features/restaurant-user-feature/domain/entities/restaurant_user.dart';
+import 'package:menumia_flutter_partner_app/features/restaurant-user-feature/domain/repositories/restaurant_user_repository.dart';
+import 'package:menumia_flutter_partner_app/features/restaurant-user-feature/infrastructure/dtos/restaurant_user_dto.dart';
 
 class FirebaseRestaurantUserRepository implements RestaurantUserRepository {
   final FirebaseDatabase _database;

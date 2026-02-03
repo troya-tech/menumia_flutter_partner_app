@@ -1,4 +1,4 @@
-import 'package:menumia_partner_app/features/restaurant-user-feature/domain/entities/restaurant_user.dart';
+import 'package:menumia_flutter_partner_app/features/restaurant-user-feature/domain/entities/restaurant_user.dart';
 
 abstract class RestaurantUserRepository {
   Future<RestaurantUser?> getUserById(String id);

@@ -1,5 +1,5 @@
-import 'package:menumia_partner_app/features/restaurant-user-feature/domain/entities/restaurant_user.dart';
-import 'package:menumia_partner_app/features/restaurant-user-feature/domain/repositories/restaurant_user_repository.dart';
+import 'package:menumia_flutter_partner_app/features/restaurant-user-feature/domain/entities/restaurant_user.dart';
+import 'package:menumia_flutter_partner_app/features/restaurant-user-feature/domain/repositories/restaurant_user_repository.dart';
 
 class RestaurantUserService {
   final RestaurantUserRepository _repository;

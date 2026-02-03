@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'package:firebase_database/firebase_database.dart';
-import 'package:menumia_partner_app/features/shared-config-feature/domain/entities/shared_config.dart';
-import 'package:menumia_partner_app/features/shared-config-feature/domain/repositories/shared_config_repository.dart';
-import 'package:menumia_partner_app/features/shared-config-feature/infrastructure/dtos/shared_config_dto.dart';
+import 'package:menumia_flutter_partner_app/features/shared-config-feature/domain/entities/shared_config.dart';
+import 'package:menumia_flutter_partner_app/features/shared-config-feature/domain/repositories/shared_config_repository.dart';
+import 'package:menumia_flutter_partner_app/features/shared-config-feature/infrastructure/dtos/shared_config_dto.dart';
 
 class FirebaseSharedConfigRepository implements SharedConfigRepository {
   final FirebaseDatabase _database;
