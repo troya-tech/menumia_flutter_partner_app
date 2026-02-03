@@ -7,7 +7,7 @@ import '../../services/home_page_facade.dart';
 
 /// Home page for Menumia Partner App
 /// Main landing page after authentication
-/// Contains bottom navigation between Kategoriler, Siparişler, and Profile
+/// Contains bottom navigation between Kategoriler, Siparişler (if enabled), and Profile
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -39,51 +39,61 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    // Show Kategoriler, Orders, and Profile pages
-    final pages = <Widget>[
-      const KategorilerPage(),
-      const OrdersPage(),
-      const ProfilePage(),
-    ];
+    return StreamBuilder<bool>(
+      stream: _facade.orderingEnabled$,
+      initialData: false, // Default to false while loading
+      builder: (context, snapshot) {
+        final orderingEnabled = snapshot.data ?? false;
 
-    final navItems = <BottomNavigationBarItem>[
-      const BottomNavigationBarItem(
-        icon: Icon(Icons.category),
-        label: 'Kategori',
-      ),
-      const BottomNavigationBarItem(
-        icon: Icon(Icons.receipt_long),
-        label: 'Siparişler',
-      ),
-      const BottomNavigationBarItem(
-        icon: Icon(Icons.person),
-        label: 'Profil',
-      ),
-    ];
+        // Build pages list based on orderingEnabled flag
+        final pages = <Widget>[
+          const KategorilerPage(),
+          if (orderingEnabled) const OrdersPage(),
+          const ProfilePage(),
+        ];
 
-    // Ensure selected index is valid
-    if (_selectedIndex >= pages.length) {
-      _selectedIndex = 0;
-    }
+        // Build navigation items based on orderingEnabled flag
+        final navItems = <BottomNavigationBarItem>[
+          const BottomNavigationBarItem(
+            icon: Icon(Icons.category),
+            label: 'Kategori',
+          ),
+          if (orderingEnabled)
+            const BottomNavigationBarItem(
+              icon: Icon(Icons.receipt_long),
+              label: 'Siparişler',
+            ),
+          const BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: 'Profil',
+          ),
+        ];
 
-    return Scaffold(
-      backgroundColor: AppColors.backgroundDark,
-      body: SafeArea(
-        top: false,
-        child: IndexedStack(
-          index: _selectedIndex,
-          children: pages,
-        ),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: navItems,
-        currentIndex: _selectedIndex,
-        selectedItemColor: AppColors.brightBlue,
-        unselectedItemColor: AppColors.textSecondary,
-        backgroundColor: AppColors.navbarBackground,
-        onTap: _onItemTapped,
-        type: BottomNavigationBarType.fixed,
-      ),
+        // Ensure selected index is valid
+        if (_selectedIndex >= pages.length) {
+          _selectedIndex = 0;
+        }
+
+        return Scaffold(
+          backgroundColor: AppColors.backgroundDark,
+          body: SafeArea(
+            top: false,
+            child: IndexedStack(
+              index: _selectedIndex,
+              children: pages,
+            ),
+          ),
+          bottomNavigationBar: BottomNavigationBar(
+            items: navItems,
+            currentIndex: _selectedIndex,
+            selectedItemColor: AppColors.brightBlue,
+            unselectedItemColor: AppColors.textSecondary,
+            backgroundColor: AppColors.navbarBackground,
+            onTap: _onItemTapped,
+            type: BottomNavigationBarType.fixed,
+          ),
+        );
+      },
     );
   }
 }

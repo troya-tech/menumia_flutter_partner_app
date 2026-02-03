@@ -4,6 +4,7 @@ import '../../features/restaurant-user-feature/domain/entities/restaurant_user.d
 import '../../features/restaurant-user-feature/domain/entities/restaurant.dart';
 import '../../services/auth_service.dart';
 import '../routing/app_routes.dart';
+import '../../utils/app_logger.dart';
 
 /// Profile page for user account management
 class ProfilePage extends StatefulWidget {
@@ -15,11 +16,13 @@ class ProfilePage extends StatefulWidget {
 
 class _ProfilePageState extends State<ProfilePage> {
   late final ProfilePageFacade _facade;
+  static final _logger = AppLogger('ProfilePage');
 
   @override
   void initState() {
     super.initState();
-    _facade = ProfilePageFacade()..init();
+    _facade = ProfilePageFacade();
+    _facade.init();
   }
 
   @override
@@ -40,11 +43,13 @@ class _ProfilePageState extends State<ProfilePage> {
           child: StreamBuilder<RestaurantUser?>(
             stream: _facade.currentUser$,
             builder: (context, snapshot) {
-              // Debug logging
-              print('[ProfilePage] StreamBuilder - connectionState: ${snapshot.connectionState}');
-              print('[ProfilePage] StreamBuilder - hasData: ${snapshot.hasData}');
-              print('[ProfilePage] StreamBuilder - hasError: ${snapshot.hasError}');
-              print('[ProfilePage] StreamBuilder - data: ${snapshot.data}');
+              // Debug logging (only in debug mode)
+              _logger.debug('StreamBuilder - connectionState: ${snapshot.connectionState}');
+              _logger.debug('StreamBuilder - hasData: ${snapshot.hasData}');
+              _logger.debug('StreamBuilder - hasError: ${snapshot.hasError}');
+              if (snapshot.hasData) {
+                _logger.debug('StreamBuilder - user: ${snapshot.data?.displayName}');
+              }
               
               // Show loading indicator while waiting for data
               if (snapshot.connectionState == ConnectionState.waiting) {

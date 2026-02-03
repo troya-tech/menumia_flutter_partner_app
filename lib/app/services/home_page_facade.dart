@@ -19,12 +19,9 @@ class HomePageFacade {
     const menuKey = 'menuKey_forknife';
 
     orderingEnabled$ = _sharedConfigService.watchSharedConfig(menuKey)
-        .map((config) {
-          print('📊 SharedConfig received: planTiersPlanner.orderingEnabled = ${config.planTiersPlanner.orderingEnabled}');
-          return config.planTiersPlanner.orderingEnabled;
-        })
+        .map((config) => config.planTiersPlanner.orderingEnabled)
         .handleError((error) {
-          print('❌ Error in orderingEnabled stream: $error');
+          print('[HomePageFacade] ❌ Error in orderingEnabled stream: $error');
         });
   }
 
