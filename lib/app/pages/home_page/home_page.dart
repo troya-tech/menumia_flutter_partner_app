@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../../theme/app_colors.dart';
 import 'widgets/kategoriler_page.dart';
 import 'widgets/siparisler_page.dart';
+import '../profile_page.dart';
 import '../../services/home_page_facade.dart';
 
 /// Home page for Menumia Partner App
@@ -38,10 +39,11 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    // Always show both pages and navigation items
+    // Always show all three pages and navigation items
     final pages = <Widget>[
       const KategorilerPage(),
       const SiparislerPage(),
+      const ProfilePage(),
     ];
 
     final navItems = <BottomNavigationBarItem>[
@@ -52,6 +54,10 @@ class _HomePageState extends State<HomePage> {
       const BottomNavigationBarItem(
         icon: Icon(Icons.receipt_long),
         label: 'Sipariş',
+      ),
+      const BottomNavigationBarItem(
+        icon: Icon(Icons.person),
+        label: 'Profil',
       ),
     ];
 
