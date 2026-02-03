@@ -12,18 +12,25 @@ class FirebaseSharedConfigRepository implements SharedConfigRepository {
 
   @override
   Stream<SharedConfig> watchSharedConfig(String menuKey) {
+    print('🔥 Firebase: Watching shared_config/$menuKey');
     return _database.ref('shared_config/$menuKey').onValue.map((event) {
       final value = event.snapshot.value;
+      print('🔥 Firebase: Received value: $value');
+      
       if (value == null) {
+        print('⚠️ Firebase: Value is null, returning empty config');
         return SharedConfig.empty();
       }
 
       try {
         final jsonMap = jsonDecode(jsonEncode(value)) as Map<String, dynamic>;
-        return SharedConfigDto.fromJson(jsonMap).toDomain();
+        print('🔥 Firebase: Parsed JSON: $jsonMap');
+        final config = SharedConfigDto.fromJson(jsonMap).toDomain();
+        print('🔥 Firebase: Converted to domain - orderingEnabled: ${config.planTiersPlanner.orderingEnabled}');
+        return config;
       } catch (e) {
         // In a real app, use a proper logger
-        print('Error parsing shared config stream: $e');
+        print('❌ Error parsing shared config stream: $e');
         return SharedConfig.empty();
       }
     });

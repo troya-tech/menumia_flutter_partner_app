@@ -38,55 +38,46 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<bool>(
-      stream: _facade.orderingEnabled$,
-      builder: (context, snapshot) {
-        final orderingEnabled = snapshot.data ?? false;
-        
-        // Define available pages based on config
-        final pages = <Widget>[
-          const KategorilerPage(),
-          if (orderingEnabled) const SiparislerPage(),
-        ];
+    // Always show both pages and navigation items
+    final pages = <Widget>[
+      const KategorilerPage(),
+      const SiparislerPage(),
+    ];
 
-        // Define available navigation items
-        final navItems = <BottomNavigationBarItem>[
-          const BottomNavigationBarItem(
-            icon: Icon(Icons.category),
-            label: 'Kategori',
-          ),
-          if (orderingEnabled)
-            const BottomNavigationBarItem(
-              icon: Icon(Icons.receipt_long),
-              label: 'Sipariş',
-            ),
-        ];
+    final navItems = <BottomNavigationBarItem>[
+      const BottomNavigationBarItem(
+        icon: Icon(Icons.category),
+        label: 'Kategori',
+      ),
+      const BottomNavigationBarItem(
+        icon: Icon(Icons.receipt_long),
+        label: 'Sipariş',
+      ),
+    ];
 
-        // Ensure selected index is valid
-        if (_selectedIndex >= pages.length) {
-          _selectedIndex = 0;
-        }
+    // Ensure selected index is valid
+    if (_selectedIndex >= pages.length) {
+      _selectedIndex = 0;
+    }
 
-        return Scaffold(
-          backgroundColor: AppColors.backgroundDark,
-          body: SafeArea(
-            top: false,
-            child: IndexedStack(
-              index: _selectedIndex,
-              children: pages,
-            ),
-          ),
-          bottomNavigationBar: navItems.length > 1 ? BottomNavigationBar(
-            items: navItems,
-            currentIndex: _selectedIndex,
-            selectedItemColor: AppColors.brightBlue,
-            unselectedItemColor: AppColors.textSecondary,
-            backgroundColor: AppColors.navbarBackground,
-            onTap: _onItemTapped,
-            type: BottomNavigationBarType.fixed,
-          ) : null,
-        );
-      },
+    return Scaffold(
+      backgroundColor: AppColors.backgroundDark,
+      body: SafeArea(
+        top: false,
+        child: IndexedStack(
+          index: _selectedIndex,
+          children: pages,
+        ),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: navItems,
+        currentIndex: _selectedIndex,
+        selectedItemColor: AppColors.brightBlue,
+        unselectedItemColor: AppColors.textSecondary,
+        backgroundColor: AppColors.navbarBackground,
+        onTap: _onItemTapped,
+        type: BottomNavigationBarType.fixed,
+      ),
     );
   }
 }
