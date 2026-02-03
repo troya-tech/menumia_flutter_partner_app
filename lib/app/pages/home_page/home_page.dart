@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import '../../theme/app_colors.dart';
 import 'widgets/kategoriler_page.dart';
-import 'widgets/siparisler_page.dart';
+import '../orders_page.dart';
 import '../profile_page.dart';
 import '../../services/home_page_facade.dart';
 
 /// Home page for Menumia Partner App
 /// Main landing page after authentication
-/// Contains bottom navigation between Kategoriler and Siparişler
+/// Contains bottom navigation between Kategoriler, Siparişler, and Profile
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -39,10 +39,10 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    // Always show all three pages and navigation items
+    // Show Kategoriler, Orders, and Profile pages
     final pages = <Widget>[
       const KategorilerPage(),
-      const SiparislerPage(),
+      const OrdersPage(),
       const ProfilePage(),
     ];
 
@@ -53,7 +53,7 @@ class _HomePageState extends State<HomePage> {
       ),
       const BottomNavigationBarItem(
         icon: Icon(Icons.receipt_long),
-        label: 'Sipariş',
+        label: 'Siparişler',
       ),
       const BottomNavigationBarItem(
         icon: Icon(Icons.person),
