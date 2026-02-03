@@ -4,8 +4,27 @@
 
 The `AppLogger` utility provides consistent, formatted logging throughout the application with the format:
 ```
-[ServiceName] "message"
+[ServiceName] [breadcrumb-id] "message"
 ```
+
+### Breadcrumb IDs (Correlation IDs)
+
+Breadcrumb IDs are unique identifiers that help trace a single operation across multiple services. They allow you to:
+- Track a user action from start to finish
+- Correlate logs across different services
+- Debug complex flows involving multiple components
+- Identify which logs belong to the same request/operation
+
+Example output with breadcrumb IDs:
+```
+[AuthService] [2345-1234] ℹ️ "Starting Google Sign-In flow"
+[AuthService] [2345-1234] "Authenticating with Google..."
+[AuthService] [2345-1234] ✅ "Firebase sign-in successful"
+[ProfilePageFacade] [2345-1234] "Loading user data..."
+[ProfilePageFacade] [2345-1234] ✅ "User data loaded successfully"
+```
+
+All logs with `[2345-1234]` belong to the same sign-in operation.
 
 ## Setup
 
@@ -76,6 +95,122 @@ _logger.data('User ID', userId);
 _logger.data('Response', responseData);
 // Output: [MyService] 📦 "Response": {key: value, ...}
 ```
+
+## Using Breadcrumb IDs
+
+### Creating a Log Context
+
+Create a `LogContext` at the start of an operation to track it across services:
+
+```dart
+// Create a new context with a unique breadcrumb ID
+final context = _logger.createContext();
+
+// Use it in all log calls for this operation
+_logger.info('Starting operation', context);
+_logger.debug('Processing step 1...', context);
+_logger.success('Operation completed', context);
+
+// Output:
+// [MyService] [2345-1234] ℹ️ "Starting operation"
+// [MyService] [2345-1234] "Processing step 1..."
+// [MyService] [2345-1234] ✅ "Operation completed"
+```
+
+### Passing Context Between Services
+
+Pass the `LogContext` to other services to maintain the same breadcrumb ID:
+
+```dart
+class AuthService {
+  static final _logger = AppLogger('AuthService');
+  
+  Future<User> signIn() async {
+    final context = _logger.createContext();
+    _logger.info('Starting sign-in', context);
+    
+    // ... authentication logic ...
+    
+    // Pass context to another service
+    await _userService.loadUserData(userId, context);
+    
+    return user;
+  }
+}
+
+class UserService {
+  static final _logger = AppLogger('UserService');
+  
+  Future<void> loadUserData(String userId, LogContext context) async {
+    _logger.debug('Loading user data', context);
+    // ... load data ...
+    _logger.success('User data loaded', context);
+  }
+}
+
+// Output:
+// [AuthService] [2345-1234] ℹ️ "Starting sign-in"
+// [UserService] [2345-1234] "Loading user data"
+// [UserService] [2345-1234] ✅ "User data loaded"
+```
+
+### When to Use Breadcrumb IDs
+
+**Use breadcrumb IDs when:**
+- Starting a user-initiated action (button click, form submit)
+- Making API calls or database queries
+- Operations that span multiple services
+- Complex flows you need to debug
+
+**Don't use breadcrumb IDs for:**
+- Simple, isolated operations
+- Internal helper methods that don't cross service boundaries
+- Logs that don't need correlation
+
+### Example: Complete Flow with Breadcrumbs
+
+```dart
+class OrderService {
+  static final _logger = AppLogger('OrderService');
+  final PaymentService _paymentService;
+  final NotificationService _notificationService;
+  
+  Future<void> createOrder(Order order) async {
+    // Create context for this entire order creation flow
+    final context = _logger.createContext();
+    
+    _logger.info('Creating order', context);
+    _logger.data('Order ID', order.id, context);
+    
+    try {
+      // Process payment - pass context
+      _logger.debug('Processing payment...', context);
+      await _paymentService.processPayment(order.total, context);
+      
+      // Send notification - pass context
+      _logger.debug('Sending confirmation...', context);
+      await _notificationService.sendOrderConfirmation(order, context);
+      
+      _logger.success('Order created successfully', context);
+    } catch (e, stackTrace) {
+      _logger.error('Order creation failed', e, stackTrace, context);
+      rethrow;
+    }
+  }
+}
+
+// Output:
+// [OrderService] [2345-1234] ℹ️ "Creating order"
+// [OrderService] [2345-1234] 📦 "Order ID": ORD-123
+// [OrderService] [2345-1234] "Processing payment..."
+// [PaymentService] [2345-1234] "Charging card..."
+// [PaymentService] [2345-1234] ✅ "Payment successful"
+// [OrderService] [2345-1234] "Sending confirmation..."
+// [NotificationService] [2345-1234] "Sending email..."
+// [NotificationService] [2345-1234] ✅ "Email sent"
+// [OrderService] [2345-1234] ✅ "Order created successfully"
+```
+
 
 ## Real-World Example
 
