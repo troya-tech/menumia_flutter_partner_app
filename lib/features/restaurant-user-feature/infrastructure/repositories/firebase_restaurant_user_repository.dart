@@ -3,8 +3,10 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:menumia_flutter_partner_app/features/restaurant-user-feature/domain/entities/restaurant_user.dart';
 import 'package:menumia_flutter_partner_app/features/restaurant-user-feature/domain/repositories/restaurant_user_repository.dart';
 import 'package:menumia_flutter_partner_app/features/restaurant-user-feature/infrastructure/dtos/restaurant_user_dto.dart';
+import '../../../../utils/app_logger.dart';
 
 class FirebaseRestaurantUserRepository implements RestaurantUserRepository {
+  static final _logger = AppLogger('FirebaseRestaurantUserRepository');
   final FirebaseDatabase _database;
   final String _basePath = 'restaurantUsers';
 
@@ -13,20 +15,40 @@ class FirebaseRestaurantUserRepository implements RestaurantUserRepository {
 
   @override
   Future<RestaurantUser?> getUserById(String id) async {
+    _logger.debug('Fetching user by ID: $id');
+    _logger.data('Database path', '$_basePath/$id');
+    
     final snapshot = await _database.ref('$_basePath/$id').get();
-    if (!snapshot.exists || snapshot.value == null) return null;
+    
+    _logger.data('Snapshot exists', snapshot.exists);
+    _logger.data('Snapshot value is null', snapshot.value == null);
+    
+    if (!snapshot.exists || snapshot.value == null) {
+      _logger.warning('User not found in database at path: $_basePath/$id');
+      return null;
+    }
 
     try {
+      _logger.debug('Parsing user data...');
       final jsonMap = jsonDecode(jsonEncode(snapshot.value)) as Map<String, dynamic>;
-      return RestaurantUserDto.fromJson(jsonMap, id).toDomain();
-    } catch (e) {
-      print('Error parsing restaurant user $id: $e');
+      _logger.data('User JSON', jsonMap);
+      
+      final user = RestaurantUserDto.fromJson(jsonMap, id).toDomain();
+      _logger.success('User loaded successfully');
+      _logger.data('User display name', user.displayName);
+      
+      return user;
+    } catch (e, stackTrace) {
+      _logger.error('Error parsing restaurant user $id', e, stackTrace);
       return null;
     }
   }
 
   @override
   Future<RestaurantUser?> getUserByEmail(String email) async {
+    _logger.debug('Fetching user by email: $email');
+    _logger.data('Query path', _basePath);
+    
     // Query by email - requires indexing in Firebase rules for performance
     final snapshot = await _database
         .ref(_basePath)
@@ -35,15 +57,31 @@ class FirebaseRestaurantUserRepository implements RestaurantUserRepository {
         .limitToFirst(1)
         .get();
 
-    if (!snapshot.exists || snapshot.value == null) return null;
+    _logger.data('Snapshot exists', snapshot.exists);
+    _logger.data('Snapshot value is null', snapshot.value == null);
+
+    if (!snapshot.exists || snapshot.value == null) {
+      _logger.warning('User not found in database with email: $email');
+      _logger.info('Make sure the user exists in $_basePath with the email field set');
+      return null;
+    }
 
     try {
+      _logger.debug('Parsing user data from email query...');
       final data = snapshot.value as Map<dynamic, dynamic>;
       final key = data.keys.first.toString();
+      _logger.data('User ID (key)', key);
+      
       final jsonMap = jsonDecode(jsonEncode(data[key])) as Map<String, dynamic>;
-      return RestaurantUserDto.fromJson(jsonMap, key).toDomain();
-    } catch (e) {
-      print('Error querying restaurant user by email $email: $e');
+      _logger.data('User JSON', jsonMap);
+      
+      final user = RestaurantUserDto.fromJson(jsonMap, key).toDomain();
+      _logger.success('User loaded successfully by email');
+      _logger.data('User display name', user.displayName);
+      
+      return user;
+    } catch (e, stackTrace) {
+      _logger.error('Error querying restaurant user by email $email', e, stackTrace);
       return null;
     }
   }

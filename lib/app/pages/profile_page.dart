@@ -40,7 +40,89 @@ class _ProfilePageState extends State<ProfilePage> {
           child: StreamBuilder<RestaurantUser?>(
             stream: _facade.currentUser$,
             builder: (context, snapshot) {
+              // Debug logging
+              print('[ProfilePage] StreamBuilder - connectionState: ${snapshot.connectionState}');
+              print('[ProfilePage] StreamBuilder - hasData: ${snapshot.hasData}');
+              print('[ProfilePage] StreamBuilder - hasError: ${snapshot.hasError}');
+              print('[ProfilePage] StreamBuilder - data: ${snapshot.data}');
+              
+              // Show loading indicator while waiting for data
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const Center(
+                  child: Padding(
+                    padding: EdgeInsets.all(32.0),
+                    child: CircularProgressIndicator(),
+                  ),
+                );
+              }
+              
+              // Show error if stream has error
+              if (snapshot.hasError) {
+                return Center(
+                  child: Padding(
+                    padding: const EdgeInsets.all(32.0),
+                    child: Column(
+                      children: [
+                        Icon(
+                          Icons.error_outline,
+                          size: 64,
+                          color: Theme.of(context).colorScheme.error,
+                        ),
+                        const SizedBox(height: 16),
+                        Text(
+                          'Error loading profile',
+                          style: Theme.of(context).textTheme.titleLarge,
+                        ),
+                        const SizedBox(height: 8),
+                        Text(
+                          '${snapshot.error}',
+                          style: Theme.of(context).textTheme.bodyMedium,
+                          textAlign: TextAlign.center,
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+              }
+              
               final user = snapshot.data;
+              
+              // Show message if user data not found in database
+              if (user == null && snapshot.connectionState == ConnectionState.active) {
+                return Center(
+                  child: Padding(
+                    padding: const EdgeInsets.all(32.0),
+                    child: Column(
+                      children: [
+                        Icon(
+                          Icons.person_off_outlined,
+                          size: 64,
+                          color: Theme.of(context).colorScheme.primary,
+                        ),
+                        const SizedBox(height: 16),
+                        Text(
+                          'User Profile Not Found',
+                          style: Theme.of(context).textTheme.titleLarge,
+                        ),
+                        const SizedBox(height: 8),
+                        Text(
+                          'Your account is authenticated, but no user profile exists in the database yet.',
+                          style: Theme.of(context).textTheme.bodyMedium,
+                          textAlign: TextAlign.center,
+                        ),
+                        const SizedBox(height: 16),
+                        Text(
+                          'Please contact your administrator to set up your profile.',
+                          style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                            color: Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+              }
               
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -61,7 +143,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   
                   // User name
                   Text(
-                    user?.displayName ?? 'Loading...',
+                    user?.displayName ?? 'No Name',
                     style: Theme.of(context).textTheme.displaySmall,
                   ),
                   const SizedBox(height: 8),

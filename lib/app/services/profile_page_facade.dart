@@ -37,18 +37,28 @@ class ProfilePageFacade {
   Future<void> _loadUser() async {
     _logger.debug('Loading user data...');
     
-    // Get the currently authenticated user's UID
+    // Get the currently authenticated user
     final currentUser = FirebaseAuth.instance.currentUser;
     
     if (currentUser == null) {
       _logger.warning('No authenticated user found');
+      _currentUserController.add(null); // Emit null to transition stream state
       return;
     }
     
-    final userId = currentUser.uid;
-    _logger.data('User UID', userId);
+    // Get user email for lookup
+    final userEmail = currentUser.email;
+    if (userEmail == null) {
+      _logger.error('Authenticated user has no email address');
+      _currentUserController.add(null); // Emit null to transition stream state
+      return;
+    }
+    
+    _logger.data('User email', userEmail);
+    _logger.data('User UID (for reference)', currentUser.uid);
 
-    final user = await _userService.getUserById(userId);
+    // Fetch user by email instead of UID
+    final user = await _userService.getUserByEmail(userEmail);
     if (user != null) {
       _logger.success('User data loaded successfully');
       _logger.data('User display name', user.displayName);
@@ -57,7 +67,8 @@ class ProfilePageFacade {
       _currentUserController.add(user);
       _loadRestaurants(user.relatedRestaurantsIds);
     } else {
-      _logger.error('User not found in database for UID: $userId');
+      _logger.error('User not found in database with email: $userEmail');
+      _currentUserController.add(null); // Emit null to show "not found" UI
     }
   }
 
