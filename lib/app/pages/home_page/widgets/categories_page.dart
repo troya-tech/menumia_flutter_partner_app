@@ -198,46 +198,23 @@ class _CategoriesPageState extends State<CategoriesPage> {
   }
 
   Future<void> _showAddCategoryDialog(BuildContext context) async {
-    final TextEditingController nameController = TextEditingController();
+    String categoryName = '';
 
     await showDialog(
       context: context,
-      builder: (context) {
-        return AlertDialog(
-          backgroundColor: Colors.white,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-          title: const Text('Yeni Kategori Ekle', style: TextStyle(color: AppColors.textPrimary)),
-          content: TextField(
-            controller: nameController,
-            style: const TextStyle(color: AppColors.textPrimary),
-            decoration: const InputDecoration(
-              hintText: 'Kategori Adı',
-              hintStyle: TextStyle(color: AppColors.textSecondary),
-              enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: AppColors.textSecondary)),
-              focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: AppColors.brightBlue)),
-            ),
-            autofocus: true,
-          ),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(context),
-              child: const Text('İptal', style: TextStyle(color: AppColors.textSecondary)),
-            ),
-            TextButton(
-              onPressed: () {
-                final name = nameController.text.trim();
-                if (name.isNotEmpty) {
-                  _addNewCategory(name);
-                  Navigator.pop(context);
-                }
-              },
-              child: const Text('Ekle', style: TextStyle(color: AppColors.brightBlue, fontWeight: FontWeight.bold)),
-            ),
-          ],
+      builder: (dialogContext) {
+        return _AddCategoryDialog(
+          onCategoryNameChanged: (name) => categoryName = name,
+          onAdd: () {
+            if (categoryName.isNotEmpty) {
+              _addNewCategory(categoryName);
+              Navigator.pop(dialogContext);
+            }
+          },
+          onCancel: () => Navigator.pop(dialogContext),
         );
       },
     );
-    nameController.dispose();
   }
 
   void _addNewCategory(String name) {
@@ -385,6 +362,73 @@ class _CategoryCard extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+/// A StatefulWidget dialog that properly manages TextEditingController lifecycle
+/// This fixes the "TextEditingController was used after being disposed" error
+/// that occurs when dismissing the dialog by tapping outside.
+class _AddCategoryDialog extends StatefulWidget {
+  final ValueChanged<String> onCategoryNameChanged;
+  final VoidCallback onAdd;
+  final VoidCallback onCancel;
+
+  const _AddCategoryDialog({
+    required this.onCategoryNameChanged,
+    required this.onAdd,
+    required this.onCancel,
+  });
+
+  @override
+  State<_AddCategoryDialog> createState() => _AddCategoryDialogState();
+}
+
+class _AddCategoryDialogState extends State<_AddCategoryDialog> {
+  late final TextEditingController _nameController;
+
+  @override
+  void initState() {
+    super.initState();
+    _nameController = TextEditingController();
+    _nameController.addListener(() {
+      widget.onCategoryNameChanged(_nameController.text.trim());
+    });
+  }
+
+  @override
+  void dispose() {
+    _nameController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(
+      backgroundColor: Colors.white,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+      title: const Text('Yeni Kategori Ekle', style: TextStyle(color: AppColors.textPrimary)),
+      content: TextField(
+        controller: _nameController,
+        style: const TextStyle(color: AppColors.textPrimary),
+        decoration: const InputDecoration(
+          hintText: 'Kategori Adı',
+          hintStyle: TextStyle(color: AppColors.textSecondary),
+          enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: AppColors.textSecondary)),
+          focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: AppColors.brightBlue)),
+        ),
+        autofocus: true,
+      ),
+      actions: [
+        TextButton(
+          onPressed: widget.onCancel,
+          child: const Text('İptal', style: TextStyle(color: AppColors.textSecondary)),
+        ),
+        TextButton(
+          onPressed: widget.onAdd,
+          child: const Text('Ekle', style: TextStyle(color: AppColors.brightBlue, fontWeight: FontWeight.bold)),
+        ),
+      ],
     );
   }
 }
