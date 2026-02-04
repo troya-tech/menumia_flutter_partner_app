@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import '../services/profile_page_facade.dart';
-import '../../features/restaurant-user-feature/domain/entities/restaurant_user.dart';
-import '../../features/restaurant-user-feature/domain/entities/restaurant.dart';
-import '../../services/auth_service.dart';
-import '../routing/app_routes.dart';
-import '../../utils/app_logger.dart';
+import 'package:menumia_flutter_partner_app/app/services/profile_page_facade.dart';
+import 'package:menumia_flutter_partner_app/features/restaurant-user-feature/domain/entities/restaurant_user.dart';
+import 'package:menumia_flutter_partner_app/features/restaurant-user-feature/domain/entities/restaurant.dart';
+import 'package:menumia_flutter_partner_app/services/auth_service.dart';
+import 'package:menumia_flutter_partner_app/app/routing/app_routes.dart';
+import 'package:menumia_flutter_partner_app/utils/app_logger.dart';
 
 /// Profile page for user account management
 class ProfilePage extends StatefulWidget {

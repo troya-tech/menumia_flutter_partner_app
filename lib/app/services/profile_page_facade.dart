@@ -2,11 +2,11 @@ import 'dart:async';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'dart:convert';
-import '../../features/restaurant-user-feature/application/restaurant_user_service.dart';
-import '../../features/restaurant-user-feature/domain/entities/restaurant_user.dart';
-import '../../features/restaurant-user-feature/domain/entities/restaurant.dart';
-import '../../features/restaurant-user-feature/infrastructure/repositories/firebase_restaurant_user_repository.dart';
-import '../../utils/app_logger.dart';
+import 'package:menumia_flutter_partner_app/features/restaurant-user-feature/application/restaurant_user_service.dart';
+import 'package:menumia_flutter_partner_app/features/restaurant-user-feature/domain/entities/restaurant_user.dart';
+import 'package:menumia_flutter_partner_app/features/restaurant-user-feature/domain/entities/restaurant.dart';
+import 'package:menumia_flutter_partner_app/features/restaurant-user-feature/infrastructure/repositories/firebase_restaurant_user_repository.dart';
+import 'package:menumia_flutter_partner_app/utils/app_logger.dart';
 
 class ProfilePageFacade {
   final RestaurantUserService _userService;

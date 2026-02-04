@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "943516634106-4c3plou4pfopf2qd25t6qrsi45ontdnh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.menumia.partner",
+            "certificate_hash": "5eafd233e51ba607932bf90ea37d23a157bf7edf"
+          }
+        },
+        {
           "client_id": "943516634106-pdg8f0bel7s29ks2pgi96b2to0pc8h0n.apps.googleusercontent.com",
           "client_type": 3
         }
