@@ -4,6 +4,7 @@ import 'widgets/categories_page.dart';
 import '../orders_page.dart';
 import '../profile_page.dart';
 import '../../services/home_page_facade.dart';
+import '../../services/restaurant_context_service.dart';
 
 /// Home page for Menumia Partner App
 /// Main landing page after authentication
@@ -23,6 +24,8 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     _facade = HomePageFacade();
+    // Initialize global restaurant context
+    RestaurantContextService.instance.init();
   }
 
   @override

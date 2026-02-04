@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:menumia_flutter_partner_app/app/services/profile_page_facade.dart';
 import 'package:menumia_flutter_partner_app/features/restaurant-user-feature/domain/entities/restaurant_user.dart';
-import 'package:menumia_flutter_partner_app/features/restaurant-user-feature/domain/entities/restaurant.dart';
+import 'package:menumia_flutter_partner_app/features/restaurant/domain/entities/restaurant.dart';
 import 'package:menumia_flutter_partner_app/services/auth_service.dart';
 import 'package:menumia_flutter_partner_app/app/routing/app_routes.dart';
 import 'package:menumia_flutter_partner_app/utils/app_logger.dart';
@@ -315,7 +315,7 @@ class _RestaurantSelectionCard extends StatelessWidget {
       stream: facade.relatedRestaurants$,
       builder: (context, snapshot) {
         if (!snapshot.hasData || snapshot.data!.isEmpty) {
-          return const SizedBox.shrink(); // Hide if no restaurants or loading
+          return const SizedBox.shrink();
         }
 
         final restaurants = snapshot.data!;
@@ -324,63 +324,85 @@ class _RestaurantSelectionCard extends StatelessWidget {
           stream: facade.activeRestaurantId$,
           builder: (context, activeSnapshot) {
             final activeId = activeSnapshot.data;
+            // Find active restaurant object, fallback to first or standard text
+            final activeRestaurant = restaurants.firstWhere(
+              (r) => r.id == activeId, 
+              orElse: () => restaurants.first
+            );
 
             return Card(
-              elevation: 2,
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-              clipBehavior: Clip.antiAlias,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    width: double.infinity,
-                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                    color: Theme.of(context).colorScheme.surfaceContainerHighest,
-                    child: Row(
-                      children: [
-                        Icon(Icons.storefront, color: Theme.of(context).colorScheme.primary),
-                        const SizedBox(width: 8),
-                        Text(
-                          'Active Restaurant',
-                          style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ],
-                    ),
+              child: ListTile(
+                leading: Icon(
+                  Icons.storefront, 
+                  color: Theme.of(context).colorScheme.primary,
+                ),
+                title: Text(
+                  'Active Restaurant',
+                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                    fontWeight: FontWeight.w600,
                   ),
-                  if (restaurants.isEmpty)
-                     const Padding(
-                       padding: EdgeInsets.all(16.0),
-                       child: Text("No restaurants found."),
-                     )
-                  else
-                    ListView.separated(
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      itemCount: restaurants.length,
-                      separatorBuilder: (ctx, i) => const Divider(height: 1),
-                      itemBuilder: (ctx, i) {
-                        final restaurant = restaurants[i];
-                        final isActive = restaurant.id == activeId;
-                        
-                        return ListTile(
-                          title: Text(restaurant.restaurantName),
-                          subtitle: Text('Open: ${restaurant.openHour} - ${restaurant.closeHour}'),
-                          trailing: isActive 
-                              ? Icon(Icons.check_circle, color: Theme.of(context).colorScheme.primary)
-                              : const Icon(Icons.circle_outlined),
-                          tileColor: isActive ? Theme.of(context).colorScheme.primary.withOpacity(0.05) : null,
-                          onTap: () {
-                            facade.setActiveRestaurant(restaurant.id);
-                          },
-                        );
-                      },
-                    ),
-                ],
+                ),
+                subtitle: Text(
+                  activeRestaurant.restaurantName,
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.onSurface.withOpacity(0.8),
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+                trailing: const Icon(Icons.swap_horiz), // Icon indicating switch
+                onTap: () => _showSelectionDialog(context, restaurants, activeId),
               ),
             );
           }
+        );
+      },
+    );
+  }
+
+  void _showSelectionDialog(BuildContext context, List<Restaurant> restaurants, String? activeId) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: const Text('Switch Restaurant'),
+          contentPadding: const EdgeInsets.symmetric(vertical: 16),
+          content: SizedBox(
+            width: double.maxFinite,
+            child: ListView.separated(
+              shrinkWrap: true,
+              itemCount: restaurants.length,
+              separatorBuilder: (ctx, i) => const Divider(height: 1, indent: 16, endIndent: 16),
+              itemBuilder: (context, index) {
+                final restaurant = restaurants[index];
+                final isActive = restaurant.id == activeId;
+                
+                return ListTile(
+                  contentPadding: const EdgeInsets.symmetric(horizontal: 24, vertical: 4),
+                  title: Text(
+                    restaurant.restaurantName,
+                    style: TextStyle(
+                      fontWeight: isActive ? FontWeight.bold : FontWeight.normal,
+                      color: isActive ? Theme.of(context).colorScheme.primary : null,
+                    ),
+                  ),
+                  subtitle: Text('Open: ${restaurant.openHour} - ${restaurant.closeHour}'),
+                  trailing: isActive 
+                      ? Icon(Icons.check_circle, color: Theme.of(context).colorScheme.primary)
+                      : null,
+                  onTap: () {
+                    facade.setActiveRestaurant(restaurant.id);
+                    Navigator.pop(context);
+                  },
+                );
+              },
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: const Text('Cancel'),
+            ),
+          ],
         );
       },
     );

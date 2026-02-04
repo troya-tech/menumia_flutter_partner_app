@@ -7,6 +7,7 @@ import '../../../../features/menu/domain/entities/product.dart';
 import '../../../../features/menu/application/services/menu_service.dart';
 import '../../../../features/menu/infrastructure/repositories/firebase_menu_repository.dart';
 import '../../../../services/auth_service.dart';
+import 'package:menumia_flutter_partner_app/app/services/restaurant_context_service.dart';
 import 'category_reorder_page.dart';
 import 'category_detail_page.dart';
 
@@ -22,101 +23,120 @@ class CategoriesPage extends StatefulWidget {
 class _CategoriesPageState extends State<CategoriesPage> {
   // TODO: In production, inject this service via Riverpod or GetIt
   late final MenuService _menuService;
-  late final Stream<Menu> _menuStream;
 
   @override
   void initState() {
     super.initState();
-    // Initialize service and stream
+    // Initialize service
     _menuService = MenuService(FirebaseMenuRepository());
-    _menuStream = _menuService.watchMenu('menuKey_forknife');
   }
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<Menu>(
-      stream: _menuStream,
-      builder: (context, snapshot) {
-        // Handle Error
-        if (snapshot.hasError) {
-          return Center(
+    return StreamBuilder<String?>(
+      stream: RestaurantContextService.instance.activeMenuKey$,
+      builder: (context, keySnapshot) {
+        if (!keySnapshot.hasData || keySnapshot.data == null) {
+           return Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Icon(Icons.error_outline, color: AppColors.error, size: 48),
+                Icon(Icons.store_mall_directory_outlined, size: 64, color: AppColors.textSecondary.withOpacity(0.5)),
                 const SizedBox(height: 16),
                 Text(
-                  'Bir hata oluştu', 
-                  style: Theme.of(context).textTheme.titleMedium?.copyWith(color: AppColors.navbarText),
-                ),
-                Text(
-                  '${snapshot.error}', 
-                  style: Theme.of(context).textTheme.bodySmall?.copyWith(color: AppColors.textSecondary),
+                  "There is no Active Restaurant right now",
+                  style: Theme.of(context).textTheme.titleMedium?.copyWith(color: AppColors.textSecondary),
                 ),
               ],
             ),
           );
         }
 
-        // Handle Loading
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          // Show AppBar structure with loader or just loader
-          // To keep UI stable, we might want to show the AppBar even while loading, 
-          // but for simplicity, we'll show a centered loader for now.
-          return const Center(child: CircularProgressIndicator(color: AppColors.brightBlue));
-        }
+        final menuKey = keySnapshot.data!;
 
-        final categories = snapshot.data?.categories ?? [];
+        return StreamBuilder<Menu>(
+          key: ValueKey(menuKey),
+          stream: _menuService.watchMenu(menuKey),
+          builder: (context, snapshot) {
+            // Handle Error
+            if (snapshot.hasError) {
+              return Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Icon(Icons.error_outline, color: AppColors.error, size: 48),
+                    const SizedBox(height: 16),
+                    Text(
+                      'Bir hata oluştu', 
+                      style: Theme.of(context).textTheme.titleMedium?.copyWith(color: AppColors.navbarText),
+                    ),
+                    Text(
+                      '${snapshot.error}', 
+                      style: Theme.of(context).textTheme.bodySmall?.copyWith(color: AppColors.textSecondary),
+                    ),
+                  ],
+                ),
+              );
+            }
 
-        return Column(
-          children: [
-            // Custom AppBar
-            _buildAppBar(categories),
-            
-            // Content
-            Expanded(
-              child: Container(
-                color: const Color(0xFFF2F2F2),
-                child: categories.isEmpty
-                  ? Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(Icons.restaurant_menu, color: AppColors.textSecondary.withValues(alpha: 0.5), size: 64),
-                          const SizedBox(height: 16),
-                          const Text(
-                            'Henüz kategori eklenmemiş.', 
-                            style: TextStyle(color: AppColors.textSecondary),
+            // Handle Loading
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Center(child: CircularProgressIndicator(color: AppColors.brightBlue));
+            }
+
+            final categories = snapshot.data?.categories ?? [];
+
+            return Column(
+              children: [
+                // Custom AppBar
+                _buildAppBar(categories, menuKey),
+                
+                // Content
+                Expanded(
+                  child: Container(
+                    color: const Color(0xFFF2F2F2),
+                    child: categories.isEmpty
+                      ? Center(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(Icons.restaurant_menu, color: AppColors.textSecondary.withValues(alpha: 0.5), size: 64),
+                              const SizedBox(height: 16),
+                              const Text(
+                                'Henüz kategori eklenmemiş.', 
+                                style: TextStyle(color: AppColors.textSecondary),
+                              ),
+                            ],
                           ),
-                        ],
-                      ),
-                    )
-                  : ListView.builder(
-                      padding: const EdgeInsets.all(16),
-                      itemCount: categories.length,
-                      itemBuilder: (context, index) {
-                        final category = categories[index];
-                        return _CategoryCard(
-                          category: category,
-                          onToggle: (isActive) {
-                            _menuService.updateCategory(
-                              'menuKey_forknife', // TODO: Get from auth/context
-                              category.copyWith(isActive: isActive),
+                        )
+                      : ListView.builder(
+                          padding: const EdgeInsets.all(16),
+                          itemCount: categories.length,
+                          itemBuilder: (context, index) {
+                            final category = categories[index];
+                            return _CategoryCard(
+                              category: category,
+                              onToggle: (isActive) {
+                                _menuService.updateCategory(
+                                  menuKey,
+                                  category.copyWith(isActive: isActive),
+                                );
+                              },
+                              menuService: _menuService,
                             );
                           },
-                          menuService: _menuService,
-                        );
-                      },
-                    ),
-              ),
-            ),
-          ],
+                        ),
+                  ),
+                ),
+              ],
+            );
+          },
         );
-      },
+      }
     );
   }
 
-  Widget _buildAppBar(List<Category> categories) {
+  Widget _buildAppBar(List<Category> categories, String menuKey) {
     return Container(
       color: AppColors.navbarBackground,
       child: SafeArea(
@@ -141,7 +161,7 @@ class _CategoriesPageState extends State<CategoriesPage> {
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
                 onSelected: (value) {
                   if (value == 'add_category') {
-                    _showAddCategoryDialog(context);
+                    _showAddCategoryDialog(context, menuKey);
                   } else if (value == 'reorder_categories') {
                      Navigator.push(
                       context,
@@ -197,7 +217,7 @@ class _CategoriesPageState extends State<CategoriesPage> {
     );
   }
 
-  Future<void> _showAddCategoryDialog(BuildContext context) async {
+  Future<void> _showAddCategoryDialog(BuildContext context, String menuKey) async {
     String categoryName = '';
 
     await showDialog(
@@ -207,7 +227,7 @@ class _CategoriesPageState extends State<CategoriesPage> {
           onCategoryNameChanged: (name) => categoryName = name,
           onAdd: () {
             if (categoryName.isNotEmpty) {
-              _addNewCategory(categoryName);
+              _addNewCategory(categoryName, menuKey);
               Navigator.pop(dialogContext);
             }
           },
@@ -217,7 +237,7 @@ class _CategoriesPageState extends State<CategoriesPage> {
     );
   }
 
-  void _addNewCategory(String name) {
+  void _addNewCategory(String name, String menuKey) {
     // Basic ID generation for demo purposes
     final id = 'category_${DateTime.now().millisecondsSinceEpoch}';
     final newCategory = Category(
@@ -227,7 +247,7 @@ class _CategoriesPageState extends State<CategoriesPage> {
       isActive: true,
     );
     
-    _menuService.updateCategory('menuKey_forknife', newCategory).catchError((e) {
+    _menuService.updateCategory(menuKey, newCategory).catchError((e) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text('Hata: $e'), backgroundColor: AppColors.error),

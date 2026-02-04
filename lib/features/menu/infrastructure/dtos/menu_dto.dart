@@ -11,11 +11,25 @@ class MenuDto {
   });
 
   factory MenuDto.fromJson(Map<String, dynamic> json, String menuKey) {
-    final categoriesMap = json['categories'] as Map<String, dynamic>? ?? {};
-    
-    final categories = categoriesMap.entries
-        .map((e) => CategoryDto.fromJson(e.value as Map<String, dynamic>, e.key))
-        .toList();
+    final categoriesData = json['categories'];
+    final List<CategoryDto> categories = [];
+
+    if (categoriesData is Map) {
+      categories.addAll(
+        categoriesData.entries.map(
+          (e) => CategoryDto.fromJson(Map<String, dynamic>.from(e.value), e.key),
+        ),
+      );
+    } else if (categoriesData is List) {
+      for (var i = 0; i < categoriesData.length; i++) {
+        final item = categoriesData[i];
+        if (item != null) {
+          categories.add(
+            CategoryDto.fromJson(Map<String, dynamic>.from(item), i.toString()),
+          );
+        }
+      }
+    }
     
     // Sort categories by displayOrder
     categories.sort((a, b) => a.displayOrder.compareTo(b.displayOrder));
