@@ -20,7 +20,6 @@ jobs:
           distribution: temurin
           java-version: "17"
 
-      # ✅ Pinned Flutter version (3.29.2)
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
@@ -46,6 +45,7 @@ jobs:
           EOF
           echo "android/key.properties created"
           cat android/key.properties | sed 's/=.*/=*** (hidden)/'
+
       - name: Verify keystore file exists
         run: |
           ls -la android/app
