@@ -39,13 +39,17 @@ jobs:
       - name: Create android/key.properties
         run: |
           cat > android/key.properties <<EOF
-          storeFile=app/upload-keystore.jks
+          storeFile=upload-keystore.jks
           storePassword=${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
           keyPassword=${{ secrets.ANDROID_KEY_PASSWORD }}
           keyAlias=${{ secrets.ANDROID_KEY_ALIAS }}
           EOF
           echo "android/key.properties created"
           cat android/key.properties | sed 's/=.*/=*** (hidden)/'
+      - name: Verify keystore file exists
+        run: |
+          ls -la android/app
+          test -f android/app/upload-keystore.jks
 
       # ---- Build AAB for prod flavor ----
       - name: Build App Bundle (prodRelease)
