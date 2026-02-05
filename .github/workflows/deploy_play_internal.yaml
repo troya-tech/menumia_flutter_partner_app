@@ -72,4 +72,5 @@ jobs:
           packageName: com.menumia.partner
           releaseFiles: build/app/outputs/bundle/prodRelease/app-prod-release.aab
           track: internal
-          status: completed
+          # status: completed
+          status: draft
