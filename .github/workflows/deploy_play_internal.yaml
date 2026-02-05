@@ -20,12 +20,11 @@ jobs:
           distribution: temurin
           java-version: "17"
 
-      # Pin a real Flutter version to avoid "Unable to determine Flutter version for channel: stable"
-      # Change 3.27.4 to whatever `flutter --version` shows on your machine.
+      # ✅ Pinned Flutter version (3.29.2)
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: "3.27.4"
+          flutter-version: "3.29.2"
           cache: true
 
       - name: Flutter pub get
@@ -53,7 +52,7 @@ jobs:
         run: |
           flutter build appbundle --flavor prod --release --dart-define=ENV=prod
 
-      # ---- Verify output path (adjust if your project outputs a different path/name) ----
+      # ---- Verify output path ----
       - name: Verify AAB exists
         run: |
           echo "Listing bundle outputs..."
