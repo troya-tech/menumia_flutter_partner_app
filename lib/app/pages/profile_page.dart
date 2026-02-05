@@ -20,8 +20,7 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
   @override
   void initState() {
     super.initState();
-    // Initialize service via provider
-    ref.read(restaurantContextServiceProvider).init();
+    // Initialization handled by HomePage
   }
 
   @override
