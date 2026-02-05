@@ -20,19 +20,22 @@ jobs:
           distribution: temurin
           java-version: "17"
 
+      # Pin a real Flutter version to avoid "Unable to determine Flutter version for channel: stable"
+      # Change 3.27.4 to whatever `flutter --version` shows on your machine.
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: "3.29.2"
+          flutter-version: "3.27.4"
           cache: true
 
       - name: Flutter pub get
         run: flutter pub get
 
-      # --- Android signing setup (keystore + key.properties) ---
+      # ---- Signing (Option A: CI generates key.properties; repo does NOT contain it) ----
       - name: Decode keystore
         run: |
-          echo "${{ secrets.ANDROID_KEYSTORE_B64 }}" | base64 --decode > android/app/upload-keystore.jks
+          echo "${{ secrets.ANDROID_KEYSTORE_B64 }}" | tr -d '\n\r ' | base64 --decode > android/app/upload-keystore.jks
+          ls -la android/app/upload-keystore.jks
 
       - name: Create android/key.properties
         run: |
@@ -42,21 +45,23 @@ jobs:
           keyPassword=${{ secrets.ANDROID_KEY_PASSWORD }}
           keyAlias=${{ secrets.ANDROID_KEY_ALIAS }}
           EOF
+          echo "android/key.properties created"
+          cat android/key.properties | sed 's/=.*/=*** (hidden)/'
 
-      # --- Build AAB for prod flavor ---
+      # ---- Build AAB for prod flavor ----
       - name: Build App Bundle (prodRelease)
         run: |
           flutter build appbundle --flavor prod --release --dart-define=ENV=prod
 
-      # --- Safety check: ensure the expected AAB exists ---
+      # ---- Verify output path (adjust if your project outputs a different path/name) ----
       - name: Verify AAB exists
         run: |
           echo "Listing bundle outputs..."
           ls -la build/app/outputs/bundle || true
-          ls -la build/app/outputs/bundle/prodRelease || true
+          find build/app/outputs/bundle -maxdepth 3 -type f -name "*.aab" -print
           test -f build/app/outputs/bundle/prodRelease/app-prod-release.aab
 
-      # --- Upload to Google Play Internal track ---
+      # ---- Upload to Google Play Internal track ----
       - name: Upload to Google Play (Internal)
         uses: r0adkll/upload-google-play@v1
         with:
