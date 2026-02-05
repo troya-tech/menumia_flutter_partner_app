@@ -1,29 +1,18 @@
 import 'package:flutter/material.dart';
-import '../../../services/auth_service.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../providers.dart';
 
 /// Sign-in page with Google authentication
 ///
 /// This page provides a UI for users to sign in with their Google account.
-class SignInPage extends StatefulWidget {
-  final AuthService _authService;
-
-  const SignInPage({
-    super.key,
-    AuthService? authService,
-  }) : _authService = authService ?? AuthService.instance;
+class SignInPage extends ConsumerStatefulWidget {
+  const SignInPage({super.key});
 
   @override
-  State<SignInPage> createState() => _SignInPageState();
+  ConsumerState<SignInPage> createState() => _SignInPageState();
 }
 
-class _SignInPageState extends State<SignInPage> {
-  late final AuthService _authService;
-
-  @override
-  void initState() {
-    super.initState();
-    _authService = widget._authService;
-  }
+class _SignInPageState extends ConsumerState<SignInPage> {
   bool _loading = false;
   String? _error;
 
@@ -35,7 +24,8 @@ class _SignInPageState extends State<SignInPage> {
     });
 
     try {
-      await _authService.signInWithGoogle();
+      final authService = ref.read(authServiceProvider);
+      await authService.signInWithGoogle();
       // Navigation is handled automatically by AuthGate
     } catch (e) {
       setState(() => _error = e.toString());

@@ -1,143 +1,79 @@
-
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../theme/app_colors.dart';
 import '../../../../features/menu/domain/entities/menu.dart';
 import '../../../../features/menu/domain/entities/category.dart';
-import '../../../../features/menu/domain/entities/product.dart';
 import '../../../../features/menu/application/services/menu_service.dart';
-import '../../../../features/menu/infrastructure/repositories/firebase_menu_repository.dart';
-import '../../../../services/auth_service.dart';
-import 'package:menumia_flutter_partner_app/app/services/restaurant_context_service.dart';
+import '../../../providers.dart';
 import 'category_reorder_page.dart';
 import 'category_detail_page.dart';
 
 /// Categories page component
-/// Displays and manages menu categories
-class CategoriesPage extends StatefulWidget {
+class CategoriesPage extends ConsumerStatefulWidget {
   const CategoriesPage({super.key});
 
   @override
-  State<CategoriesPage> createState() => _CategoriesPageState();
+  ConsumerState<CategoriesPage> createState() => _CategoriesPageState();
 }
 
-class _CategoriesPageState extends State<CategoriesPage> {
-  // TODO: In production, inject this service via Riverpod or GetIt
-  late final MenuService _menuService;
-
-  @override
-  void initState() {
-    super.initState();
-    // Initialize service
-    _menuService = MenuService(FirebaseMenuRepository());
-  }
-
+class _CategoriesPageState extends ConsumerState<CategoriesPage> {
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<String?>(
-      stream: RestaurantContextService.instance.activeMenuKey$,
-      builder: (context, keySnapshot) {
-        if (!keySnapshot.hasData || keySnapshot.data == null) {
-           return Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(Icons.store_mall_directory_outlined, size: 64, color: AppColors.textSecondary.withOpacity(0.5)),
-                const SizedBox(height: 16),
-                Text(
-                  "There is no Active Restaurant right now",
-                  style: Theme.of(context).textTheme.titleMedium?.copyWith(color: AppColors.textSecondary),
-                ),
-              ],
-            ),
-          );
+    final menuKeyAsync = ref.watch(activeMenuKeyProvider);
+    final menuService = ref.watch(menuServiceProvider);
+
+    return menuKeyAsync.when(
+      data: (menuKey) {
+        if (menuKey == null) {
+          return const _NoStoreSelected();
         }
 
-        final menuKey = keySnapshot.data!;
+        final menuAsync = ref.watch(menuProvider(menuKey));
 
-        return StreamBuilder<Menu>(
-          key: ValueKey(menuKey),
-          stream: _menuService.watchMenu(menuKey),
-          builder: (context, snapshot) {
-            // Handle Error
-            if (snapshot.hasError) {
-              return Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Icon(Icons.error_outline, color: AppColors.error, size: 48),
-                    const SizedBox(height: 16),
-                    Text(
-                      'Bir hata oluştu', 
-                      style: Theme.of(context).textTheme.titleMedium?.copyWith(color: AppColors.navbarText),
-                    ),
-                    Text(
-                      '${snapshot.error}', 
-                      style: Theme.of(context).textTheme.bodySmall?.copyWith(color: AppColors.textSecondary),
-                    ),
-                  ],
-                ),
-              );
-            }
-
-            // Handle Loading
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return const Center(child: CircularProgressIndicator(color: AppColors.brightBlue));
-            }
-
-            final categories = snapshot.data?.categories ?? [];
-
+        return menuAsync.when(
+          data: (menu) {
+            final categories = menu.categories;
             return Column(
               children: [
-                // Custom AppBar
-                _buildAppBar(categories, menuKey),
-                
-                // Content
+                _buildAppBar(categories, menuKey, menuService),
                 Expanded(
                   child: Container(
                     color: const Color(0xFFF2F2F2),
                     child: categories.isEmpty
-                      ? Center(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Icon(Icons.restaurant_menu, color: AppColors.textSecondary.withValues(alpha: 0.5), size: 64),
-                              const SizedBox(height: 16),
-                              const Text(
-                                'Henüz kategori eklenmemiş.', 
-                                style: TextStyle(color: AppColors.textSecondary),
-                              ),
-                            ],
+                        ? const _EmptyCategories()
+                        : ListView.builder(
+                            padding: const EdgeInsets.all(16),
+                            itemCount: categories.length,
+                            itemBuilder: (context, index) {
+                              final category = categories[index];
+                              return _CategoryCard(
+                                category: category,
+                                onToggle: (isActive) {
+                                  menuService.updateCategory(
+                                    menuKey,
+                                    category.copyWith(isActive: isActive),
+                                  );
+                                },
+                                menuService: menuService,
+                                menuKey: menuKey,
+                              );
+                            },
                           ),
-                        )
-                      : ListView.builder(
-                          padding: const EdgeInsets.all(16),
-                          itemCount: categories.length,
-                          itemBuilder: (context, index) {
-                            final category = categories[index];
-                            return _CategoryCard(
-                              category: category,
-                              onToggle: (isActive) {
-                                _menuService.updateCategory(
-                                  menuKey,
-                                  category.copyWith(isActive: isActive),
-                                );
-                              },
-                              menuService: _menuService,
-                              menuKey: menuKey,
-                            );
-                          },
-                        ),
                   ),
                 ),
               ],
             );
           },
+          loading: () => const Center(child: CircularProgressIndicator(color: AppColors.brightBlue)),
+          error: (error, stack) => _ErrorView(error: error),
         );
-      }
+      },
+      loading: () => const Center(child: CircularProgressIndicator(color: AppColors.brightBlue)),
+      error: (error, stack) => _ErrorView(error: error),
     );
   }
 
-  Widget _buildAppBar(List<Category> categories, String menuKey) {
+  Widget _buildAppBar(List<Category> categories, String menuKey, MenuService menuService) {
     return Container(
       color: AppColors.navbarBackground,
       child: SafeArea(
@@ -162,20 +98,20 @@ class _CategoriesPageState extends State<CategoriesPage> {
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
                 onSelected: (value) {
                   if (value == 'add_category') {
-                    _showAddCategoryDialog(context, menuKey);
+                    _showAddCategoryDialog(context, menuKey, menuService);
                   } else if (value == 'reorder_categories') {
-                     Navigator.push(
+                    Navigator.push(
                       context,
                       MaterialPageRoute(
                         builder: (context) => CategoryReorderPage(
                           categories: categories,
-                          menuService: _menuService,
+                          menuService: menuService,
                           menuKey: menuKey,
                         ),
                       ),
                     );
                   } else if (value == 'sign_out') {
-                    _handleSignOut(context);
+                    _handleSignOut(context, ref);
                   }
                 },
                 itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
@@ -219,9 +155,8 @@ class _CategoriesPageState extends State<CategoriesPage> {
     );
   }
 
-  Future<void> _showAddCategoryDialog(BuildContext context, String menuKey) async {
+  Future<void> _showAddCategoryDialog(BuildContext context, String menuKey, MenuService menuService) async {
     String categoryName = '';
-
     await showDialog(
       context: context,
       builder: (dialogContext) {
@@ -229,7 +164,7 @@ class _CategoriesPageState extends State<CategoriesPage> {
           onCategoryNameChanged: (name) => categoryName = name,
           onAdd: () {
             if (categoryName.isNotEmpty) {
-              _addNewCategory(categoryName, menuKey);
+              _addNewCategory(categoryName, menuKey, menuService);
               Navigator.pop(dialogContext);
             }
           },
@@ -239,17 +174,15 @@ class _CategoriesPageState extends State<CategoriesPage> {
     );
   }
 
-  void _addNewCategory(String name, String menuKey) {
-    // Basic ID generation for demo purposes
+  void _addNewCategory(String name, String menuKey, MenuService menuService) {
     final id = 'category_${DateTime.now().millisecondsSinceEpoch}';
     final newCategory = Category(
-      id: id, 
-      name: name, 
-      displayOrder: 999, // Append to end by default
+      id: id,
+      name: name,
+      displayOrder: 999,
       isActive: true,
     );
-    
-    _menuService.updateCategory(menuKey, newCategory).catchError((e) {
+    menuService.updateCategory(menuKey, newCategory).catchError((e) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text('Hata: $e'), backgroundColor: AppColors.error),
@@ -258,69 +191,73 @@ class _CategoriesPageState extends State<CategoriesPage> {
     });
   }
 
-  Future<void> _handleSignOut(BuildContext context) async {
-    // Show confirmation dialog
+  Future<void> _handleSignOut(BuildContext context, WidgetRef ref) async {
     final shouldSignOut = await showDialog<bool>(
       context: context,
-      builder: (context) {
-        return AlertDialog(
-          backgroundColor: Colors.white,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-          title: const Text('Çıkış Yap', style: TextStyle(color: AppColors.textPrimary)),
-          content: const Text(
-            'Çıkış yapmak istediğinizden emin misiniz?',
-            style: TextStyle(color: AppColors.textPrimary),
-          ),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(context, false),
-              child: const Text('İptal', style: TextStyle(color: AppColors.textSecondary)),
-            ),
-            TextButton(
-              onPressed: () => Navigator.pop(context, true),
-              child: const Text('Çıkış Yap', style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold)),
-            ),
-          ],
-        );
-      },
+      builder: (context) => AlertDialog(
+        title: const Text('Çıkış Yap'),
+        content: const Text('Çıkış yapmak istediğinizden emin misiniz?'),
+        actions: [
+          TextButton(onPressed: () => Navigator.pop(context, false), child: const Text('İptal')),
+          TextButton(onPressed: () => Navigator.pop(context, true), child: const Text('Çıkış Yap', style: TextStyle(color: Colors.red))),
+        ],
+      ),
     );
 
-    if (shouldSignOut == true && mounted) {
-      try {
-        await AuthService().signOut();
-        // Navigation is handled automatically by AuthGate
-      } catch (e) {
-        if (mounted) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text('Çıkış yapılırken hata oluştu: $e'),
-              backgroundColor: AppColors.error,
-            ),
-          );
-        }
-      }
+    if (shouldSignOut == true) {
+      await ref.read(authServiceProvider).signOut();
     }
   }
 }
 
-class _ActionButton extends StatelessWidget {
-  final IconData icon;
-  final VoidCallback onPressed;
-
-  const _ActionButton({required this.icon, required this.onPressed});
-
+class _NoStoreSelected extends StatelessWidget {
+  const _NoStoreSelected();
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.white.withValues(alpha: 0.1),
-        borderRadius: BorderRadius.circular(12),
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(Icons.store_mall_directory_outlined, size: 64, color: AppColors.textSecondary.withValues(alpha: 0.5)),
+          const SizedBox(height: 16),
+          const Text("There is no Active Restaurant right now", style: TextStyle(color: AppColors.textSecondary)),
+        ],
       ),
-      child: IconButton(
-        icon: Icon(icon, color: AppColors.navbarText),
-        onPressed: onPressed,
-        constraints: const BoxConstraints(minWidth: 40, minHeight: 40),
-        padding: EdgeInsets.zero,
+    );
+  }
+}
+
+class _EmptyCategories extends StatelessWidget {
+  const _EmptyCategories();
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(Icons.restaurant_menu, color: AppColors.textSecondary.withValues(alpha: 0.5), size: 64),
+          const SizedBox(height: 16),
+          const Text('Henüz kategori eklenmemiş.', style: TextStyle(color: AppColors.textSecondary)),
+        ],
+      ),
+    );
+  }
+}
+
+class _ErrorView extends StatelessWidget {
+  final Object error;
+  const _ErrorView({required this.error});
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Icon(Icons.error_outline, color: AppColors.error, size: 48),
+          const SizedBox(height: 16),
+          Text('Bir hata oluştu', style: Theme.of(context).textTheme.titleMedium),
+          Text('$error', style: Theme.of(context).textTheme.bodySmall),
+        ],
       ),
     );
   }
@@ -345,7 +282,7 @@ class _CategoryCard extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: 16),
       color: Colors.white,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-      elevation: 2, // Slight elevation to match design language
+      elevation: 2,
       child: InkWell(
         onTap: () {
           Navigator.push(
@@ -376,9 +313,7 @@ class _CategoryCard extends StatelessWidget {
               ),
               Switch(
                 value: category.isActive,
-                onChanged: (val) {
-                  onToggle(val);
-                },
+                onChanged: onToggle,
                 activeColor: AppColors.brightBlue,
               ),
               const SizedBox(width: 8),
@@ -391,9 +326,6 @@ class _CategoryCard extends StatelessWidget {
   }
 }
 
-/// A StatefulWidget dialog that properly manages TextEditingController lifecycle
-/// This fixes the "TextEditingController was used after being disposed" error
-/// that occurs when dismissing the dialog by tapping outside.
 class _AddCategoryDialog extends StatefulWidget {
   final ValueChanged<String> onCategoryNameChanged;
   final VoidCallback onAdd;
@@ -439,20 +371,12 @@ class _AddCategoryDialogState extends State<_AddCategoryDialog> {
         decoration: const InputDecoration(
           hintText: 'Kategori Adı',
           hintStyle: TextStyle(color: AppColors.textSecondary),
-          enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: AppColors.textSecondary)),
-          focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: AppColors.brightBlue)),
         ),
         autofocus: true,
       ),
       actions: [
-        TextButton(
-          onPressed: widget.onCancel,
-          child: const Text('İptal', style: TextStyle(color: AppColors.textSecondary)),
-        ),
-        TextButton(
-          onPressed: widget.onAdd,
-          child: const Text('Ekle', style: TextStyle(color: AppColors.brightBlue, fontWeight: FontWeight.bold)),
-        ),
+        TextButton(onPressed: widget.onCancel, child: const Text('İptal')),
+        TextButton(onPressed: widget.onAdd, child: const Text('Ekle', style: TextStyle(fontWeight: FontWeight.bold))),
       ],
     );
   }

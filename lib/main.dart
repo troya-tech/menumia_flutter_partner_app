@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import 'firebase_options_uat.dart' as firebase_uat;
 import 'firebase_options_prod.dart' as firebase_prod;
 
@@ -34,7 +36,11 @@ Future<void> main() async {
     // Initialize Google Sign-In (v7+)
     await GoogleSignIn.instance.initialize();
 
-    runApp(const MyApp());
+    runApp(
+      const ProviderScope(
+        child: MyApp(),
+      ),
+    );
   } catch (e, stackTrace) {
     runApp(
       MaterialApp(
