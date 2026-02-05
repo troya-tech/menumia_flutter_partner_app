@@ -113,7 +113,8 @@ class AuthService {
         'Google ID token is null. Ensure a Web Client ID (client_type: 3) exists in google-services.json.',
       );
     }
-    _logger.debug('ID token obtained successfully', context);
+    // Log partial token for debugging (first 10 chars)
+    _logger.debug('ID token obtained successfully: ${idToken.substring(0, 10)}...', context);
 
     // Get authorization (access token) via the authorizationClient
     _logger.debug('Getting authorization (access token)...', context);
@@ -121,7 +122,11 @@ class AuthService {
     try {
       final authorization = await account.authorizationClient.authorizeScopes(scopes);
       accessToken = authorization.accessToken;
-      _logger.debug('Access token obtained successfully', context);
+      if (accessToken != null) {
+        _logger.debug('Access token obtained successfully: ${accessToken.substring(0, 10)}...', context);
+      } else {
+        _logger.debug('Access token is null (valid for idToken-only flows)', context);
+      }
     } catch (authzError) {
       // Authorization might fail, but we can still proceed with just idToken
       _logger.warning('Authorization failed (proceeding with idToken only): $authzError', context);
@@ -136,14 +141,23 @@ class AuthService {
 
     // Sign in to Firebase
     _logger.debug('Signing in to Firebase...', context);
-    final UserCredential userCredential =
-        await _auth.signInWithCredential(credential);
-    
-    _logger.success('Firebase sign-in successful', context);
-    _logger.data('User UID', userCredential.user?.uid, context);
-    _logger.data('User email', userCredential.user?.email, context);
+    try {
+      final UserCredential userCredential =
+          await _auth.signInWithCredential(credential);
+      
+      _logger.success('Firebase sign-in successful', context);
+      _logger.data('User UID', userCredential.user?.uid, context);
+      _logger.data('User email', userCredential.user?.email, context);
 
-    return userCredential;
+      return userCredential;
+    } on FirebaseAuthException catch (e) {
+      _logger.error('Firebase Auth Error: [${e.code}] ${e.message}', e, null, context);
+      _logger.data('Error Credential', e.credential.toString(), context);
+      rethrow;
+    } catch (e) {
+      _logger.error('Unexpected error during Firebase sign-in', e, null, context);
+      rethrow;
+    }
   }
 
   /// Sign out from both Firebase and Google

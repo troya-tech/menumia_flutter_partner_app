@@ -12,22 +12,47 @@ import 'app/theme/theme.dart';
 const String environment = String.fromEnvironment('ENV', defaultValue: 'uat');
 
 Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+  try {
+    WidgetsFlutterBinding.ensureInitialized();
 
-  // Select Firebase options based on environment
-  final firebaseOptions = environment == 'prod'
-      ? firebase_prod.DefaultFirebaseOptions.currentPlatform
-      : firebase_uat.DefaultFirebaseOptions.currentPlatform;
+    // Select Firebase options based on environment
+    final firebaseOptions = environment == 'prod'
+        ? firebase_prod.DefaultFirebaseOptions.currentPlatform
+        : firebase_uat.DefaultFirebaseOptions.currentPlatform;
 
-  // Initialize Firebase with the correct options
-  await Firebase.initializeApp(
-    options: firebaseOptions,
-  );
+    // Initialize Firebase (Check if already initialized to prevent 'duplicate-app' crash)
+    if (Firebase.apps.isEmpty) {
+      await Firebase.initializeApp(
+        options: firebaseOptions,
+      );
+    } else {
+      // Firebase already initialized (likely by native layer), use existing instance
+      // Validation: Ensure the existing instance configuration matches expectation if needed
+      // For now, we assume the native google-services.json matches the dart configuration
+    }
 
-  // Initialize Google Sign-In (v7+)
-  await GoogleSignIn.instance.initialize();
+    // Initialize Google Sign-In (v7+)
+    await GoogleSignIn.instance.initialize();
 
-  runApp(const MyApp());
+    runApp(const MyApp());
+  } catch (e, stackTrace) {
+    runApp(
+      MaterialApp(
+        home: Scaffold(
+          backgroundColor: Colors.white,
+          body: Center(
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.all(16.0),
+              child: SelectableText( // Use SelectableText for easier copying
+                'Initialization Error:\n$e\n\nSTACK TRACE:\n$stackTrace',
+                style: const TextStyle(color: Colors.red, fontSize: 16),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
 }
 
 class MyApp extends StatelessWidget {
