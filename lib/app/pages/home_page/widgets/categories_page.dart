@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../theme/app_colors.dart';
 import '../../../../features/menu/domain/entities/menu.dart';
 import '../../../../features/menu/domain/entities/category.dart';
+import '../../../../features/restaurant-user-feature/domain/entities/restaurant_user.dart';
 import '../../../../features/menu/application/services/menu_service.dart';
 import '../../../providers.dart';
 import 'category_reorder_page.dart';
@@ -20,7 +21,14 @@ class _CategoriesPageState extends ConsumerState<CategoriesPage> {
   @override
   Widget build(BuildContext context) {
     final menuKeyAsync = ref.watch(activeMenuKeyProvider);
+    final currentUserAsync = ref.watch(currentUserProvider);
     final menuService = ref.watch(menuServiceProvider);
+
+    // If the user isn't in the database (or auth is missing), show warning immediately
+    // This handles the "Signed in but not in restaurantUsers" case
+    if (currentUserAsync is AsyncData<RestaurantUser?> && currentUserAsync.value == null) {
+      return const _NoRestaurantAssignedWarning();
+    }
 
     return menuKeyAsync.when(
       data: (menuKey) {
@@ -378,6 +386,35 @@ class _AddCategoryDialogState extends State<_AddCategoryDialog> {
         TextButton(onPressed: widget.onCancel, child: const Text('İptal')),
         TextButton(onPressed: widget.onAdd, child: const Text('Ekle', style: TextStyle(fontWeight: FontWeight.bold))),
       ],
+    );
+  }
+}
+
+class _NoRestaurantAssignedWarning extends StatelessWidget {
+  const _NoRestaurantAssignedWarning();
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Icon(Icons.warning_amber_rounded, color: AppColors.error, size: 64),
+          const SizedBox(height: 16),
+          const Text(
+            'No restaurant assigned!',
+            style: TextStyle(
+              color: AppColors.textSecondary, 
+              fontSize: 18, 
+              fontWeight: FontWeight.bold
+            ),
+          ),
+          const SizedBox(height: 8),
+          const Text(
+            'Please contact your administrator.',
+            style: TextStyle(color: AppColors.textSecondary),
+          ),
+        ],
+      ),
     );
   }
 }
