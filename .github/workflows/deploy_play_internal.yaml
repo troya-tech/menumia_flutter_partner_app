@@ -1,0 +1,67 @@
+name: Deploy Android - Internal Testing (prod)
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: stable
+          cache: true
+
+      - name: Flutter pub get
+        run: flutter pub get
+
+      # --- Android signing setup (keystore + key.properties) ---
+      - name: Decode keystore
+        run: |
+          echo "${{ secrets.ANDROID_KEYSTORE_B64 }}" | base64 --decode > android/app/upload-keystore.jks
+
+      - name: Create android/key.properties
+        run: |
+          cat > android/key.properties <<EOF
+          storeFile=app/upload-keystore.jks
+          storePassword=${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          keyPassword=${{ secrets.ANDROID_KEY_PASSWORD }}
+          keyAlias=${{ secrets.ANDROID_KEY_ALIAS }}
+          EOF
+
+      # --- Build AAB for prod flavor ---
+      - name: Build App Bundle (prodRelease)
+        run: |
+          flutter build appbundle --flavor prod --release --dart-define=ENV=prod
+
+      # --- Safety check: ensure the expected AAB exists ---
+      - name: Verify AAB exists
+        run: |
+          echo "Listing bundle outputs..."
+          ls -la build/app/outputs/bundle || true
+          ls -la build/app/outputs/bundle/prodRelease || true
+          test -f build/app/outputs/bundle/prodRelease/app-prod-release.aab
+
+      # --- Upload to Google Play Internal track ---
+      - name: Upload to Google Play (Internal)
+        uses: r0adkll/upload-google-play@v1
+        with:
+          serviceAccountJsonPlainText: ${{ secrets.PLAY_SERVICE_ACCOUNT_JSON }}
+          packageName: com.menumia.partner
+          releaseFiles: build/app/outputs/bundle/prodRelease/app-prod-release.aab
+          track: internal
+          status: completed
