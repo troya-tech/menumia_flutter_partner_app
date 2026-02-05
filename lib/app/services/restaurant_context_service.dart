@@ -1,7 +1,7 @@
 import 'dart:async';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:collection/collection.dart'; // for firstOrNull
 
+import '../../services/auth_service.dart';
 import '../../features/restaurant-user-feature/application/restaurant_user_service.dart';
 import '../../features/restaurant-user-feature/domain/entities/restaurant_user.dart';
 import '../../features/restaurant-user-feature/infrastructure/repositories/firebase_restaurant_user_repository.dart';
@@ -38,7 +38,29 @@ class RestaurantContextService {
 
   RestaurantContextService._internal()
       : _userService = RestaurantUserService(FirebaseRestaurantUserRepository()),
-        _restaurantService = RestaurantService(FirebaseRestaurantRepository());
+        _restaurantService = RestaurantService(FirebaseRestaurantRepository()) {
+    // Listen for auth state changes to automatically clear state on sign-out
+    AuthService.instance.authStateChanges().listen((user) {
+      if (user == null) {
+        _clearState();
+      }
+    });
+  }
+
+  /// Clear all internal state and emit empty/null values to streams
+  void _clearState() {
+    _logger.info('Clearing state due to user sign-out');
+    _currentUser = null;
+    _loadedRestaurants = [];
+    _currentActiveId = null;
+    _initFuture = null; // Important: Clear the init future so next init() runs fresh
+
+    // Emit cleared state to all listeners
+    _currentUserController.add(null);
+    _relatedRestaurantsController.add([]);
+    _activeRestaurantIdController.add(null);
+    _activeMenuKeyController.add(null);
+  }
 
   // Completion future for init
   Future<void>? _initFuture;
@@ -82,7 +104,7 @@ class RestaurantContextService {
 
   Future<void> _loadUser() async {
     _logger.debug('Loading user data...');
-    final currentUser = FirebaseAuth.instance.currentUser;
+    final currentUser = AuthService.instance.currentUser;
 
     if (currentUser == null) {
       _logger.warning('No authenticated user found');

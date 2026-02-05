@@ -170,6 +170,14 @@ class AuthService {
     
     try {
       _logger.debug('Signing out from Firebase and Google...', context);
+      // Attempt to disconnect from Google Sign-In to force account selection on next sign-in
+      try {
+        await _googleSignIn.disconnect();
+      } catch (e) {
+        // Ignore errors if, for example, the user wasn't signed in with Google
+        _logger.debug('Google disconnect failed or not applicable: $e', context);
+      }
+
       await Future.wait([
         _auth.signOut(),
         _googleSignIn.signOut(),
