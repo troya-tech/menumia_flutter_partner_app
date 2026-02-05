@@ -61,7 +61,7 @@ final sharedConfigServiceProvider = Provider<SharedConfigService>((ref) {
 
 /// StreamProvider that evaluates if ordering is enabled based on active menu key
 final orderingEnabledProvider = StreamProvider<bool>((ref) {
-  final menuKey = ref.watch(activeMenuKeyProvider).asData?.value;
+  final menuKey = ref.watch(activeMenuKeyProvider).valueOrNull;
   if (menuKey == null) return Stream.value(false);
   
   return ref.watch(sharedConfigServiceProvider)

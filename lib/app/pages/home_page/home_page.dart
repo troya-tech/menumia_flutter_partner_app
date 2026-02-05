@@ -14,8 +14,10 @@ class HomePage extends ConsumerStatefulWidget {
   ConsumerState<HomePage> createState() => _HomePageState();
 }
 
+enum AppTab { categories, orders, profile }
+
 class _HomePageState extends ConsumerState<HomePage> {
-  int _selectedIndex = 0;
+  AppTab _selectedTab = AppTab.categories;
 
   @override
   void initState() {
@@ -24,25 +26,42 @@ class _HomePageState extends ConsumerState<HomePage> {
     ref.read(restaurantContextServiceProvider).init();
   }
 
-  void _onItemTapped(int index) {
+  void _onItemTapped(int index, List<AppTab> currentTabs) {
     setState(() {
-      _selectedIndex = index;
+      _selectedTab = currentTabs[index];
     });
   }
 
   @override
   Widget build(BuildContext context) {
     final orderingEnabledAsync = ref.watch(orderingEnabledProvider);
-    final orderingEnabled = orderingEnabledAsync.asData?.value ?? false;
+    // Use valueOrNull to preserve state during loading
+    final orderingEnabled = orderingEnabledAsync.valueOrNull ?? false;
 
-    // Build pages list based on orderingEnabled flag
-    final pages = <Widget>[
-      const CategoriesPage(),
-      if (orderingEnabled) const OrdersPage(),
-      const ProfilePage(),
+    // Define available tabs based on configuration
+    final availableTabs = [
+      AppTab.categories,
+      if (orderingEnabled) AppTab.orders,
+      AppTab.profile,
     ];
 
-    // Build navigation items based on orderingEnabled flag
+    // Ensure selection is valid; if current tab is gone, fallback to profile (if valid) or categories
+    if (!availableTabs.contains(_selectedTab)) {
+      // If we lost the current tab (e.g. orders disabled), fallback safely
+      _selectedTab = AppTab.categories;
+    }
+
+    // Build pages map
+    final pages = {
+      AppTab.categories: const CategoriesPage(key: ValueKey('categories')),
+      AppTab.orders: const OrdersPage(key: ValueKey('orders')),
+      AppTab.profile: const ProfilePage(key: ValueKey('profile')),
+    };
+
+    // Calculate current index for BottomNavigationBar
+    final currentIndex = availableTabs.indexOf(_selectedTab);
+
+    // Build navigation items
     final navItems = <BottomNavigationBarItem>[
       const BottomNavigationBarItem(
         icon: Icon(Icons.category),
@@ -59,27 +78,22 @@ class _HomePageState extends ConsumerState<HomePage> {
       ),
     ];
 
-    // Ensure selected index is valid
-    if (_selectedIndex >= pages.length) {
-      _selectedIndex = 0;
-    }
-
     return Scaffold(
       backgroundColor: AppColors.backgroundDark,
       body: SafeArea(
         top: false,
         child: IndexedStack(
-          index: _selectedIndex,
-          children: pages,
+          index: currentIndex,
+          children: availableTabs.map((tab) => pages[tab]!).toList(),
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: navItems,
-        currentIndex: _selectedIndex,
+        currentIndex: currentIndex,
         selectedItemColor: AppColors.brightBlue,
         unselectedItemColor: AppColors.textSecondary,
         backgroundColor: AppColors.navbarBackground,
-        onTap: _onItemTapped,
+        onTap: (index) => _onItemTapped(index, availableTabs),
         type: BottomNavigationBarType.fixed,
       ),
     );

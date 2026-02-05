@@ -202,7 +202,7 @@ class _RestaurantSelectionCard extends ConsumerWidget {
       data: (restaurants) {
         if (restaurants.isEmpty) return const SizedBox.shrink();
 
-        final activeId = activeIdAsync.asData?.value;
+        final activeId = activeIdAsync.valueOrNull;
         final activeRestaurant = restaurants.firstWhere(
           (r) => r.id == activeId,
           orElse: () => restaurants.first,
