@@ -8,19 +8,20 @@ import 'package:menumia_flutter_partner_app/utils/app_logger.dart';
 /// operations including Google Sign-In, sign-out, and auth state monitoring.
 class AuthService {
   // Singleton pattern
-  AuthService._();
-  static final AuthService _instance = AuthService._();
-  factory AuthService() => _instance;
+  const AuthService._();
+  static const AuthService instance = AuthService._();
+  factory AuthService() => instance;
 
   // Logger
   static final _logger = AppLogger('AuthService');
 
   // Firebase Auth instance
-  final FirebaseAuth _auth = FirebaseAuth.instance;
+  // Firebase Auth instance
+  FirebaseAuth get _auth => FirebaseAuth.instance;
 
   // Google Sign-In instance
   // Note: signIn() automatically requests basic profile and email scopes
-  final GoogleSignIn _googleSignIn = GoogleSignIn.instance;
+  GoogleSignIn get _googleSignIn => GoogleSignIn.instance;
 
   /// Get the current authenticated user
   User? get currentUser => _auth.currentUser;

@@ -5,14 +5,25 @@ import '../../../services/auth_service.dart';
 ///
 /// This page provides a UI for users to sign in with their Google account.
 class SignInPage extends StatefulWidget {
-  const SignInPage({super.key});
+  final AuthService _authService;
+
+  const SignInPage({
+    super.key,
+    AuthService? authService,
+  }) : _authService = authService ?? AuthService.instance;
 
   @override
   State<SignInPage> createState() => _SignInPageState();
 }
 
 class _SignInPageState extends State<SignInPage> {
-  final AuthService _authService = AuthService();
+  late final AuthService _authService;
+
+  @override
+  void initState() {
+    super.initState();
+    _authService = widget._authService;
+  }
   bool _loading = false;
   String? _error;
 
