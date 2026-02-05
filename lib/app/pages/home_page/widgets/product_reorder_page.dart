@@ -7,11 +7,13 @@ import '../../../../features/menu/application/services/menu_service.dart';
 class ProductReorderPage extends StatefulWidget {
   final Category category;
   final MenuService menuService;
+  final String menuKey;
 
   const ProductReorderPage({
     super.key,
     required this.category,
     required this.menuService,
+    required this.menuKey,
   });
 
   @override
@@ -48,7 +50,7 @@ class _ProductReorderPageState extends State<ProductReorderPage> {
       
       if (updatedProducts.isNotEmpty) {
         await widget.menuService.updateProductsOrder(
-          'menuKey_forknife', // TODO: Get from auth/context
+          widget.menuKey,
           widget.category.id,
           updatedProducts,
         );

@@ -123,6 +123,7 @@ class _CategoriesPageState extends State<CategoriesPage> {
                                 );
                               },
                               menuService: _menuService,
+                              menuKey: menuKey,
                             );
                           },
                         ),
@@ -169,6 +170,7 @@ class _CategoriesPageState extends State<CategoriesPage> {
                         builder: (context) => CategoryReorderPage(
                           categories: categories,
                           menuService: _menuService,
+                          menuKey: menuKey,
                         ),
                       ),
                     );
@@ -328,11 +330,13 @@ class _CategoryCard extends StatelessWidget {
   final Category category;
   final ValueChanged<bool> onToggle;
   final MenuService menuService;
+  final String menuKey;
 
   const _CategoryCard({
     required this.category,
     required this.onToggle,
     required this.menuService,
+    required this.menuKey,
   });
 
   @override
@@ -350,6 +354,7 @@ class _CategoryCard extends StatelessWidget {
               builder: (context) => CategoryDetailPage(
                 initialCategory: category,
                 menuService: menuService,
+                menuKey: menuKey,
               ),
             ),
           );

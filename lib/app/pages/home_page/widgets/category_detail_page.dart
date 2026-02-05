@@ -9,11 +9,13 @@ import '../../../../features/menu/application/services/menu_service.dart';
 class CategoryDetailPage extends StatefulWidget {
   final Category initialCategory;
   final MenuService menuService;
+  final String menuKey;
 
   const CategoryDetailPage({
     super.key, 
     required this.initialCategory,
     required this.menuService,
+    required this.menuKey,
   });
 
   @override
@@ -26,7 +28,7 @@ class _CategoryDetailPageState extends State<CategoryDetailPage> {
   @override
   void initState() {
     super.initState();
-    _menuStream = widget.menuService.watchMenu('menuKey_forknife');
+    _menuStream = widget.menuService.watchMenu(widget.menuKey);
   }
 
   // Helper to find the current version of the category from the stream
@@ -45,7 +47,7 @@ class _CategoryDetailPageState extends State<CategoryDetailPage> {
           category: category, 
           onSave: (newName) {
              widget.menuService.updateCategory(
-              'menuKey_forknife', 
+              widget.menuKey, 
               category.copyWith(name: newName),
             );
           },
@@ -71,7 +73,7 @@ class _CategoryDetailPageState extends State<CategoryDetailPage> {
             );
 
             widget.menuService.updateProduct(
-              'menuKey_forknife', 
+              widget.menuKey, 
               category.id, 
               newProduct
             );
@@ -85,7 +87,7 @@ class _CategoryDetailPageState extends State<CategoryDetailPage> {
   Widget build(BuildContext context) {
     return StreamBuilder<Menu>(
       stream: _menuStream,
-      initialData: Menu(menuKey: 'menuKey_forknife', categories: [widget.initialCategory]),
+      initialData: Menu(menuKey: widget.menuKey, categories: [widget.initialCategory]),
       builder: (context, snapshot) {
         final category = snapshot.hasData 
             ? _getCurrentCategory(snapshot.data!)
@@ -123,6 +125,7 @@ class _CategoryDetailPageState extends State<CategoryDetailPage> {
                          builder: (context) => ProductReorderPage(
                            category: category,
                            menuService: widget.menuService,
+                           menuKey: widget.menuKey,
                          ),
                        ),
                      );
