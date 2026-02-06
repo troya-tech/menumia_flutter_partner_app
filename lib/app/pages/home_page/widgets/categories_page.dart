@@ -118,8 +118,6 @@ class _CategoriesPageState extends ConsumerState<CategoriesPage> {
                         ),
                       ),
                     );
-                  } else if (value == 'sign_out') {
-                    _handleSignOut(context, ref);
                   }
                 },
                 itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
@@ -143,17 +141,7 @@ class _CategoriesPageState extends ConsumerState<CategoriesPage> {
                       ],
                     ),
                   ),
-                  const PopupMenuDivider(),
-                  const PopupMenuItem<String>(
-                    value: 'sign_out',
-                    child: Row(
-                      children: [
-                        Icon(Icons.logout, color: Colors.red, size: 20),
-                        SizedBox(width: 12),
-                        Text('Çıkış Yap', style: TextStyle(color: Colors.red, fontWeight: FontWeight.w500)),
-                      ],
-                    ),
-                  ),
+
                 ],
               ),
             ],
@@ -199,23 +187,7 @@ class _CategoriesPageState extends ConsumerState<CategoriesPage> {
     });
   }
 
-  Future<void> _handleSignOut(BuildContext context, WidgetRef ref) async {
-    final shouldSignOut = await showDialog<bool>(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: const Text('Çıkış Yap'),
-        content: const Text('Çıkış yapmak istediğinizden emin misiniz?'),
-        actions: [
-          TextButton(onPressed: () => Navigator.pop(context, false), child: const Text('İptal')),
-          TextButton(onPressed: () => Navigator.pop(context, true), child: const Text('Çıkış Yap', style: TextStyle(color: Colors.red))),
-        ],
-      ),
-    );
 
-    if (shouldSignOut == true) {
-      await ref.read(authServiceProvider).signOut();
-    }
-  }
 }
 
 class _NoStoreSelected extends StatelessWidget {
