@@ -1,5 +1,6 @@
 import os
 import re
+import shutil
 
 def main():
     project_root = os.getcwd()
@@ -10,6 +11,15 @@ def main():
     if not os.path.exists(lib_dir):
         print(f"Error: 'lib' directory not found in {project_root}")
         return
+
+    # Clean existing docs directory
+    if os.path.exists(docs_dir):
+        print(f"Cleaning existing docs directory: {docs_dir}")
+        try:
+            shutil.rmtree(docs_dir)
+        except Exception as e:
+            print(f"Error cleaning docs directory: {e}")
+            return
 
     print("Starting dependency graph generation...")
 

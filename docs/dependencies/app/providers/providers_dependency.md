@@ -1,6 +1,6 @@
 # Dependency Graph: providers.dart
 
-Location: `lib/app/providers.dart`
+Location: `lib/app/providers/providers.dart`
 
 ```mermaid
 graph TD
