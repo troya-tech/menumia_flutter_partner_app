@@ -1,15 +1,15 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import '../services/auth_service.dart';
-import 'services/restaurant_context_service.dart';
-import '../features/restaurant-user-feature/domain/entities/restaurant_user.dart';
-import '../features/restaurant/domain/entities/restaurant.dart';
-import '../features/shared-config-feature/application/shared_config_service.dart';
-import '../features/shared-config-feature/infrastructure/repositories/firebase_shared_config_repository.dart';
-import '../features/menu/application/services/menu_service.dart';
-import '../features/menu/infrastructure/repositories/firebase_menu_repository.dart';
-import '../features/menu/domain/entities/menu.dart';
-import 'services/profile_page_facade.dart';
+import '../../services/auth_service.dart';
+import '../services/restaurant_context_service.dart';
+import '../../features/restaurant-user-feature/domain/entities/restaurant_user.dart';
+import '../../features/restaurant/domain/entities/restaurant.dart';
+import '../../features/shared-config-feature/application/shared_config_service.dart';
+import '../../features/shared-config-feature/infrastructure/repositories/firebase_shared_config_repository.dart';
+import '../../features/menu/application/services/menu_service.dart';
+import '../../features/menu/infrastructure/repositories/firebase_menu_repository.dart';
+import '../../features/menu/domain/entities/menu.dart';
+import '../services/profile_page_facade.dart';
 
 /// Provider for the AuthService singleton
 final authServiceProvider = Provider<AuthService>((ref) => AuthService.instance);

@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:menumia_flutter_partner_app/app/pages/auth/sign_in_page.dart';
 import 'package:menumia_flutter_partner_app/services/auth_service.dart';
-import 'package:menumia_flutter_partner_app/app/providers.dart';
+import 'package:menumia_flutter_partner_app/app/providers/providers.dart';
 
 class MockAuthService extends Mock implements AuthService {}
 

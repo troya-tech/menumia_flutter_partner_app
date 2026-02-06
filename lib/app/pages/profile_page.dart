@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:menumia_flutter_partner_app/app/providers.dart';
+import 'package:menumia_flutter_partner_app/app/providers/providers.dart';
 import 'package:menumia_flutter_partner_app/app/routing/app_routes.dart';
 import 'package:menumia_flutter_partner_app/app/services/profile_page_facade.dart';
 import 'package:menumia_flutter_partner_app/features/restaurant/domain/entities/restaurant.dart';

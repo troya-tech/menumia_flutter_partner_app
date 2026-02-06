@@ -4,7 +4,7 @@ import '../../theme/app_colors.dart';
 import 'widgets/categories_page.dart';
 import '../orders_page.dart';
 import '../profile_page.dart';
-import '../../providers.dart';
+import '../../providers/providers.dart';
 
 /// Home page for Menumia Partner App
 class HomePage extends ConsumerStatefulWidget {

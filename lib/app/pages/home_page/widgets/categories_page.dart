@@ -5,7 +5,7 @@ import '../../../../features/menu/domain/entities/menu.dart';
 import '../../../../features/menu/domain/entities/category.dart';
 import '../../../../features/restaurant-user-feature/domain/entities/restaurant_user.dart';
 import '../../../../features/menu/application/services/menu_service.dart';
-import '../../../providers.dart';
+import '../../../providers/providers.dart';
 import 'category_reorder_page.dart';
 import 'category_detail_page.dart';
 
