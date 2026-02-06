@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../theme/app_colors.dart';
-import 'widgets/categories_page.dart';
+import 'package:menumia_flutter_partner_app/app/pages/home_page/home_page_categories_widgets/categories_page/categories_page.dart';
 import '../orders_page.dart';
 import '../profile_page.dart';
 import '../../providers/providers.dart';

@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../providers/providers.dart';
+import 'package:menumia_flutter_partner_app/app/providers/providers.dart';
 
-/// Sign-in page with Google authentication
+/// Login page with Google authentication
 ///
-/// This page provides a UI for users to sign in with their Google account.
-class SignInPage extends ConsumerStatefulWidget {
-  const SignInPage({super.key});
+/// This page provides a UI for users to login with their Google account.
+class LoginPage extends ConsumerStatefulWidget {
+  const LoginPage({super.key});
 
   @override
-  ConsumerState<SignInPage> createState() => _SignInPageState();
+  ConsumerState<LoginPage> createState() => _LoginPageState();
 }
 
-class _SignInPageState extends ConsumerState<SignInPage> {
+class _LoginPageState extends ConsumerState<LoginPage> {
   bool _loading = false;
   String? _error;
 
-  /// Handle Google Sign-In
+  /// Handle Google Login
   Future<void> _signInWithGoogle() async {
     setState(() {
       _loading = true;
@@ -40,7 +40,7 @@ class _SignInPageState extends ConsumerState<SignInPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Sign in'),
+        title: const Text('Login'),
       ),
       body: Center(
         child: Padding(
@@ -59,7 +59,7 @@ class _SignInPageState extends ConsumerState<SignInPage> {
                 'Menumia Partner',
                 style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                       fontWeight: FontWeight.bold,
-                    ),
+                     ),
               ),
               const SizedBox(height: 8),
               Text(
@@ -109,7 +109,7 @@ class _SignInPageState extends ConsumerState<SignInPage> {
                         ),
                       )
                     : const Icon(Icons.login),
-                label: Text(_loading ? 'Signing in...' : 'Sign in with Google'),
+                label: Text(_loading ? 'Logging in...' : 'Login with Google'),
                 style: FilledButton.styleFrom(
                   padding: const EdgeInsets.symmetric(
                     horizontal: 24,

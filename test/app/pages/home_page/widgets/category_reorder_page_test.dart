@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:menumia_flutter_partner_app/app/pages/home_page/widgets/category_reorder_page.dart';
+import 'package:menumia_flutter_partner_app/app/pages/home_page/home_page_categories_widgets/categories_page/categories_page_widgets/category_reorder_page.dart';
 import 'package:menumia_flutter_partner_app/features/menu/application/services/menu_service.dart';
 import 'package:menumia_flutter_partner_app/features/menu/domain/entities/category.dart';
 

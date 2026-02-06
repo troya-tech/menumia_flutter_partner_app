@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../../theme/app_colors.dart';
-import '../../../../features/menu/domain/entities/menu.dart';
-import '../../../../features/menu/domain/entities/category.dart';
-import '../../../../features/restaurant-user-feature/domain/entities/restaurant_user.dart';
-import '../../../../features/menu/application/services/menu_service.dart';
-import '../../../providers/providers.dart';
-import 'category_reorder_page.dart';
-import 'category_detail_page.dart';
+import 'package:menumia_flutter_partner_app/app/theme/app_colors.dart';
+import 'package:menumia_flutter_partner_app/features/menu/domain/entities/menu.dart';
+import 'package:menumia_flutter_partner_app/features/menu/domain/entities/category.dart';
+import 'package:menumia_flutter_partner_app/features/restaurant-user-feature/domain/entities/restaurant_user.dart';
+import 'package:menumia_flutter_partner_app/features/menu/application/services/menu_service.dart';
+import 'package:menumia_flutter_partner_app/app/providers/providers.dart';
+import 'categories_page_widgets/category_reorder_page.dart';
+import 'categories_page_widgets/category_detail_page.dart';
 
 /// Categories page component
 class CategoriesPage extends ConsumerStatefulWidget {

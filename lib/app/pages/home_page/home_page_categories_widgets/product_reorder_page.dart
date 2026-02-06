@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import '../../../theme/app_colors.dart';
-import '../../../../features/menu/domain/entities/category.dart';
-import '../../../../features/menu/domain/entities/product.dart';
-import '../../../../features/menu/application/services/menu_service.dart';
+import 'package:menumia_flutter_partner_app/app/theme/app_colors.dart';
+import 'package:menumia_flutter_partner_app/features/menu/domain/entities/category.dart';
+import 'package:menumia_flutter_partner_app/features/menu/domain/entities/product.dart';
+import 'package:menumia_flutter_partner_app/features/menu/application/services/menu_service.dart';
 
 class ProductReorderPage extends StatefulWidget {
   final Category category;

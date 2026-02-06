@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'product_reorder_page.dart';
-import '../../../theme/app_colors.dart';
-import '../../../../features/menu/domain/entities/category.dart';
-import '../../../../features/menu/domain/entities/menu.dart';
-import '../../../../features/menu/domain/entities/product.dart';
-import '../../../../features/menu/application/services/menu_service.dart';
+import 'package:menumia_flutter_partner_app/app/pages/home_page/home_page_categories_widgets/product_reorder_page.dart';
+import 'package:menumia_flutter_partner_app/app/theme/app_colors.dart';
+import 'package:menumia_flutter_partner_app/features/menu/domain/entities/category.dart';
+import 'package:menumia_flutter_partner_app/features/menu/domain/entities/menu.dart';
+import 'package:menumia_flutter_partner_app/features/menu/domain/entities/product.dart';
+import 'package:menumia_flutter_partner_app/features/menu/application/services/menu_service.dart';
 
 class CategoryDetailPage extends StatefulWidget {
   final Category initialCategory;
