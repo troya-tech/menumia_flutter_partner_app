@@ -1,6 +1,9 @@
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import '../../services/auth_service.dart';
+
+import '../../features/auth-feature/application/auth_providers.dart';
+export '../../features/auth-feature/application/auth_providers.dart';
+
 import '../services/restaurant_context_service.dart';
 import '../../features/restaurant-user-feature/domain/entities/restaurant_user.dart';
 import '../../features/restaurant/domain/entities/restaurant.dart';
@@ -11,8 +14,9 @@ import '../../features/menu/infrastructure/repositories/firebase_menu_repository
 import '../../features/menu/domain/entities/menu.dart';
 import '../services/profile_page_facade.dart';
 
-/// Provider for the AuthService singleton
-final authServiceProvider = Provider<AuthService>((ref) => AuthService.instance);
+/// Legacy alias for authServiceProvider, now pointing to authRepositoryProvider
+/// Note: This now returns Key AuthRepository interface, not the implementation
+final authServiceProvider = authRepositoryProvider;
 
 /// Provider for the MenuService
 final menuServiceProvider = Provider<MenuService>((ref) {
@@ -22,11 +26,6 @@ final menuServiceProvider = Provider<MenuService>((ref) {
 /// StreamProvider for a specific menu
 final menuProvider = StreamProvider.family<Menu, String>((ref, menuKey) {
   return ref.watch(menuServiceProvider).watchMenu(menuKey);
-});
-
-/// StreamProvider for the authentication state
-final authStateProvider = StreamProvider<User?>((ref) {
-  return ref.watch(authServiceProvider).authStateChanges();
 });
 
 /// Provider for the RestaurantContextService singleton

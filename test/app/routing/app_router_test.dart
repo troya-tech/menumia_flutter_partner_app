@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:menumia_flutter_partner_app/app/pages/auth/auth_gate.dart';
+import 'package:menumia_flutter_partner_app/features/auth-feature/presentation/auth_gate.dart';
 import 'package:menumia_flutter_partner_app/app/pages/home_page/home_page.dart';
 import 'package:menumia_flutter_partner_app/app/pages/profile_page.dart';
 import 'package:menumia_flutter_partner_app/app/routing/app_router.dart';

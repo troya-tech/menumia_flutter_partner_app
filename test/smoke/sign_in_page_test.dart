@@ -1,25 +1,26 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:menumia_flutter_partner_app/app/pages/auth/sign_in_page.dart';
-import 'package:menumia_flutter_partner_app/services/auth_service.dart';
+import 'package:menumia_flutter_partner_app/features/auth-feature/domain/auth_repository.dart';
 import 'package:menumia_flutter_partner_app/app/providers/providers.dart';
 
-class MockAuthService extends Mock implements AuthService {}
+class MockAuthRepository extends Mock implements AuthRepository {}
 
 void main() {
-  late MockAuthService mockAuthService;
+  late MockAuthRepository mockAuthRepository;
 
   setUp(() {
-    mockAuthService = MockAuthService();
+    mockAuthRepository = MockAuthRepository();
   });
 
   testWidgets('SignInPage renders correctly', (tester) async {
     await tester.pumpWidget(
       ProviderScope(
         overrides: [
-          authServiceProvider.overrideWithValue(mockAuthService),
+          authRepositoryProvider.overrideWithValue(mockAuthRepository),
         ],
         child: const MaterialApp(
           home: SignInPage(),

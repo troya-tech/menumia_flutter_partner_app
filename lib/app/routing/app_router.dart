@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../pages/auth/auth_gate.dart';
+import '../../features/auth-feature/presentation/auth_gate.dart';
 import '../pages/home_page/home_page.dart';
 import '../pages/profile_page.dart';
 import 'app_routes.dart';
