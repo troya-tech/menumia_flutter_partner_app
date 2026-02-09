@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../features/auth-feature/presentation/auth_gate.dart';
+import '../pages/auth-gate-page/auth_gate_page.dart';
 import '../pages/home_page/home_page.dart';
 import '../pages/profile_page.dart';
 import 'app_routes.dart';
@@ -14,7 +14,7 @@ class AppRouter {
     switch (settings.name) {
       case AppRoutes.auth:
         return MaterialPageRoute(
-          builder: (_) => const AuthGate(),
+          builder: (_) => const AuthGatePage(),
           settings: settings,
         );
 

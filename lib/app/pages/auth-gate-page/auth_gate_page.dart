@@ -8,8 +8,8 @@ import '../../providers/providers.dart';
 ///
 /// This widget listens to auth state changes via Riverpod and displays
 /// the appropriate screen based on whether the user is signed in.
-class AuthGate extends ConsumerWidget {
-  const AuthGate({super.key});
+class AuthGatePage extends ConsumerWidget {
+  const AuthGatePage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

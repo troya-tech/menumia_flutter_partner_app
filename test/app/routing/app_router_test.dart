@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:menumia_flutter_partner_app/features/auth-feature/presentation/auth_gate.dart';
+import 'package:menumia_flutter_partner_app/app/pages/auth-gate-page/auth_gate_page.dart';
 import 'package:menumia_flutter_partner_app/app/pages/home_page/home_page.dart';
 import 'package:menumia_flutter_partner_app/app/pages/profile_page.dart';
 import 'package:menumia_flutter_partner_app/app/routing/app_router.dart';
@@ -12,13 +12,13 @@ class MockBuildContext extends Mock implements BuildContext {}
 
 void main() {
   group('AppRouter Route Generation Tests', () {
-    test('generateRoute for AppRoutes.auth returns AuthGate', () {
+    test('generateRoute for AppRoutes.auth returns AuthGatePage', () {
       final settings = const RouteSettings(name: AppRoutes.auth);
       final route = AppRouter.generateRoute(settings);
 
       expect(route, isA<MaterialPageRoute>());
       expect((route as MaterialPageRoute).builder(MockBuildContext()),
-          isA<AuthGate>());
+          isA<AuthGatePage>());
     });
 
     test('generateRoute for AppRoutes.home returns HomePage', () {
