@@ -1,8 +1,9 @@
 import 'dart:convert';
 import 'package:flutter/services.dart';
-import 'package:flutter/foundation.dart';
+import 'package:flutter/foundation.dart' hide Category;
 import '../../domain/entities/category.dart';
 import '../../domain/entities/menu.dart';
+import '../../domain/entities/product.dart';
 import '../../domain/repositories/menu_repository.dart';
 import '../dtos/category_dto.dart';
 
@@ -48,5 +49,36 @@ class AssetMenuRepository implements MenuRepository {
       debugPrint('Error loading menu: $e');
       yield Menu(menuKey: menuKey, categories: []);
     }
+  }
+
+
+  @override
+  Future<void> updateCategory(String menuKey, Category category) async {
+    debugPrint('AssetMenuRepository: updateCategory not supported for assets');
+  }
+
+  @override
+  Future<void> updateCategoriesOrder(String menuKey, List<Category> categories) async {
+    debugPrint('AssetMenuRepository: updateCategoriesOrder not supported for assets');
+  }
+
+  @override
+  Future<void> deleteCategory(String menuKey, String categoryId) async {
+    debugPrint('AssetMenuRepository: deleteCategory not supported for assets');
+  }
+
+  @override
+  Future<void> updateProduct(String menuKey, String categoryId, Product product) async {
+    debugPrint('AssetMenuRepository: updateProduct not supported for assets');
+  }
+
+  @override
+  Future<void> updateProductsOrder(String menuKey, String categoryId, List<Product> products) async {
+    debugPrint('AssetMenuRepository: updateProductsOrder not supported for assets');
+  }
+
+  @override
+  Future<void> deleteProduct(String menuKey, String categoryId, String productId) async {
+    debugPrint('AssetMenuRepository: deleteProduct not supported for assets');
   }
 }
