@@ -7,7 +7,7 @@ import 'package:menumia_flutter_partner_app/features/restaurant-user-feature/dom
 import 'package:menumia_flutter_partner_app/features/menu/application/services/menu_service.dart';
 import 'package:menumia_flutter_partner_app/app/providers/providers.dart';
 import 'categories_page_widgets/category_reorder_page.dart';
-import 'categories_page_widgets/category_detail_page.dart';
+import 'categories_page_widgets/category_details_page.dart';
 
 /// Categories page component
 class CategoriesPage extends ConsumerStatefulWidget {
@@ -268,7 +268,7 @@ class _CategoryCard extends StatelessWidget {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => CategoryDetailPage(
+              builder: (context) => CategoryDetailsPage(
                 initialCategory: category,
                 menuService: menuService,
                 menuKey: menuKey,

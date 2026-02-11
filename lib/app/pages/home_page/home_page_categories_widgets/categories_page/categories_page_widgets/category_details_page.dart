@@ -6,12 +6,12 @@ import 'package:menumia_flutter_partner_app/features/menu/domain/entities/menu.d
 import 'package:menumia_flutter_partner_app/features/menu/domain/entities/product.dart';
 import 'package:menumia_flutter_partner_app/features/menu/application/services/menu_service.dart';
 
-class CategoryDetailPage extends StatefulWidget {
+class CategoryDetailsPage extends StatefulWidget {
   final Category initialCategory;
   final MenuService menuService;
   final String menuKey;
 
-  const CategoryDetailPage({
+  const CategoryDetailsPage({
     super.key, 
     required this.initialCategory,
     required this.menuService,
@@ -19,10 +19,10 @@ class CategoryDetailPage extends StatefulWidget {
   });
 
   @override
-  State<CategoryDetailPage> createState() => _CategoryDetailPageState();
+  State<CategoryDetailsPage> createState() => _CategoryDetailsPageState();
 }
 
-class _CategoryDetailPageState extends State<CategoryDetailPage> {
+class _CategoryDetailsPageState extends State<CategoryDetailsPage> {
   late final Stream<Menu> _menuStream;
 
   @override
