@@ -64,7 +64,6 @@ class _EditCategoryNameDialogState extends State<EditCategoryNameDialog> {
             _buildTextField(
               controller: _nameController,
               label: 'Kategori Adı',
-              autoFocus: true,
               prefixIcon: Icons.category_rounded,
             ),
             const SizedBox(height: 8),

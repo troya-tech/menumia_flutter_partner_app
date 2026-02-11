@@ -70,7 +70,6 @@ class _EditProductDialogState extends State<EditProductDialog> {
             _buildTextField(
               controller: _nameController,
               label: 'Ürün Adı',
-              autoFocus: true,
               prefixIcon: Icons.restaurant_menu_rounded,
             ),
             const SizedBox(height: 20),
