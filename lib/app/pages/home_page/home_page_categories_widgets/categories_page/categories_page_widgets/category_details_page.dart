@@ -5,6 +5,9 @@ import 'package:menumia_flutter_partner_app/features/menu/domain/entities/catego
 import 'package:menumia_flutter_partner_app/features/menu/domain/entities/menu.dart';
 import 'package:menumia_flutter_partner_app/features/menu/domain/entities/product.dart';
 import 'package:menumia_flutter_partner_app/features/menu/application/services/menu_service.dart';
+import 'package:menumia_flutter_partner_app/app/pages/home_page/home_page_categories_widgets/categories_page/categories_page_widgets/category_details_page_widgets/edit_product_dialog.dart';
+import 'package:menumia_flutter_partner_app/app/pages/home_page/home_page_categories_widgets/categories_page/categories_page_widgets/category_details_page_widgets/add_product_dialog.dart';
+import 'package:menumia_flutter_partner_app/app/pages/home_page/home_page_categories_widgets/categories_page/categories_page_widgets/category_details_page_widgets/edit_category_name_dialog.dart';
 
 class CategoryDetailsPage extends StatefulWidget {
   final Category initialCategory;
@@ -43,7 +46,7 @@ class _CategoryDetailsPageState extends State<CategoryDetailsPage> {
     await showDialog(
       context: context,
       builder: (context) {
-        return _EditCategoryNameDialog(
+        return EditCategoryNameDialog(
           category: category, 
           onSave: (newName) {
              widget.menuService.updateCategory(
@@ -60,7 +63,7 @@ class _CategoryDetailsPageState extends State<CategoryDetailsPage> {
     await showDialog(
       context: context,
       builder: (context) {
-        return _AddProductDialog(
+        return AddProductDialog(
           category: category, 
           onSave: (name, price, description) {
             final newProduct = Product(
@@ -76,6 +79,30 @@ class _CategoryDetailsPageState extends State<CategoryDetailsPage> {
               widget.menuKey, 
               category.id, 
               newProduct
+            );
+          },
+        );
+      },
+    );
+  }
+
+  Future<void> _editMenuItem(BuildContext context, Category category, Product product) async {
+    await showDialog(
+      context: context,
+      builder: (context) {
+        return EditProductDialog(
+          product: product, 
+          onSave: (name, price, description) {
+            final updatedProduct = product.copyWith(
+              name: name,
+              description: description,
+              price: price,
+            );
+
+            widget.menuService.updateProduct(
+              widget.menuKey, 
+              category.id, 
+              updatedProduct
             );
           },
         );
@@ -184,12 +211,16 @@ class _CategoryDetailsPageState extends State<CategoryDetailsPage> {
                   padding: const EdgeInsets.all(16),
                   itemCount: category.items.length,
                   itemBuilder: (context, index) {
-                    return Card(
-                      margin: const EdgeInsets.only(bottom: 12),
-                      color: Colors.white,
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                      elevation: 2,
-                      child: _ProductItem(product: category.items[index]),
+                    return InkWell(
+                      onTap: () => _editMenuItem(context, category, category.items[index]),
+                      borderRadius: BorderRadius.circular(12),
+                      child: Card(
+                        margin: const EdgeInsets.only(bottom: 12),
+                        color: Colors.white,
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                        elevation: 2,
+                        child: _ProductItem(product: category.items[index]),
+                      ),
                     );
                   },
                 ),
@@ -313,235 +344,3 @@ class _ProductImage extends StatelessWidget {
   }
 }
 
-class _EditCategoryNameDialog extends StatefulWidget {
-  final Category category;
-  final ValueChanged<String> onSave;
-
-  const _EditCategoryNameDialog({
-    required this.category,
-    required this.onSave,
-  });
-
-  @override
-  State<_EditCategoryNameDialog> createState() => _EditCategoryNameDialogState();
-}
-
-class _EditCategoryNameDialogState extends State<_EditCategoryNameDialog> {
-  late final TextEditingController _nameController;
-
-  @override
-  void initState() {
-    super.initState();
-    _nameController = TextEditingController(text: widget.category.name);
-  }
-
-  @override
-  void dispose() {
-    // Dispose controller safely when widget is unmounted
-    _nameController.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return AlertDialog(
-      backgroundColor: Colors.white,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-      title: const Text('Kategori Adını Düzenle', style: TextStyle(color: AppColors.textPrimary)),
-      content: TextField(
-        controller: _nameController,
-        style: const TextStyle(color: AppColors.textPrimary),
-        decoration: const InputDecoration(
-          hintText: 'Kategori Adı',
-          hintStyle: TextStyle(color: AppColors.textSecondary),
-          enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: AppColors.textSecondary)),
-          focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: AppColors.brightBlue)),
-        ),
-        autofocus: true,
-      ),
-      actions: [
-        TextButton(
-          onPressed: () => Navigator.pop(context),
-          child: const Text('İptal', style: TextStyle(color: AppColors.textSecondary)),
-        ),
-        TextButton(
-          onPressed: () {
-            final newName = _nameController.text.trim();
-            if (newName.isNotEmpty && newName != widget.category.name) {
-              widget.onSave(newName);
-            }
-            Navigator.pop(context);
-          },
-          child: const Text('Kaydet', style: TextStyle(color: AppColors.brightBlue, fontWeight: FontWeight.bold)),
-        ),
-      ],
-    );
-  }
-}
-
-class _AddProductDialog extends StatefulWidget {
-  final Category category;
-  final Function(String name, double price, String description) onSave;
-
-  const _AddProductDialog({
-    required this.category,
-    required this.onSave,
-  });
-
-  @override
-  State<_AddProductDialog> createState() => _AddProductDialogState();
-}
-
-class _AddProductDialogState extends State<_AddProductDialog> {
-  late final TextEditingController _nameController;
-  late final TextEditingController _priceController;
-  late final TextEditingController _descriptionController;
-
-  @override
-  void initState() {
-    super.initState();
-    _nameController = TextEditingController();
-    _priceController = TextEditingController();
-    _descriptionController = TextEditingController();
-  }
-
-  @override
-  void dispose() {
-    _nameController.dispose();
-    _priceController.dispose();
-    _descriptionController.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return AlertDialog(
-      backgroundColor: Colors.white,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-      titlePadding: const EdgeInsets.only(top: 24, left: 24, right: 24, bottom: 8),
-      contentPadding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
-      actionsPadding: const EdgeInsets.all(16),
-      title: const Text(
-        'Yeni Ürün Ekle', 
-        style: TextStyle(
-          color: AppColors.textPrimary,
-          fontWeight: FontWeight.bold,
-          fontSize: 20,
-        ),
-        textAlign: TextAlign.center,
-      ),
-      content: SingleChildScrollView(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            const SizedBox(height: 8),
-            _buildTextField(
-              controller: _nameController,
-              label: 'Ürün Adı',
-              autoFocus: true,
-            ),
-            const SizedBox(height: 16),
-            _buildTextField(
-              controller: _priceController,
-              label: 'Fiyat (₺)',
-              keyboardType: TextInputType.number,
-            ),
-            const SizedBox(height: 16),
-            _buildTextField(
-              controller: _descriptionController,
-              label: 'Açıklama (Opsiyonel)',
-              maxLines: 2,
-            ),
-            const SizedBox(height: 8),
-          ],
-        ),
-      ),
-      actions: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            TextButton(
-              onPressed: () => Navigator.pop(context),
-              style: TextButton.styleFrom(
-                foregroundColor: AppColors.textSecondary,
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-              ),
-              child: const Text('İptal'),
-            ),
-            const SizedBox(width: 8),
-            ElevatedButton(
-              onPressed: _handleSave,
-              style: ElevatedButton.styleFrom(
-                backgroundColor: AppColors.brightBlue,
-                foregroundColor: Colors.white,
-                elevation: 0,
-                padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-              ),
-              child: const Text('Ekle', style: TextStyle(fontWeight: FontWeight.bold)),
-            ),
-          ],
-        ),
-      ],
-    );
-  }
-
-  Widget _buildTextField({
-    required TextEditingController controller,
-    required String label,
-    TextInputType keyboardType = TextInputType.text,
-    bool autoFocus = false,
-    int maxLines = 1,
-  }) {
-    return TextField(
-      controller: controller,
-      style: const TextStyle(color: AppColors.textPrimary),
-      keyboardType: keyboardType,
-      autofocus: autoFocus,
-      maxLines: maxLines,
-      decoration: InputDecoration(
-        labelText: label,
-        alignLabelWithHint: maxLines > 1,
-        labelStyle: const TextStyle(color: AppColors.textSecondary),
-        hintStyle: TextStyle(color: AppColors.textSecondary.withValues(alpha: 0.5)),
-        filled: true,
-        fillColor: const Color(0xFFF9FAFB),
-        contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
-          borderSide: BorderSide.none,
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
-          borderSide: const BorderSide(color: Color(0xFFE5E7EB)),
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
-          borderSide: const BorderSide(color: AppColors.brightBlue, width: 2),
-        ),
-      ),
-    );
-  }
-
-  void _handleSave() {
-    final name = _nameController.text.trim();
-    final priceText = _priceController.text.trim();
-    final description = _descriptionController.text.trim();
-    
-    final price = double.tryParse(priceText);
-
-    if (name.isNotEmpty && price != null) {
-      widget.onSave(name, price, description);
-      Navigator.pop(context);
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Lütfen geçerli isim ve fiyat giriniz'),
-          backgroundColor: AppColors.error,
-          behavior: SnackBarBehavior.floating,
-        ),
-      );
-    }
-  }
-}
