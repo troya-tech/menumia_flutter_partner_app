@@ -1,19 +1,16 @@
 import 'dart:async';
 import 'package:collection/collection.dart'; // for firstOrNull
 
-import '../../services/auth_service.dart';
+import 'package:menumia_flutter_partner_app/features/auth-feature/domain/auth_repository.dart';
+
 import '../../features/restaurant-user-feature/application/restaurant_user_service.dart';
 import '../../features/restaurant-user-feature/domain/entities/restaurant_user.dart';
-import '../../features/restaurant-user-feature/infrastructure/repositories/firebase_restaurant_user_repository.dart';
 import '../../features/restaurant/application/restaurant_service.dart';
 import '../../features/restaurant/domain/entities/restaurant.dart';
-import '../../features/restaurant/infrastructure/repositories/firebase_restaurant_repository.dart';
 
 import '../../utils/app_logger.dart';
 
 class RestaurantContextService {
-  static final RestaurantContextService _instance = RestaurantContextService._internal();
-  static RestaurantContextService get instance => _instance;
 
   final RestaurantUserService _userService;
   final RestaurantService _restaurantService;
@@ -36,11 +33,17 @@ class RestaurantContextService {
   String? _currentActiveId;
   RestaurantUser? _currentUser;
 
-  RestaurantContextService._internal()
-      : _userService = RestaurantUserService(FirebaseRestaurantUserRepository()),
-        _restaurantService = RestaurantService(FirebaseRestaurantRepository()) {
+  final AuthRepository _authRepository;
+
+  RestaurantContextService({
+    required AuthRepository authRepository,
+    required RestaurantUserService userService,
+    required RestaurantService restaurantService,
+  })  : _authRepository = authRepository,
+        _userService = userService,
+        _restaurantService = restaurantService {
     // Listen for auth state changes to automatically clear state on sign-out
-    AuthService.instance.authStateChanges().listen((user) {
+    _authRepository.authStateChanges().listen((user) {
       if (user == null) {
         _clearState();
       }
@@ -104,7 +107,7 @@ class RestaurantContextService {
 
   Future<void> _loadUser() async {
     _logger.debug('Loading user data...');
-    final currentUser = AuthService.instance.currentUser;
+    final currentUser = _authRepository.currentUser;
 
     if (currentUser == null) {
       _logger.warning('No authenticated user found');

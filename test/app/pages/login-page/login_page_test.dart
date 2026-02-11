@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -5,6 +6,7 @@ import 'package:mocktail/mocktail.dart';
 import 'package:menumia_flutter_partner_app/app/pages/login-page/login_page.dart';
 import 'package:menumia_flutter_partner_app/app/providers/providers.dart';
 import 'package:menumia_flutter_partner_app/features/auth-feature/domain/auth_repository.dart';
+import 'package:menumia_flutter_partner_app/features/auth-feature/domain/auth_user.dart';
 
 class MockAuthRepository extends Mock implements AuthRepository {}
 
@@ -37,8 +39,10 @@ void main() {
   });
 
   testWidgets('LoginPage shows loading state when signing in', (tester) async {
+    // Use a Completer that never completes to keep the loading state visible
+    final completer = Completer<AuthUser>();
     when(() => mockAuthRepository.signInWithGoogle())
-        .thenAnswer((_) async => await Future.delayed(const Duration(seconds: 1)));
+        .thenAnswer((_) => completer.future);
 
     await tester.pumpWidget(createWidgetUnderTest());
 
@@ -47,14 +51,16 @@ void main() {
     expect(loginButton, findsOneWidget);
     await tester.tap(loginButton);
     
-    // We need to pump multiple times because the loading state change 
-    // occurs in an async microtask after the button is pressed.
-    await tester.pump(); // Handle the tap
-    await tester.pump(const Duration(milliseconds: 50)); // Handle the setState
+    // Pump to process the tap and setState
+    await tester.pump();
 
     // Verify loading state
     expect(find.text('Logging in...'), findsOneWidget);
     expect(find.byType(CircularProgressIndicator), findsOneWidget);
+
+    // Complete the future to clean up (avoid pending async operations)
+    completer.complete(const AuthUser(uid: 'test-uid', email: 'test@example.com'));
+    await tester.pump();
   });
 
   testWidgets('LoginPage shows error message on failure', (tester) async {

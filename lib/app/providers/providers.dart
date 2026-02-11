@@ -6,7 +6,11 @@ export '../../features/auth-feature/application/auth_providers.dart';
 
 import '../services/restaurant_context_service.dart';
 import '../../features/restaurant-user-feature/domain/entities/restaurant_user.dart';
+import '../../features/restaurant-user-feature/application/restaurant_user_service.dart';
+import '../../features/restaurant-user-feature/infrastructure/repositories/firebase_restaurant_user_repository.dart';
 import '../../features/restaurant/domain/entities/restaurant.dart';
+import '../../features/restaurant/application/restaurant_service.dart';
+import '../../features/restaurant/infrastructure/repositories/firebase_restaurant_repository.dart';
 import '../../features/shared-config-feature/application/shared_config_service.dart';
 import '../../features/shared-config-feature/infrastructure/repositories/firebase_shared_config_repository.dart';
 import '../../features/menu/application/services/menu_service.dart';
@@ -28,9 +32,13 @@ final menuProvider = StreamProvider.family<Menu, String>((ref, menuKey) {
   return ref.watch(menuServiceProvider).watchMenu(menuKey);
 });
 
-/// Provider for the RestaurantContextService singleton
+/// Provider for the RestaurantContextService
 final restaurantContextServiceProvider = Provider<RestaurantContextService>((ref) {
-  return RestaurantContextService.instance;
+  return RestaurantContextService(
+    authRepository: ref.watch(authRepositoryProvider),
+    userService: RestaurantUserService(FirebaseRestaurantUserRepository()),
+    restaurantService: RestaurantService(FirebaseRestaurantRepository()),
+  );
 });
 
 /// StreamProvider for the current restaurant user
@@ -68,7 +76,7 @@ final orderingEnabledProvider = StreamProvider<bool>((ref) {
       .map((config) => config.planTiersPlanner.orderingEnabled);
 });
 
-/// Provider for ProfilePageFacade (stateless wrapper)
+/// Provider for ProfilePageFacade
 final profilePageFacadeProvider = Provider<ProfilePageFacade>((ref) {
-  return ProfilePageFacade();
+  return ProfilePageFacade(ref.watch(restaurantContextServiceProvider));
 });

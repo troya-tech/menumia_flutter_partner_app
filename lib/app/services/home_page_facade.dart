@@ -5,6 +5,7 @@ import 'restaurant_context_service.dart';
 
 class HomePageFacade {
   final SharedConfigService _sharedConfigService;
+  final RestaurantContextService _contextService;
 
   final _orderingEnabledController = StreamController<bool>.broadcast();
   Stream<bool> get orderingEnabled$ => _orderingEnabledController.stream;
@@ -12,15 +13,18 @@ class HomePageFacade {
   StreamSubscription? _menuKeySubscription;
   StreamSubscription? _configSubscription;
 
-  HomePageFacade({SharedConfigService? sharedConfigService})
-      : _sharedConfigService = sharedConfigService ??
+  HomePageFacade({
+    required RestaurantContextService contextService,
+    SharedConfigService? sharedConfigService,
+  })  : _contextService = contextService,
+        _sharedConfigService = sharedConfigService ??
             SharedConfigService(FirebaseSharedConfigRepository()) {
     _init();
   }
 
   void _init() {
     // Listen to active menu key changes
-    _menuKeySubscription = RestaurantContextService.instance.activeMenuKey$.listen((menuKey) {
+    _menuKeySubscription = _contextService.activeMenuKey$.listen((menuKey) {
       // Cancel previous config subscription
       _configSubscription?.cancel();
       
