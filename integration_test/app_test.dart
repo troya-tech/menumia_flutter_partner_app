@@ -189,4 +189,37 @@ void main() {
     // Verify: signInWithGoogle was called exactly once
     verify(() => mockAuth.signInWithGoogle()).called(1);
   });
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // TEST 4: Internet Not Available → Shows Error UI
+  // ─────────────────────────────────────────────────────────────────────────
+  testWidgets('Tapping Login button with no internet shows error message',
+      (tester) async {
+    // Start unauthenticated
+    when(() => mockAuth.authStateChanges())
+        .thenAnswer((_) => Stream.value(null));
+    when(() => mockAuth.currentUser).thenReturn(null);
+
+    // Mock the sign-in to throw a network error
+    const networkErrorMessage = 'Exception: Network error: No internet connection';
+    when(() => mockAuth.signInWithGoogle()).thenThrow(
+      Exception('Network error: No internet connection'),
+    );
+
+    await tester.pumpWidget(buildTestApp(
+      mockAuth: mockAuth,
+      mockContext: mockContext,
+      mockMenuService: mockMenuService,
+      mockProfileFacade: mockProfileFacade,
+    ));
+    await tester.pumpAndSettle();
+
+    // Tap the "Login with Google" button
+    await tester.tap(find.text('Login with Google'));
+    await tester.pumpAndSettle();
+
+    // Verify: Error message is displayed in the UI
+    expect(find.text(networkErrorMessage), findsOneWidget);
+    expect(find.byIcon(Icons.error_outline), findsOneWidget);
+  });
 }
