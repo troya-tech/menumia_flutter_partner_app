@@ -8,7 +8,7 @@ This document outlines the phased approach to testing the Menumia Partner App.
 | :--- | :--- | :--- | :--- | :--- |
 | **Level 1** | **Foundation** | Repositories, Facades, Models | 🔄 In Progress | `flutter_test`, `mocktail` |
 | **Level 2** | **Component** | Individual Widgets (Cards, Dialogs) | 🔄 In Progress | `flutter_test` (Widget Tester) |
-| **Level 3** | **Experience** | Full User Flows (Login, Menu Mgmt) | ⏳ Planned | `integration_test` (Native) |
+| **Level 3** | **Experience** | Full User Flows (Login, Menu Mgmt) | 🔄 In Progress | `integration_test` (Native) |
 
 ---
 
@@ -26,9 +26,10 @@ This document outlines the phased approach to testing the Menumia Partner App.
 - [ ] Verify form validation logic in `EditProductDialog`.
 
 ### Phase 3: Integration & Smoke Tests (Level 3)
-- [ ] Decide on E2E tooling (Native vs Robot).
-- [ ] Implement "Happy Path" smoke test: Launch -> Login -> View Menu.
+- [x] Decide on E2E tooling → `integration_test` (Native, runs on device).
+- [x] Implement "Happy Path" smoke test: LoginPage → Login button → HomePage.
 - [ ] Automated CI integration for integration tests.
+- [ ] Implement integration test with real Google Sign-In (Patrol).
 
 ---
 

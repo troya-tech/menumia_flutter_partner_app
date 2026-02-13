@@ -18,9 +18,10 @@ Verify individual UI components in isolation.
 - **Run command:** `flutter test test/app/pages/home_page/home_page_test.dart`
 
 ### Level 3: Experience (Integration Tests)
-Full user flows and cross-component interactions.
-- **Location:** `test_driver/` or `test/smoke/`
-- **Run command:** `flutter test integration_test/app_test.dart` (Native)
+Full user flows on a real device/emulator with mocked Firebase.
+- **Location:** `integration_test/`
+- **Run command:** `flutter test integration_test/app_test.dart --flavor uat --dart-define=ENV=uat -d <device-id>`
+- **Find device ID:** `flutter devices`
 
 ---
 
