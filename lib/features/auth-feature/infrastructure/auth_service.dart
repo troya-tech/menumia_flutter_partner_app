@@ -1,4 +1,3 @@
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import '../../../../utils/app_logger.dart';
@@ -43,39 +42,60 @@ class AuthService implements AuthRepository {
   Future<AuthUser> signInWithGoogle() async {
     final context = _logger.createContext();
     _logger.info('Starting Google Sign-In flow', context);
-    
+
     try {
       final credential = await _performGoogleSignIn(context);
       final user = credential.user;
       if (user == null) {
-         throw Exception('Google Sign-In succeeded but user is null');
+        throw Exception('Google Sign-In succeeded but user is null');
       }
-      return _mapFirebaseUser(user)!;
+      // return _mapFirebaseUser(user)!;
+      AuthUser mappedUser = _mapFirebaseUser(user)!;
+      _logger.info('User signed in successfully, context: ', context);
+      _logger.info('User signed in successfully, authUser: $mappedUser', context);
+      return mappedUser;
+
     } on GoogleSignInException catch (e) {
-      if (e.code == GoogleSignInExceptionCode.canceled && 
+      if (e.code == GoogleSignInExceptionCode.canceled &&
           e.description?.contains('16') == true) {
-        _logger.warning('Credential Manager cache issue detected, clearing and retrying...', context);
-        
+        _logger.warning(
+          'Credential Manager cache issue detected, clearing and retrying...',
+          context,
+        );
+
         try {
           await _googleSignIn.disconnect();
-          _logger.debug('Disconnected successfully, retrying sign-in...', context);
+          _logger.debug(
+            'Disconnected successfully, retrying sign-in...',
+            context,
+          );
         } catch (disconnectError) {
-          _logger.debug('Disconnect failed (continuing anyway): $disconnectError', context);
+          _logger.debug(
+            'Disconnect failed (continuing anyway): $disconnectError',
+            context,
+          );
         }
-        
+
         try {
           final credential = await _performGoogleSignIn(context);
-           final user = credential.user;
+          final user = credential.user;
           if (user == null) {
-             throw Exception('Google Sign-In succeeded but user is null');
+            throw Exception('Google Sign-In succeeded but user is null');
           }
-           return _mapFirebaseUser(user)!;
+          return _mapFirebaseUser(user)!;
         } on GoogleSignInException catch (retryError) {
-          _logger.error('Google Sign-In retry failed', retryError, null, context);
-          throw Exception('Google Sign-In failed after retry: ${retryError.description ?? retryError.code}');
+          _logger.error(
+            'Google Sign-In retry failed',
+            retryError,
+            null,
+            context,
+          );
+          throw Exception(
+            'Google Sign-In failed after retry: ${retryError.description ?? retryError.code}',
+          );
         }
       }
-      
+
       _logger.error('Google Sign-In failed', e, null, context);
       if (e.code == GoogleSignInExceptionCode.canceled) {
         throw Exception('Google Sign-In was canceled by user');
@@ -89,15 +109,19 @@ class AuthService implements AuthRepository {
 
   Future<UserCredential> _performGoogleSignIn(dynamic context) async {
     const List<String> scopes = ['email'];
-    
+
     _logger.debug('Attempting lightweight authentication...', context);
-    GoogleSignInAccount? account = await _googleSignIn.attemptLightweightAuthentication();
-    
+    GoogleSignInAccount? account =
+        await _googleSignIn.attemptLightweightAuthentication();
+
     if (account == null) {
-      _logger.debug('Lightweight auth unavailable, using interactive sign-in...', context);
+      _logger.debug(
+        'Lightweight auth unavailable, using interactive sign-in...',
+        context,
+      );
       account = await _googleSignIn.authenticate(scopeHint: scopes);
     }
-    
+
     _logger.success('Google authentication successful', context);
     _logger.data('Account email', account.email, context);
 
@@ -111,20 +135,34 @@ class AuthService implements AuthRepository {
         'Google ID token is null. Ensure a Web Client ID (client_type: 3) exists in google-services.json.',
       );
     }
-    _logger.debug('ID token obtained successfully: ${idToken.substring(0, 10)}...', context);
+    _logger.debug(
+      'ID token obtained successfully: ${idToken.substring(0, 10)}...',
+      context,
+    );
 
     _logger.debug('Getting authorization (access token)...', context);
     String? accessToken;
     try {
-      final authorization = await account.authorizationClient.authorizeScopes(scopes);
+      final authorization = await account.authorizationClient.authorizeScopes(
+        scopes,
+      );
       accessToken = authorization.accessToken;
       if (accessToken != null) {
-        _logger.debug('Access token obtained successfully: ${accessToken.substring(0, 10)}...', context);
+        _logger.debug(
+          'Access token obtained successfully: ${accessToken.substring(0, 10)}...',
+          context,
+        );
       } else {
-        _logger.debug('Access token is null (valid for idToken-only flows)', context);
+        _logger.debug(
+          'Access token is null (valid for idToken-only flows)',
+          context,
+        );
       }
     } catch (authzError) {
-      _logger.warning('Authorization failed (proceeding with idToken only): $authzError', context);
+      _logger.warning(
+        'Authorization failed (proceeding with idToken only): $authzError',
+        context,
+      );
     }
 
     _logger.debug('Creating Firebase credential...', context);
@@ -135,20 +173,31 @@ class AuthService implements AuthRepository {
 
     _logger.debug('Signing in to Firebase...', context);
     try {
-      final UserCredential userCredential =
-          await _auth.signInWithCredential(credential);
-      
+      final UserCredential userCredential = await _auth.signInWithCredential(
+        credential,
+      );
+
       _logger.success('Firebase sign-in successful', context);
       _logger.data('User UID', userCredential.user?.uid, context);
       _logger.data('User email', userCredential.user?.email, context);
 
       return userCredential;
     } on FirebaseAuthException catch (e) {
-      _logger.error('Firebase Auth Error: [${e.code}] ${e.message}', e, null, context);
+      _logger.error(
+        'Firebase Auth Error: [${e.code}] ${e.message}',
+        e,
+        null,
+        context,
+      );
       _logger.data('Error Credential', e.credential.toString(), context);
       rethrow;
     } catch (e) {
-      _logger.error('Unexpected error during Firebase sign-in', e, null, context);
+      _logger.error(
+        'Unexpected error during Firebase sign-in',
+        e,
+        null,
+        context,
+      );
       rethrow;
     }
   }
@@ -157,19 +206,19 @@ class AuthService implements AuthRepository {
   Future<void> signOut() async {
     final context = _logger.createContext();
     _logger.info('Starting sign-out process', context);
-    
+
     try {
       _logger.debug('Signing out from Firebase and Google...', context);
       try {
         await _googleSignIn.disconnect();
       } catch (e) {
-        _logger.debug('Google disconnect failed or not applicable: $e', context);
+        _logger.debug(
+          'Google disconnect failed or not applicable: $e',
+          context,
+        );
       }
 
-      await Future.wait([
-        _auth.signOut(),
-        _googleSignIn.signOut(),
-      ]);
+      await Future.wait([_auth.signOut(), _googleSignIn.signOut()]);
       _logger.success('Sign-out successful', context);
     } catch (e) {
       _logger.error('Sign-out failed', e, null, context);
