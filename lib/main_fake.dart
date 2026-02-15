@@ -25,6 +25,7 @@ Future<void> main() async {
       overrides: [
         // Inject the Fake implementation at the root
         authRepositoryProvider.overrideWithValue(FakeAuthRepository()),
+        // menuRepositoryProvider.overrideWithValue(FakeMenuRepository()),
       ],
       child: const MyApp(),
     ),
