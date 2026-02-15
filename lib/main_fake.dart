@@ -24,8 +24,12 @@ Future<void> main() async {
     ProviderScope(
       overrides: [
         // Inject the Fake implementation at the root
+        // external logic dependencies
         authRepositoryProvider.overrideWithValue(FakeAuthRepository()),
+
+        // internal logic dependencies
         // menuRepositoryProvider.overrideWithValue(FakeMenuRepository()),
+        restaurantRepositoryProvider.overrideWithValue(FakeRestaurantRepository()),
       ],
       child: const MyApp(),
     ),
