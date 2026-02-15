@@ -31,7 +31,7 @@ class _CategoriesPageState extends ConsumerState<CategoriesPage> {
     // This handles the "Signed in but not in restaurantUsers" case
     if (currentUserAsync is AsyncData<RestaurantUser?> && currentUserAsync.value == null) {
       final logCtx = _logger.createContext();
-      _logger.warning('No restaurant user found for current auth user', logCtx);
+      _logger.warning('No restaurant user found for current auth user: $currentUserAsync', logCtx);
       return const _NoRestaurantAssignedWarning();
     }
 

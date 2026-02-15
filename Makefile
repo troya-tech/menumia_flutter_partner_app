@@ -37,7 +37,7 @@ build-appbundle-prod:
 
 # Run UI integration tests (Dart)
 test-ui:
-	flutter test integration_test/ui_integration_test.dart --flavor uat
+	flutter test integration_test/app_test.dart --flavor uat
 
 # Run UI integration tests (Native/Espresso)
 test-ui-native:
