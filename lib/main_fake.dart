@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:menumia_flutter_partner_app/features/auth-feature/application/auth_providers.dart';
+import 'package:menumia_flutter_partner_app/app/providers/providers.dart';
+import 'package:menumia_flutter_partner_app/features/restaurant/infrastructure/repositories/fake_restaurant_repository.dart';
+import 'package:menumia_flutter_partner_app/features/restaurant-user-feature/infrastructure/repositories/fake_restaurant_user_repository.dart';
+import 'package:menumia_flutter_partner_app/features/menu/infrastructure/repositories/fake_menu_repository.dart';
 import 'package:menumia_flutter_partner_app/features/auth-feature/infrastructure/fake_auth_repository.implementation.dart';
 import 'firebase_options_uat.dart' as firebase_uat;
 import 'main.dart';
@@ -28,8 +31,9 @@ Future<void> main() async {
         authRepositoryProvider.overrideWithValue(FakeAuthRepository()),
 
         // internal logic dependencies
-        // menuRepositoryProvider.overrideWithValue(FakeMenuRepository()),
+        menuRepositoryProvider.overrideWithValue(FakeMenuRepository()),
         restaurantRepositoryProvider.overrideWithValue(FakeRestaurantRepository()),
+        restaurantUserRepositoryProvider.overrideWithValue(FakeRestaurantUserRepository()),
       ],
       child: const MyApp(),
     ),

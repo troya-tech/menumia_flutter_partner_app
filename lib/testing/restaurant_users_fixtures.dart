@@ -32,8 +32,9 @@ class RestaurantUsersFixtures {
       "email": "foorcun@gmail.com",
       "isActive": true,
       "relatedRestaurantsIds": [
-        "-OjkBierbH1EO2Gz7KEd",
-        "-OiyBNtvgZPQM6_Rv7K0"
+        // "-OjkBierbH1EO2Gz7KEd",
+        // "-OiyBNtvgZPQM6_Rv7K0",
+        "-OlKaa_kkasdfsadfcrF"
       ],
       "role": "admin",
       "uid": "Kj8hLfo5jkb54HtJVXqpbQOJwuX2",

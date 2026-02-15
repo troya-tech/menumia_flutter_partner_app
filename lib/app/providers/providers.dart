@@ -6,11 +6,11 @@ export '../../features/auth-feature/application/auth_providers.dart';
 
 import '../services/restaurant_context_service.dart';
 import '../../features/restaurant-user-feature/domain/entities/restaurant_user.dart';
-import '../../features/restaurant-user-feature/application/restaurant_user_service.dart';
-import '../../features/restaurant-user-feature/infrastructure/repositories/firebase_restaurant_user_repository.dart';
+import '../../features/restaurant-user-feature/application/restaurant_user_providers.dart';
+export '../../features/restaurant-user-feature/application/restaurant_user_providers.dart';
 import '../../features/restaurant/domain/entities/restaurant.dart';
-import '../../features/restaurant/application/restaurant_service.dart';
-import '../../features/restaurant/infrastructure/repositories/firebase_restaurant_repository.dart';
+import '../../features/restaurant/application/restaurant_providers.dart';
+export '../../features/restaurant/application/restaurant_providers.dart';
 import '../../features/shared-config-feature/application/shared_config_service.dart';
 import '../../features/shared-config-feature/infrastructure/repositories/firebase_shared_config_repository.dart';
 export '../../features/menu/application/menu_providers.dart';
@@ -23,8 +23,8 @@ import '../services/profile_page_facade.dart';
 final restaurantContextServiceProvider = Provider<RestaurantContextService>((ref) {
   return RestaurantContextService(
     authRepository: ref.watch(authRepositoryProvider),
-    userService: RestaurantUserService(FirebaseRestaurantUserRepository()),
-    restaurantService: RestaurantService(FirebaseRestaurantRepository()),
+    userService: ref.watch(restaurantUserServiceProvider),
+    restaurantService: ref.watch(restaurantServiceProvider),
   );
 });
 

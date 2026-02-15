@@ -25,6 +25,9 @@ class RestaurantsFixtures {
   /// Returns the robot test restaurant fixture.
   static Restaurant get robotTest => _fromRaw("-OlKaa_kkRKIq2GCwcrE");
 
+  /// Returns the fake restaurant fixture.
+  static Restaurant get fake => _fromRaw("-OlKaa_kkasdfsadfcrF");
+
   static Restaurant _fromRaw(String key) {
     final data = rawData[key];
     if (data == null) throw Exception('Restaurant fixture for key "$key" not found');
@@ -67,6 +70,12 @@ class RestaurantsFixtures {
       "menuKey": "robot-test-key",
       "openHour": "09:00",
       "restaurantName": "RobotTest_20260213_090508"
+    },
+    "-OlKaa_kkasdfsadfcrF": {
+      "closeHour": "23:00",
+      "menuKey": "key_fake",
+      "openHour": "09:00",
+      "restaurantName": "fake restaurant"
     }
   };
 }

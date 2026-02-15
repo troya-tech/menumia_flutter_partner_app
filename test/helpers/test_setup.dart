@@ -8,8 +8,14 @@ import 'package:mocktail/mocktail.dart';
 import 'package:menumia_flutter_partner_app/app/services/restaurant_context_service.dart';
 import 'package:menumia_flutter_partner_app/features/menu/domain/entities/menu.dart';
 
+import 'package:menumia_flutter_partner_app/features/menu/domain/entities/category.dart';
+import 'package:menumia_flutter_partner_app/features/menu/domain/entities/product.dart';
+
 class MockRestaurantContextService extends Mock implements RestaurantContextService {}
 class MockMenuRepository extends Mock implements MenuRepository {}
+class FakeCategory extends Fake implements Category {}
+class FakeProduct extends Fake implements Product {}
+class FakeMenu extends Fake implements Menu {}
 
 /// Helper to create a [ProviderContainer] or [ProviderScope] with toggleable 
 /// authentication implementations.
@@ -20,6 +26,13 @@ class TestSetup {
   /// Returns a list of overrides based on the [useFake] flag.
   static List<Override> authOverrides({bool useFake = true}) {
     if (!useFake) return [];
+
+    // Register fallbacks for mocktail
+    registerFallbackValue(FakeCategory());
+    registerFallbackValue(FakeProduct());
+    registerFallbackValue(FakeMenu());
+    registerFallbackValue(<Category>[]);
+    registerFallbackValue(<Product>[]);
 
     final mockContext = MockRestaurantContextService();
     final mockMenuRepo = MockMenuRepository();
@@ -32,7 +45,7 @@ class TestSetup {
     when(() => mockContext.activeMenuKey$).thenAnswer((_) => const Stream.empty());
 
     // Stub the Menu Repository to avoid Firebase calls in tests
-    when(() => mockMenuRepo.watchMenu(any())).thenAnswer(
+    when(() => mockMenuRepo.watchMenu(any<String>())).thenAnswer(
       (_) => Stream.value(Menu(menuKey: 'test-menu', categories: [])),
     );
 
