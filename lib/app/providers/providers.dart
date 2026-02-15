@@ -11,8 +11,8 @@ export '../../features/restaurant-user-feature/application/restaurant_user_provi
 import '../../features/restaurant/domain/entities/restaurant.dart';
 import '../../features/restaurant/application/restaurant_providers.dart';
 export '../../features/restaurant/application/restaurant_providers.dart';
-import '../../features/shared-config-feature/application/shared_config_service.dart';
-import '../../features/shared-config-feature/infrastructure/repositories/firebase_shared_config_repository.dart';
+import '../../features/shared-config-feature/application/shared_config_providers.dart';
+export '../../features/shared-config-feature/application/shared_config_providers.dart';
 export '../../features/menu/application/menu_providers.dart';
 import '../services/profile_page_facade.dart';
 
@@ -48,10 +48,7 @@ final activeMenuKeyProvider = StreamProvider<String?>((ref) {
   return ref.watch(restaurantContextServiceProvider).activeMenuKey$;
 });
 
-/// Provider for the SharedConfigService
-final sharedConfigServiceProvider = Provider<SharedConfigService>((ref) {
-  return SharedConfigService(FirebaseSharedConfigRepository());
-});
+/// Shared config providers are now exported from shared_config_providers.dart
 
 /// StreamProvider that evaluates if ordering is enabled based on active menu key
 final orderingEnabledProvider = StreamProvider<bool>((ref) {

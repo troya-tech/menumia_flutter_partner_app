@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:menumia_flutter_partner_app/app/providers/providers.dart';
+import 'package:menumia_flutter_partner_app/features/shared-config-feature/infrastructure/repositories/fake_shared_config_repository.dart';
 import 'package:menumia_flutter_partner_app/features/restaurant/infrastructure/repositories/fake_restaurant_repository.dart';
 import 'package:menumia_flutter_partner_app/features/restaurant-user-feature/infrastructure/repositories/fake_restaurant_user_repository.dart';
 import 'package:menumia_flutter_partner_app/features/menu/infrastructure/repositories/fake_menu_repository.dart';
@@ -34,6 +35,7 @@ Future<void> main() async {
         menuRepositoryProvider.overrideWithValue(FakeMenuRepository()),
         restaurantRepositoryProvider.overrideWithValue(FakeRestaurantRepository()),
         restaurantUserRepositoryProvider.overrideWithValue(FakeRestaurantUserRepository()),
+        sharedConfigRepositoryProvider.overrideWithValue(FakeSharedConfigRepository()),
       ],
       child: const MyApp(),
     ),
