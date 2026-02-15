@@ -1,0 +1,4697 @@
+{
+  "counters": {
+    "menuKey_forknife": {
+      "count": 6,
+      "dailyOrderCounter": {
+        "count": 1,
+        "cycleId": "2026-01-29",
+        "lastUpdated": 1769692899041
+      },
+      "date": "20260126"
+    }
+  },
+  "hello": "hello from firebase",
+  "menu": {
+    "key_millet-bahcesi-lapseki-sosyal-tesisleri": {
+      "categories": {
+        "category001": {
+          "displayOrder": 2,
+          "id": 1,
+          "isActive": true,
+          "menuItem": {
+            "B3eGuuBbutZ8HSPVhVYgbRr6W7D3": {
+              "description": "Ezine Peyniri, Kaşar Peyniri, Yeşil Zeytin, Siyah Zeytin, Bal, Tereyağı, Reçel, Yumurta, Domates, Salatalık",
+              "displayOrder": 2,
+              "id": 1,
+              "imageUrl": "",
+              "name": "Mini Kahvaltı",
+              "price": 320
+            },
+            "C4eHvvCcutY9ISPWiWZhcSs7Y8E4": {
+              "description": "Menemen, Beyaz Peynir, Zeytin, Salça, Bal, Tereyağı",
+              "displayOrder": 3,
+              "id": 2,
+              "imageUrl": "",
+              "name": "Menemen Tabağı",
+              "price": 290
+            },
+            "D5fIwwDdutZ0JTPXjXaidTt8Z9F5": {
+              "description": "Börek, Baget Ekmeği, Peynir, Salça, Zeytin, Kaynamış Yumurta, Bal, Kaymak",
+              "displayOrder": 1,
+              "id": 3,
+              "imageUrl": "",
+              "name": "Börek Tabağı",
+              "price": 270
+            },
+            "E6gJxxEeutA1KUPYkYbieUu9A0G6": {
+              "description": "Ezine Peyniri, Kaşar Peyniri, Çeçil Peyniri, Salça, Zeytin Yağı, Yeşil Zeytin, Siyah Zeytin, Bal, Kaymak, Tereyağı, Reçel, Tahin & Pekmez, Domates, Salatalık, Yeşillik, Çikolata, Kruvasan, Baget Ekmeği, Simit, Yumurta, Pankek, Sosis, Sigara Böreği, Nugget, Patates Kızartması, Meyve Tabağı, Acuka, Peynir Topları, Kapya Lor Kızartma, Meyve Tabağı, Kuy mak, Sınırsız Çay, Türk Kahvesi İkramı",
+              "displayOrder": 4,
+              "id": 4,
+              "imageUrl": "",
+              "name": "Serpme Kahvaltı",
+              "price": 950
+            },
+            "F7hKyyFfvtB2LVQZlZcjfVv0B1H7": {
+              "description": "Sahanda servis edilir",
+              "displayOrder": 5,
+              "id": 5,
+              "imageUrl": "",
+              "name": "Mıhlama",
+              "price": 170
+            },
+            "G8iLzzGgwuC3MWRAmAfgwWw1C2I8": {
+              "description": "Sahanda servis edilir",
+              "displayOrder": 6,
+              "id": 6,
+              "imageUrl": "",
+              "name": "Sahanda Sucuk",
+              "price": 170
+            },
+            "H9jMaaHhxuD4NXSBnBghxXx2D3J9": {
+              "description": "Sahanda servis edilir",
+              "displayOrder": 7,
+              "id": 7,
+              "imageUrl": "",
+              "name": "Sahanda Yumurta",
+              "price": 200
+            },
+            "I0kNbbIiyvE5OYTCoChiyYy3E4K0": {
+              "description": "Sahanda servis edilir",
+              "displayOrder": 8,
+              "id": 8,
+              "imageUrl": "",
+              "name": "Sahanda Sucuklu Yumurta",
+              "price": 200
+            },
+            "J1lOccJjzwF6PZUDpDijzZz4F5L1": {
+              "description": "Sahanda servis edilir",
+              "displayOrder": 9,
+              "id": 9,
+              "imageUrl": "",
+              "name": "Menemen",
+              "price": 200
+            },
+            "K2mPddKkaxG7QAVEqEkkaAa5G6M2": {
+              "description": "Sahanda servis edilir",
+              "displayOrder": 10,
+              "id": 10,
+              "imageUrl": "",
+              "name": "Kaşarlı Menemen",
+              "price": 230
+            },
+            "L3nQeeLlayH8RBWFqFllbBb6H7N3": {
+              "description": "Sahanda servis edilir",
+              "displayOrder": 11,
+              "id": 11,
+              "imageUrl": "",
+              "name": "Karışık Menemen",
+              "price": 220
+            },
+            "M4oRffMmbyI9SCXGrGmmcCc7I8O4": {
+              "description": "Sahanda servis edilir",
+              "displayOrder": 12,
+              "id": 12,
+              "imageUrl": "",
+              "name": "Omlet",
+              "price": 170
+            },
+            "N5pSggNnczJ0TDYHsHnndDd8J9P5": {
+              "description": "Sahanda servis edilir",
+              "displayOrder": 13,
+              "id": 13,
+              "imageUrl": "",
+              "name": "Kaşarlı Omlet",
+              "price": 200
+            },
+            "O6qThhOodA1UEEZItIoodEe9K0Q6": {
+              "description": "Sahanda servis edilir",
+              "displayOrder": 14,
+              "id": 14,
+              "imageUrl": "",
+              "name": "Karışık Omlet",
+              "price": 220
+            }
+          },
+          "name": "Kahvaltılar"
+        },
+        "category002": {
+          "displayOrder": 1,
+          "id": 2,
+          "isActive": true,
+          "menuItem": {
+            "P7rUiiPpeyJ1VFVJtJppeFf0L1R7": {
+              "description": "Sour Cream Sos ve Patates Kızartması ile servis edilir",
+              "displayOrder": 2,
+              "id": 1,
+              "imageUrl": "",
+              "name": "Karışık Tost",
+              "price": 190
+            },
+            "Q8sVjjQqfzK2WGWKuKqqgGg1M2S8": {
+              "description": "Sour Cream Sos ve Patates Kızartması ile servis edilir",
+              "displayOrder": 3,
+              "id": 2,
+              "imageUrl": "",
+              "name": "Kaşarlı Tost",
+              "price": 190
+            },
+            "R9tWkkRrgaL3XHXLvLrrhHh2N3T9": {
+              "description": "Sour Cream Sos ve Patates Kızartması ile servis edilir",
+              "displayOrder": 1,
+              "id": 3,
+              "imageUrl": "",
+              "name": "Üç Peynirli Tost",
+              "price": 220
+            },
+            "S0uXllSshbM4YIYMwMssiIi3O4U0": {
+              "description": "Sour Cream Sos ve Patates Kızartması ile servis edilir",
+              "displayOrder": 4,
+              "id": 4,
+              "imageUrl": "",
+              "name": "Beyaz Peynirli Tost",
+              "price": 190
+            },
+            "T1vYmmTticN5ZJZNxNttjJj4P5V1": {
+              "description": "Sour Cream Sos ve Patates Kızartması ile servis edilir",
+              "displayOrder": 5,
+              "id": 5,
+              "imageUrl": "",
+              "name": "Forknife Special Tost",
+              "price": 240
+            },
+            "product_1769730878141": {
+              "description": "",
+              "displayOrder": 6,
+              "imageUrl": "",
+              "name": "yeni",
+              "price": 1
+            }
+          },
+          "name": "Tostlarr_tesis"
+        }
+      }
+    },
+    "key_tesis3": {
+      "categories": {
+        "category001": {
+          "displayOrder": 2,
+          "id": 1,
+          "isActive": true,
+          "menuItem": {
+            "B3eGuuBbutZ8HSPVhVYgbRr6W7D3": {
+              "description": "Ezine Peyniri, Kaşar Peyniri, Yeşil Zeytin, Siyah Zeytin, Bal, Tereyağı, Reçel, Yumurta, Domates, Salatalık",
+              "displayOrder": 2,
+              "id": 1,
+              "imageUrl": "",
+              "name": "Mini Kahvaltı",
+              "price": 320
+            },
+            "C4eHvvCcutY9ISPWiWZhcSs7Y8E4": {
+              "description": "Menemen, Beyaz Peynir, Zeytin, Salça, Bal, Tereyağı",
+              "displayOrder": 3,
+              "id": 2,
+              "imageUrl": "",
+              "name": "Menemen Tabağı",
+              "price": 290
+            },
+            "D5fIwwDdutZ0JTPXjXaidTt8Z9F5": {
+              "description": "Börek, Baget Ekmeği, Peynir, Salça, Zeytin, Kaynamış Yumurta, Bal, Kaymak",
+              "displayOrder": 1,
+              "id": 3,
+              "imageUrl": "",
+              "name": "Börek Tabağı",
+              "price": 270
+            },
+            "E6gJxxEeutA1KUPYkYbieUu9A0G6": {
+              "description": "Ezine Peyniri, Kaşar Peyniri, Çeçil Peyniri, Salça, Zeytin Yağı, Yeşil Zeytin, Siyah Zeytin, Bal, Kaymak, Tereyağı, Reçel, Tahin & Pekmez, Domates, Salatalık, Yeşillik, Çikolata, Kruvasan, Baget Ekmeği, Simit, Yumurta, Pankek, Sosis, Sigara Böreği, Nugget, Patates Kızartması, Meyve Tabağı, Acuka, Peynir Topları, Kapya Lor Kızartma, Meyve Tabağı, Kuy mak, Sınırsız Çay, Türk Kahvesi İkramı",
+              "displayOrder": 4,
+              "id": 4,
+              "imageUrl": "",
+              "name": "Serpme Kahvaltı",
+              "price": 950
+            },
+            "F7hKyyFfvtB2LVQZlZcjfVv0B1H7": {
+              "description": "Sahanda servis edilir",
+              "displayOrder": 5,
+              "id": 5,
+              "imageUrl": "",
+              "name": "Mıhlama",
+              "price": 170
+            },
+            "G8iLzzGgwuC3MWRAmAfgwWw1C2I8": {
+              "description": "Sahanda servis edilir",
+              "displayOrder": 6,
+              "id": 6,
+              "imageUrl": "",
+              "name": "Sahanda Sucuk",
+              "price": 170
+            },
+            "H9jMaaHhxuD4NXSBnBghxXx2D3J9": {
+              "description": "Sahanda servis edilir",
+              "displayOrder": 7,
+              "id": 7,
+              "imageUrl": "",
+              "name": "Sahanda Yumurta",
+              "price": 200
+            },
+            "I0kNbbIiyvE5OYTCoChiyYy3E4K0": {
+              "description": "Sahanda servis edilir",
+              "displayOrder": 8,
+              "id": 8,
+              "imageUrl": "",
+              "name": "Sahanda Sucuklu Yumurta",
+              "price": 200
+            },
+            "J1lOccJjzwF6PZUDpDijzZz4F5L1": {
+              "description": "Sahanda servis edilir",
+              "displayOrder": 9,
+              "id": 9,
+              "imageUrl": "",
+              "name": "Menemen",
+              "price": 200
+            },
+            "K2mPddKkaxG7QAVEqEkkaAa5G6M2": {
+              "description": "Sahanda servis edilir",
+              "displayOrder": 10,
+              "id": 10,
+              "imageUrl": "",
+              "name": "Kaşarlı Menemen",
+              "price": 230
+            },
+            "L3nQeeLlayH8RBWFqFllbBb6H7N3": {
+              "description": "Sahanda servis edilir",
+              "displayOrder": 11,
+              "id": 11,
+              "imageUrl": "",
+              "name": "Karışık Menemen",
+              "price": 220
+            },
+            "M4oRffMmbyI9SCXGrGmmcCc7I8O4": {
+              "description": "Sahanda servis edilir",
+              "displayOrder": 12,
+              "id": 12,
+              "imageUrl": "",
+              "name": "Omlet",
+              "price": 170
+            },
+            "N5pSggNnczJ0TDYHsHnndDd8J9P5": {
+              "description": "Sahanda servis edilir",
+              "displayOrder": 13,
+              "id": 13,
+              "imageUrl": "",
+              "name": "Kaşarlı Omlet",
+              "price": 200
+            },
+            "O6qThhOodA1UEEZItIoodEe9K0Q6": {
+              "description": "Sahanda servis edilir",
+              "displayOrder": 14,
+              "id": 14,
+              "imageUrl": "",
+              "name": "Karışık Omlet",
+              "price": 220
+            }
+          },
+          "name": "Kahvaltılar"
+        },
+        "category002": {
+          "displayOrder": 1,
+          "id": 2,
+          "isActive": true,
+          "menuItem": {
+            "P7rUiiPpeyJ1VFVJtJppeFf0L1R7": {
+              "description": "Sour Cream Sos ve Patates Kızartması ile servis edilir",
+              "displayOrder": 2,
+              "id": 1,
+              "imageUrl": "",
+              "name": "Karışık Tost",
+              "price": 190
+            },
+            "Q8sVjjQqfzK2WGWKuKqqgGg1M2S8": {
+              "description": "Sour Cream Sos ve Patates Kızartması ile servis edilir",
+              "displayOrder": 3,
+              "id": 2,
+              "imageUrl": "",
+              "name": "Kaşarlı Tost",
+              "price": 190
+            },
+            "R9tWkkRrgaL3XHXLvLrrhHh2N3T9": {
+              "description": "Sour Cream Sos ve Patates Kızartması ile servis edilir",
+              "displayOrder": 1,
+              "id": 3,
+              "imageUrl": "",
+              "name": "Üç Peynirli Tost",
+              "price": 220
+            },
+            "S0uXllSshbM4YIYMwMssiIi3O4U0": {
+              "description": "Sour Cream Sos ve Patates Kızartması ile servis edilir",
+              "displayOrder": 4,
+              "id": 4,
+              "imageUrl": "",
+              "name": "Beyaz Peynirli Tost",
+              "price": 190
+            },
+            "T1vYmmTticN5ZJZNxNttjJj4P5V1": {
+              "description": "Sour Cream Sos ve Patates Kızartması ile servis edilir",
+              "displayOrder": 5,
+              "id": 5,
+              "imageUrl": "",
+              "name": "Forknife Special Tost",
+              "price": 240
+            },
+            "product_1769730878141": {
+              "description": "",
+              "displayOrder": 6,
+              "imageUrl": "",
+              "name": "yeni",
+              "price": 1
+            }
+          },
+          "name": "Tostlarr"
+        }
+      }
+    },
+    "menuKey_forknife": {
+      "categories": {
+        "category001": {
+          "displayOrder": 2,
+          "id": 1,
+          "isActive": true,
+          "menuItem": {
+            "B3eGuuBbutZ8HSPVhVYgbRr6W7D3": {
+              "description": "Ezine Peyniri, Kaşar Peyniri, Yeşil Zeytin, Siyah Zeytin, Bal, Tereyağı, Reçel, Yumurta, Domates, Salatalık",
+              "displayOrder": 2,
+              "id": 1,
+              "imageUrl": "",
+              "name": "Mini Kahvaltı",
+              "price": 320
+            },
+            "C4eHvvCcutY9ISPWiWZhcSs7Y8E4": {
+              "description": "Menemen, Beyaz Peynir, Zeytin, Salça, Bal, Tereyağı",
+              "displayOrder": 3,
+              "id": 2,
+              "imageUrl": "",
+              "name": "Menemen Tabağı",
+              "price": 290
+            },
+            "D5fIwwDdutZ0JTPXjXaidTt8Z9F5": {
+              "description": "Börek, Baget Ekmeği, Peynir, Salça, Zeytin, Kaynamış Yumurta, Bal, Kaymak",
+              "displayOrder": 1,
+              "id": 3,
+              "imageUrl": "",
+              "name": "Börek Tabağı",
+              "price": 270
+            },
+            "E6gJxxEeutA1KUPYkYbieUu9A0G6": {
+              "description": "Ezine Peyniri, Kaşar Peyniri, Çeçil Peyniri, Salça, Zeytin Yağı, Yeşil Zeytin, Siyah Zeytin, Bal, Kaymak, Tereyağı, Reçel, Tahin & Pekmez, Domates, Salatalık, Yeşillik, Çikolata, Kruvasan, Baget Ekmeği, Simit, Yumurta, Pankek, Sosis, Sigara Böreği, Nugget, Patates Kızartması, Meyve Tabağı, Acuka, Peynir Topları, Kapya Lor Kızartma, Meyve Tabağı, Kuy mak, Sınırsız Çay, Türk Kahvesi İkramı",
+              "displayOrder": 4,
+              "id": 4,
+              "imageUrl": "",
+              "name": "Serpme Kahvaltı",
+              "price": 950
+            },
+            "F7hKyyFfvtB2LVQZlZcjfVv0B1H7": {
+              "description": "Sahanda servis edilir",
+              "displayOrder": 5,
+              "id": 5,
+              "imageUrl": "",
+              "name": "Mıhlama",
+              "price": 170
+            },
+            "G8iLzzGgwuC3MWRAmAfgwWw1C2I8": {
+              "description": "Sahanda servis edilir",
+              "displayOrder": 6,
+              "id": 6,
+              "imageUrl": "",
+              "name": "Sahanda Sucuk",
+              "price": 170
+            },
+            "H9jMaaHhxuD4NXSBnBghxXx2D3J9": {
+              "description": "Sahanda servis edilir",
+              "displayOrder": 7,
+              "id": 7,
+              "imageUrl": "",
+              "name": "Sahanda Yumurta",
+              "price": 200
+            },
+            "I0kNbbIiyvE5OYTCoChiyYy3E4K0": {
+              "description": "Sahanda servis edilir",
+              "displayOrder": 8,
+              "id": 8,
+              "imageUrl": "",
+              "name": "Sahanda Sucuklu Yumurta",
+              "price": 200
+            },
+            "J1lOccJjzwF6PZUDpDijzZz4F5L1": {
+              "description": "Sahanda servis edilir",
+              "displayOrder": 9,
+              "id": 9,
+              "imageUrl": "",
+              "name": "Menemen",
+              "price": 200
+            },
+            "K2mPddKkaxG7QAVEqEkkaAa5G6M2": {
+              "description": "Sahanda servis edilir",
+              "displayOrder": 10,
+              "id": 10,
+              "imageUrl": "",
+              "name": "Kaşarlı Menemen",
+              "price": 230
+            },
+            "L3nQeeLlayH8RBWFqFllbBb6H7N3": {
+              "description": "Sahanda servis edilir",
+              "displayOrder": 11,
+              "id": 11,
+              "imageUrl": "",
+              "name": "Karışık Menemen",
+              "price": 220
+            },
+            "M4oRffMmbyI9SCXGrGmmcCc7I8O4": {
+              "description": "Sahanda servis edilir",
+              "displayOrder": 12,
+              "id": 12,
+              "imageUrl": "",
+              "name": "Omlet",
+              "price": 170
+            },
+            "N5pSggNnczJ0TDYHsHnndDd8J9P5": {
+              "description": "Sahanda servis edilir",
+              "displayOrder": 13,
+              "id": 13,
+              "imageUrl": "",
+              "name": "Kaşarlı Omlet",
+              "price": 200
+            },
+            "O6qThhOodA1UEEZItIoodEe9K0Q6": {
+              "description": "Sahanda servis edilir",
+              "displayOrder": 14,
+              "id": 14,
+              "imageUrl": "",
+              "name": "Karışık Omlet",
+              "price": 220
+            }
+          },
+          "name": "Kahvaltılar"
+        },
+        "category002": {
+          "displayOrder": 1,
+          "id": 2,
+          "isActive": true,
+          "menuItem": {
+            "P7rUiiPpeyJ1VFVJtJppeFf0L1R7": {
+              "description": "Sour Cream Sos ve Patates Kızartması ile servis edilirrr",
+              "displayOrder": 1,
+              "id": 1,
+              "imageUrl": "",
+              "name": "Karışık Tostt",
+              "price": 190
+            },
+            "Q8sVjjQqfzK2WGWKuKqqgGg1M2S8": {
+              "description": "Sour Cream Sos ve Patates Kızartması ile servis edilir",
+              "displayOrder": 3,
+              "id": 2,
+              "imageUrl": "",
+              "name": "Kaşarlı Tost",
+              "price": 190
+            },
+            "R9tWkkRrgaL3XHXLvLrrhHh2N3T9": {
+              "description": "Sour Cream Sos ve Patates Kızartması ile servis edilir",
+              "displayOrder": 2,
+              "id": 3,
+              "imageUrl": "",
+              "name": "Üç Peynirli Tost",
+              "price": 222.01
+            },
+            "S0uXllSshbM4YIYMwMssiIi3O4U0": {
+              "description": "Sour Cream Sos ve Patates Kızartması ile servis edilir",
+              "displayOrder": 4,
+              "id": 4,
+              "imageUrl": "",
+              "name": "Beyaz Peynirli Tost",
+              "price": 190
+            },
+            "T1vYmmTticN5ZJZNxNttjJj4P5V1": {
+              "description": "Sour Cream Sos ve Patates Kızartması ile servis edilir",
+              "displayOrder": 5,
+              "id": 5,
+              "imageUrl": "",
+              "name": "Forknife Special Tost",
+              "price": 240
+            },
+            "product_1769730878141": {
+              "description": "",
+              "displayOrder": 6,
+              "imageUrl": "",
+              "name": "yeni",
+              "price": 1
+            }
+          },
+          "name": "Tostlarr_aforkk_uat"
+        },
+        "category003": {
+          "displayOrder": 3,
+          "id": 3,
+          "menuItem": {
+            "U2xNaaAajdA2BAFXhHnnaEe1O1X2": {
+              "description": "Bonfile Tavuk, Mantar, Rosto, Sarımsak, Pesto Sos, Krema ve Parmesan ile servis edilir",
+              "id": 1,
+              "imageUrl": "",
+              "name": "Fettucine Alfredo",
+              "positionInList": 1,
+              "price": 250
+            },
+            "V3yObbBbkfB3CBGYiIoodFf2P2Y3": {
+              "description": "Bonfile Dana Eti, Mantar, Rosto Sarımsak, Pesto Sos, Krema, ve Parmesan ile servis edilir",
+              "id": 2,
+              "imageUrl": "",
+              "name": "Beef Alfredo",
+              "positionInList": 2,
+              "price": 280
+            },
+            "W4zPccCclgC4DCHZjJppeGg3Q3Z4": {
+              "description": "Acılı Arabiata Sos, Zeytin, Pesto Sos ve Parmesan ile servis edilir",
+              "id": 3,
+              "imageUrl": "",
+              "name": "Penne Arabiata",
+              "positionInList": 3,
+              "price": 200
+            },
+            "X5aQddDdmhD5EDIAkKqqhHh4R4A5": {
+              "description": "Bolognese Sos, Domates Sos ve Parmesan ile servis edilir",
+              "id": 4,
+              "imageUrl": "",
+              "name": "Spaghetti Bolognese",
+              "positionInList": 4,
+              "price": 230
+            }
+          },
+          "name": "MAKARNALAR"
+        },
+        "category004": {
+          "displayOrder": 4,
+          "id": 4,
+          "menuItem": {
+            "A8dTggGgpbG8HGLDnNttkKk7U7D8": {
+              "description": "",
+              "id": 2,
+              "imageUrl": "",
+              "name": "Patatesli Gözleme",
+              "positionInList": 2,
+              "price": 240
+            },
+            "B9eUhhHhqcH9IHMEoOuulLl8V8E9": {
+              "description": "",
+              "id": 3,
+              "imageUrl": "",
+              "name": "Kaşarlı Sucuklu Gözleme",
+              "positionInList": 3,
+              "price": 240
+            },
+            "Z7cSffFfoaF7GFKCmMssjJj6T6C7": {
+              "description": "",
+              "id": 1,
+              "imageUrl": "",
+              "name": "Kaşarlı Peynirli Gözleme",
+              "positionInList": 1,
+              "price": 240
+            }
+          },
+          "name": "GÖZLEMELER"
+        },
+        "category005": {
+          "displayOrder": 5,
+          "id": 5,
+          "menuItem": {
+            "C1fViiIiodI1JKGEnNvvjJj9W9F1": {
+              "description": "6 Adet Sigara Böreği ve Patates Kızartması ile servis edilir",
+              "displayOrder": 4,
+              "id": 1,
+              "imageUrl": "",
+              "name": "Sigara Böreği",
+              "positionInList": 1,
+              "price": 180
+            },
+            "D2gWjjJjpeJ2KLHFoOwwkKk0X0G2": {
+              "description": "",
+              "displayOrder": 3,
+              "id": 2,
+              "imageUrl": "",
+              "name": "Patates Kızartması",
+              "positionInList": 2,
+              "price": 160
+            },
+            "E3hXkkKkqfK3LMIGpPxxlLl1Y1H3": {
+              "description": "6 Adet El Yapımı Çıtır Tavuk ve Patates Kızartması ile servis edilir",
+              "displayOrder": 5,
+              "id": 3,
+              "imageUrl": "",
+              "name": "Çıtır Tavuk",
+              "positionInList": 3,
+              "price": 240
+            },
+            "F4iYllLlrhL4MNJHqQyymMm2Z2I4": {
+              "description": "2 Adet Çıtır Tavuk, 2 Adet Sosis, 2 Adet Sigara Böreği, 2 Adet Nugget ve Patates Kızartmasıyla servis edilir",
+              "displayOrder": 2,
+              "id": 4,
+              "imageUrl": "",
+              "name": "Aperatif Tabağı",
+              "positionInList": 4,
+              "price": 270
+            },
+            "G5jZmmMmsiM5NOKIrRzznNn3A3J5": {
+              "description": "6 Adet Sosis ve Patates Kızartması ile servis edilir",
+              "displayOrder": 1,
+              "id": 5,
+              "imageUrl": "",
+              "name": "Sosis Tabağı",
+              "positionInList": 5,
+              "price": 170
+            }
+          },
+          "name": "aperatifler"
+        },
+        "category006": {
+          "displayOrder": 6,
+          "id": 6,
+          "menuItem": {
+            "-OiyGPptMIDHGDTxDBAd": {
+              "description": "El açması hamur üzerinde domates sos, mozeralla peyniri,Dana sucuk,cemensiz pastırma,dana füme et,mantar ve permesan peyniri ile servis edilir",
+              "imageUrl": "",
+              "name": "Süpermixxo pizza",
+              "positionInList": 1,
+              "price": 390
+            },
+            "H1kAaaAamqA1OPLJtTpppPp4A4K1": {
+              "description": "El Açması Hamur, Üzerinde Özel Domates Sos, Mozarella Peyniri, Bonfile Dana Parçaları, Tütsülenmiş Dana Kaburga Parçaları, Kurutulmuş Domates ve Parmesan ile servis edilir",
+              "id": 1,
+              "imageUrl": "",
+              "name": "Bisteca Pizza",
+              "positionInList": 2,
+              "price": 340
+            },
+            "I2lBbbBbnrB2PQMKuUqqqQq5B5L2": {
+              "description": "El Açması Hamur, Üzerinde Özel Domates Sos, Mozarella Peyniri, Dana Sucuk, Kırmızı Biber, Yeşil Biber, Mantar, Mısır, Dilim Zeytin ve Parmesan ile servis edilir",
+              "id": 2,
+              "imageUrl": "",
+              "name": "Mixxo Pizza",
+              "positionInList": 3,
+              "price": 330
+            },
+            "J3mCccCcosC3QRNLvVrrrRr6C6M3": {
+              "description": "El Açması Hamur, Üzerinde Özel Domates Sos, Mozarella Peyniri ve Parmesan ile servis edilir",
+              "id": 3,
+              "imageUrl": "",
+              "name": "Margaritta Pizza",
+              "positionInList": 4,
+              "price": 250
+            },
+            "K4nDddDdpqD4RSOMwWsssSs7D7N4": {
+              "description": "El Açması Hamur, Üzerinde Özel Domates Sos, Mozarella Peyniri, Dana Sucuk ve Parmesan ile servis edilir",
+              "id": 4,
+              "imageUrl": "",
+              "name": "Pepperoni Pizza",
+              "positionInList": 5,
+              "price": 330
+            },
+            "L5oEeeEerqE5STPNxXtttTt8E8O5": {
+              "description": "El Açması Hamur, Üzerinde Özel Domates Sos, Mozarella Peyniri, Bonfile Tavuk Parçaları, Karamelize Soğan, Köz Kırmızı Biber, BBQ ve Parmesan ile servis edilir",
+              "id": 5,
+              "imageUrl": "",
+              "name": "Chicken BBQ Pizza",
+              "positionInList": 6,
+              "price": 300
+            },
+            "M6pFffFfstF6TQUOyYuuuUu9F9P6": {
+              "description": "El Açması Hamur, Üzerinde Özel Domates Sos, Mozarella Peyniri, Kabak, Patlıcan, Köz Kırmızı Biber, Ricotta Peyniri, Pesto Sos ve Parmesan ile servis edilir",
+              "id": 6,
+              "imageUrl": "",
+              "name": "Sebzeli Pizza",
+              "positionInList": 7,
+              "price": 230
+            }
+          },
+          "name": "pizzalar"
+        },
+        "category007": {
+          "displayOrder": 7,
+          "id": 7,
+          "menuItem": {
+            "A10bBurger010": {
+              "description": "El Yapımı Brioche Ekmeği, Panelenmiş Bütün Tavuk, El Yapımı Binada Sos, Marul, Domates, Turşu ve Patates Kızartması ile servis edilir",
+              "id": 10,
+              "imageUrl": "",
+              "name": "Öğrenci Tavuk Burger",
+              "positionInList": 10,
+              "price": 220
+            },
+            "A11bBurger011": {
+              "description": "El Yapımı Brioche Ekmeği, Köfte, El Yapımı Binada Sos, Marul, Domates, Turşu, Sour Cream Sos ve Patates Kızartması ile servis edilir",
+              "id": 1,
+              "imageUrl": "",
+              "name": "Klasik Burger",
+              "positionInList": 1,
+              "price": 275
+            },
+            "A12bBurger012": {
+              "description": "El Yapımı Brioche Ekmeği, Köfte, El Yapımı Binada Sos, Cheddar Peyniri, Marul, Domates, Turşu, Sour Cream Sos ve Patates Kızartması ile servis edilir",
+              "id": 2,
+              "imageUrl": "",
+              "name": "Cheese Burger",
+              "positionInList": 2,
+              "price": 285
+            },
+            "A13bBurger013": {
+              "description": "El Yapımı Brioche Ekmeği, Köfte, El Yapımı Binada Sos, Cheddar Peyniri, Ağır Ateşte Pişmiş Tiftik Dana Kaburga, Marul, Domates, Turşu, Sour Cream Sos ve Patates Kızartması ile servis edilir",
+              "id": 3,
+              "imageUrl": "",
+              "name": "Tiftik Burger",
+              "positionInList": 3,
+              "price": 390
+            },
+            "A1bBurger001": {
+              "description": "El Yapımı Brioche Ekmeği, Köfte, El Yapımı Binada Sos, Cheddar Peyniri, Karamelize Soğan, Marul, Domates, Turşu, Sour Cream Sos ve Patates Kızartması ile servis edilir",
+              "id": 4,
+              "imageUrl": "",
+              "name": "Karamelize Burger",
+              "positionInList": 4,
+              "price": 310
+            },
+            "A2bBurger002": {
+              "description": "El Yapımı Brioche Ekmeği, Köfte, El Yapımı Binada Sos, Cheddar Peyniri, Karamelize Soğan, Tütsülenmiş Kaburga Eti Parçaları, Marul, Domates, Turşu, Sour Cream Sos ve Patates Kızartması ile servis edilir",
+              "id": 5,
+              "imageUrl": "",
+              "name": "Smoke Burger",
+              "positionInList": 5,
+              "price": 350
+            },
+            "A3bBurger003": {
+              "description": "El Yapımı Brioche Ekmeği, Köfte, El Yapımı Binada Sos, Cheddar Peyniri, Karamelize Soğan, Tütsülenmiş Kaburga Eti Parçaları, Köz Biber, Marul, Domates, Turşu, Sour Cream Sos ve Patates Kızartması ile servis edilir",
+              "id": 6,
+              "imageUrl": "",
+              "name": "Forknife Special Burger",
+              "positionInList": 6,
+              "price": 350
+            },
+            "A4bBurger004": {
+              "description": "El Yapımı Brioche Ekmeği, Double Köfte, El Yapımı Binada Sos, Cheddar Peyniri, Marul, Domates, Turşu, Sour Cream Sos ve Patates Kızartması ile servis edilir",
+              "id": 7,
+              "imageUrl": "",
+              "name": "Double Burger",
+              "positionInList": 7,
+              "price": 390
+            },
+            "A5bBurger005": {
+              "description": "El Yapımı Brioche Ekmeği, Çıtır Tavuk Parçaları, El Yapımı Binada Sos, Marul, Domates, Turşu, Sour Cream Sos ve Patates ile servis edilir",
+              "id": 8,
+              "imageUrl": "",
+              "name": "Chicken Burger",
+              "positionInList": 8,
+              "price": 250
+            },
+            "A6bBurger006": {
+              "description": "El Yapımı Brioche Ekmeği, Köfte, El Yapımı Binada Sos, Mantar Sos, Marul, Domates, Turşu, Sour Cream Sos ve Patates Kızartması ile servis edilir",
+              "id": 9,
+              "imageUrl": "",
+              "name": "Mantar Soslu Burger",
+              "positionInList": 9,
+              "price": 300
+            },
+            "A7bBurger007": {
+              "description": "120 gram sana burger, kibrit patates, cheddar peyniri, kaşar peyniri, marul, domates, yoğurt sos ve patates ile servis edilir",
+              "id": 13,
+              "imageUrl": "",
+              "name": "Talaş Burger",
+              "positionInList": 13,
+              "price": 290
+            },
+            "A8bBurger008": {
+              "description": "Özel sos ile marine edilmiş kuzu eti ve şefin sosu ve çıtır patates ile servis edilir",
+              "id": 11,
+              "imageUrl": "",
+              "name": "Kuzu Burger",
+              "positionInList": 11,
+              "price": 380
+            },
+            "A9bBurger009": {
+              "description": "120 gram çıtır burger cheddar peyniri, marul, domates, salatalık, turşusu, özel Forknife sos ve patates ile servis edilir",
+              "id": 12,
+              "imageUrl": "",
+              "name": "Cheddarlı Çıtır Burger",
+              "positionInList": 12,
+              "price": 260
+            }
+          },
+          "name": "BURGERLER"
+        },
+        "category008": {
+          "displayOrder": 8,
+          "id": 8,
+          "menuItem": {
+            "S1aSalata001": {
+              "description": "El Yapımı Sezar Sos, Izgara Bonfile, Tavuk, Kruton Ekmek, Parmesan Peyniri ve Mevsim Yeşillikleri ile servis edilir",
+              "id": 1,
+              "imageUrl": "",
+              "name": "Sezar Salata",
+              "positionInList": 1,
+              "price": 220
+            },
+            "S2aSalata002": {
+              "description": "El Yapımı Özel Sos, Karides, Kavrulmuş Panko, Taze Fesleğen, Taze Kekik ve Mevsim Yeşillikleri ile servis edilir",
+              "id": 2,
+              "imageUrl": "",
+              "name": "Karides Salata",
+              "positionInList": 2,
+              "price": 280
+            },
+            "S3aSalata003": {
+              "description": "Domates, Salatalık, Biber, Soğan ve Mevsim Yeşillikleri ile servis edilir",
+              "id": 3,
+              "imageUrl": "",
+              "name": "Çoban Salata",
+              "positionInList": 3,
+              "price": 180
+            },
+            "S4aSalata004": {
+              "description": "El Yapımı Sezar Sos, Izgara Bonfile, Ton Balığı, Kruton Ekmek, Parmesan Peyniri ve Mevsim Yeşillikleri ile servis edilir",
+              "id": 4,
+              "imageUrl": "",
+              "name": "Ton Balıklı Salata",
+              "positionInList": 4,
+              "price": 220
+            }
+          },
+          "name": "SALATALAR"
+        },
+        "category009": {
+          "displayOrder": 9,
+          "id": 9,
+          "menuItem": {
+            "W1aWrap001": {
+              "description": "Bonfile Tavuk Parçaları, Kırmızı Biber, Yeşil Biber, Mantar, Özel Sos, Mozarella Peyniri, Sour Cream Sos ve Patates ile servis edilir",
+              "id": 1,
+              "imageUrl": "",
+              "name": "Chicken Wrap",
+              "positionInList": 1,
+              "price": 250
+            },
+            "W2aWrap002": {
+              "description": "Bonfile Dana Parçaları, Kırmızı Biber, Yeşil Biber, Mantar, Özel Sos, Mozarella Peyniri, Sour Cream Sos ve Patates ile servis edilir",
+              "id": 2,
+              "imageUrl": "",
+              "name": "Beef Wrap",
+              "positionInList": 2,
+              "price": 290
+            }
+          },
+          "name": "wrap çeşitleri"
+        },
+        "category010": {
+          "displayOrder": 10,
+          "id": 10,
+          "menuItem": {
+            "-Oj7DfWDBWMqaEWatSEn": {
+              "description": "",
+              "id": 15,
+              "imageUrl": "",
+              "name": "Izgara Dana Bonfile",
+              "positionInList": 15,
+              "price": 700
+            },
+            "A10aAna010": {
+              "description": "Özel marine edilmiş çeri domates, çıtır patates parçaları, çıtır meksika biber parçaları ve lavaş ile servis edilir",
+              "id": 10,
+              "imageUrl": "",
+              "name": "Forknife Kuzu Şiş",
+              "positionInList": 10,
+              "price": 600
+            },
+            "A11aAna011": {
+              "description": "Kuzu pirzola ızgara, pilav ve bol mevsim yeşillikleri ile servis edilir",
+              "id": 11,
+              "imageUrl": "",
+              "name": "Kuzu Pirzola",
+              "positionInList": 11,
+              "price": 750
+            },
+            "A12aAna012": {
+              "description": "300 gram tavuk ızgara fileto, 100 gram pilav ve bol mevsim yeşillikleri ile servis edilir",
+              "id": 12,
+              "imageUrl": "",
+              "name": "Sporcu Menü",
+              "positionInList": 12,
+              "price": 330
+            },
+            "A13aAna013": {
+              "description": "200 gram tavuk, fesleğen sos, mozarella peyniri, mantar, kapya, yeşil biber, mevsim yeşillikleri ve patates ile servis edilir",
+              "id": 13,
+              "imageUrl": "",
+              "name": "Fesleğen Soslu Tavuk",
+              "positionInList": 13,
+              "price": 285
+            },
+            "A14aAna014": {
+              "description": "Sweet chili sos ile marine edilmiş 200 gram tavuk, susam, mantar, taze soğan, mevsim yeşillikleri ve patates ile servis edilir",
+              "id": 14,
+              "imageUrl": "",
+              "name": "Acı Tatlı Tavuk",
+              "positionInList": 14,
+              "price": 295
+            },
+            "A1aAna001": {
+              "description": "El Yapımı Kasap Köfte, Pilav, Salata ile servis edilir",
+              "id": 1,
+              "imageUrl": "",
+              "name": "Kasap Köfte",
+              "positionInList": 1,
+              "price": 360
+            },
+            "A2aAna002": {
+              "description": "Izgara Bonfile Tavuk, Şefin Özel Sosu, Pilav ve Patates ile servis edilir",
+              "id": 2,
+              "imageUrl": "",
+              "name": "Izgara Tavuk Bonfile",
+              "positionInList": 2,
+              "price": 295
+            },
+            "A3aAna003": {
+              "description": "Izgara Bonfile Tavuk Parçaları, Mantar, Şefin Özel Sosu, Pilav ve Patates ile servis edilir",
+              "id": 3,
+              "imageUrl": "",
+              "name": "Kremalı Mantarlı Tavuk",
+              "positionInList": 3,
+              "price": 295
+            },
+            "A4aAna004": {
+              "description": "Izgara Bonfile Tavuk Parçaları, Mantar, Kırmızı Biber, Yeşil Biber, Köri Sosu, Pilav ve Patates ile servis edilir",
+              "id": 4,
+              "imageUrl": "",
+              "name": "Köri Soslu Tavuk",
+              "positionInList": 4,
+              "price": 295
+            },
+            "A5aAna005": {
+              "description": "Tavuk Göğsü, Kırmızı Biber, Yeşil Biber, Mantar, Krema, Soya Sosu, Patates ve Pilav ile servis edilir",
+              "id": 5,
+              "imageUrl": "",
+              "name": "Soya Soslu Tavuk",
+              "positionInList": 5,
+              "price": 295
+            },
+            "A6aAna006": {
+              "description": "Tavuk Göğsü, Kırmızı Biber, Yeşil Biber, Mantar, Mısır, Domates Sos, Acı Sos, Patates ve Pilav ile servis edilir",
+              "id": 6,
+              "imageUrl": "",
+              "name": "Meksika Usulü Tavuk",
+              "positionInList": 6,
+              "price": 250
+            },
+            "A7aAna007": {
+              "description": "Tavuk Göğsü, Kırmızı Biber, Yeşil Biber, Mantar, BBQ Sos, Patates ve Pilav ile servis edilir",
+              "id": 7,
+              "imageUrl": "",
+              "name": "BBQ Soslu Tavuk",
+              "positionInList": 7,
+              "price": 295
+            },
+            "A8aAna008": {
+              "description": "Şefin Özel Sosunda, Roka Yatağında, Izgara Levrek Fileto",
+              "id": 8,
+              "imageUrl": "",
+              "name": "Izgara Levrek",
+              "positionInList": 8,
+              "price": 320
+            },
+            "A9aAna009": {
+              "description": "Özel marine edilmiş çeri domates, çıtır patates parçaları, çıtır meksika biber parçaları ve lavaş ile servis edilir",
+              "id": 9,
+              "imageUrl": "",
+              "name": "Forknife Adana",
+              "positionInList": 9,
+              "price": 400
+            }
+          },
+          "name": "ANA YEMEKLER"
+        },
+        "category011": {
+          "displayOrder": 11,
+          "id": 11,
+          "menuItem": {
+            "T1aTako001": {
+              "description": "Tavuk, soslar ve sebzelerle hazırlanmış lezzetli taco, özel baharat karışımıyla servis edilir",
+              "id": 1,
+              "imageUrl": "",
+              "name": "Tavuklu Tako",
+              "positionInList": 1,
+              "price": 280
+            },
+            "T2aTako002": {
+              "description": "Ağır ateşte pişmiş tiftik dana etiyle hazırlanmış taco, özel sos ve taze sebzelerle servis edilir",
+              "id": 2,
+              "imageUrl": "",
+              "name": "Tiftik Et Tako",
+              "positionInList": 2,
+              "price": 320
+            }
+          },
+          "name": "TAKOLAR"
+        },
+        "category012": {
+          "displayOrder": 12,
+          "id": 12,
+          "menuItem": {
+            "-OiyFi58BK7raKuXAReC": {
+              "description": "",
+              "id": 34,
+              "imageUrl": "",
+              "name": "Kova Waffle",
+              "positionInList": 34,
+              "price": 275
+            },
+            "D10aTatli010": {
+              "description": "",
+              "id": 10,
+              "imageUrl": "",
+              "name": "Fıstık Rüyası",
+              "positionInList": 10,
+              "price": 210
+            },
+            "D11aTatli011": {
+              "description": "Limonlu, Frambuazlı, Lotus",
+              "id": 11,
+              "imageUrl": "",
+              "name": "Cheese Cake",
+              "positionInList": 11,
+              "price": 200
+            },
+            "D12aTatli012": {
+              "description": "",
+              "id": 12,
+              "imageUrl": "",
+              "name": "San Sebastian",
+              "positionInList": 12,
+              "price": 220
+            },
+            "D13aTatli013": {
+              "description": "",
+              "id": 13,
+              "imageUrl": "",
+              "name": "Sütlaç",
+              "positionInList": 13,
+              "price": 135
+            },
+            "D14aTatli014": {
+              "description": "",
+              "id": 14,
+              "imageUrl": "",
+              "name": "Red Velvet",
+              "positionInList": 14,
+              "price": 135
+            },
+            "D15aTatli015": {
+              "description": "",
+              "id": 15,
+              "imageUrl": "",
+              "name": "Trileçe",
+              "positionInList": 15,
+              "price": 135
+            },
+            "D16aTatli016": {
+              "description": "",
+              "id": 16,
+              "imageUrl": "",
+              "name": "Çikolatalı Pasta",
+              "positionInList": 16,
+              "price": 200
+            },
+            "D17aTatli017": {
+              "description": "",
+              "id": 17,
+              "imageUrl": "",
+              "name": "Ballı Cevizli Pasta",
+              "positionInList": 17,
+              "price": 155
+            },
+            "D18aTatli018": {
+              "description": "",
+              "id": 18,
+              "imageUrl": "",
+              "name": "Sufle",
+              "positionInList": 18,
+              "price": 200
+            },
+            "D19aTatli019": {
+              "description": "",
+              "id": 19,
+              "imageUrl": "",
+              "name": "Dubai Çikolata Dilim",
+              "positionInList": 19,
+              "price": 65
+            },
+            "D1aTatli001": {
+              "description": "",
+              "id": 1,
+              "imageUrl": "",
+              "name": "Marlenka",
+              "positionInList": 1,
+              "price": 200
+            },
+            "D20aTatli020": {
+              "description": "",
+              "id": 20,
+              "imageUrl": "",
+              "name": "Pankek Tabağı",
+              "positionInList": 20,
+              "price": 190
+            },
+            "D21aTatli021": {
+              "description": "",
+              "id": 21,
+              "imageUrl": "",
+              "name": "Kurabiye Tabağı",
+              "positionInList": 21,
+              "price": 85
+            },
+            "D22aTatli022": {
+              "description": "",
+              "id": 22,
+              "imageUrl": "",
+              "name": "Kadayıflı Muhallebi",
+              "positionInList": 22,
+              "price": 145
+            },
+            "D23aTatli023": {
+              "description": "Mayhoş, Egzotik, Tropikal",
+              "id": 23,
+              "imageUrl": "",
+              "name": "Forknife Special",
+              "positionInList": 23,
+              "price": 220
+            },
+            "D24aTatli024": {
+              "description": "",
+              "id": 24,
+              "imageUrl": "",
+              "name": "Donut",
+              "positionInList": 24,
+              "price": 100
+            },
+            "D25aTatli025": {
+              "description": "",
+              "id": 25,
+              "imageUrl": "",
+              "name": "Muffin",
+              "positionInList": 25,
+              "price": 145
+            },
+            "D26aTatli026": {
+              "description": "",
+              "id": 26,
+              "imageUrl": "",
+              "name": "Karnaval Tatlı",
+              "positionInList": 26,
+              "price": 155
+            },
+            "D27aTatli027": {
+              "description": "",
+              "id": 27,
+              "imageUrl": "",
+              "name": "Latte Kek",
+              "positionInList": 27,
+              "price": 180
+            },
+            "D28aTatli028": {
+              "description": "",
+              "id": 28,
+              "imageUrl": "",
+              "name": "Fıstık Magma",
+              "positionInList": 28,
+              "price": 190
+            },
+            "D29aTatli029": {
+              "description": "",
+              "id": 29,
+              "imageUrl": "",
+              "name": "Krokan Pasta",
+              "positionInList": 29,
+              "price": 190
+            },
+            "D2aTatli002": {
+              "description": "",
+              "id": 2,
+              "imageUrl": "",
+              "name": "Dubai Pasta",
+              "positionInList": 2,
+              "price": 200
+            },
+            "D30aTatli030": {
+              "description": "",
+              "id": 30,
+              "imageUrl": "",
+              "name": "Meyve Şöleni",
+              "positionInList": 30,
+              "price": 200
+            },
+            "D31aTatli031": {
+              "description": "",
+              "id": 31,
+              "imageUrl": "",
+              "name": "Dubai Cheesecake",
+              "positionInList": 31,
+              "price": 200
+            },
+            "D32aTatli032": {
+              "description": "",
+              "id": 32,
+              "imageUrl": "",
+              "name": "Dubai Browni",
+              "positionInList": 32,
+              "price": 195
+            },
+            "D33aTatli033": {
+              "description": "",
+              "id": 33,
+              "imageUrl": "",
+              "name": "Profiterol Pasta",
+              "positionInList": 33,
+              "price": 180
+            },
+            "D3aTatli003": {
+              "description": "",
+              "id": 3,
+              "imageUrl": "",
+              "name": "Dondurma",
+              "positionInList": 3,
+              "price": 40
+            },
+            "D4aTatli004": {
+              "description": "",
+              "id": 4,
+              "imageUrl": "",
+              "name": "Magnolia Çilekli",
+              "positionInList": 4,
+              "price": 200
+            },
+            "D5aTatli005": {
+              "description": "",
+              "id": 5,
+              "imageUrl": "",
+              "name": "Magnolia Muzlu",
+              "positionInList": 5,
+              "price": 200
+            },
+            "D6aTatli006": {
+              "description": "",
+              "id": 6,
+              "imageUrl": "",
+              "name": "Magnolia Oreolu",
+              "positionInList": 6,
+              "price": 200
+            },
+            "D7aTatli007": {
+              "description": "",
+              "id": 7,
+              "imageUrl": "",
+              "name": "Waffle",
+              "positionInList": 7,
+              "price": 235
+            },
+            "D8aTatli008": {
+              "description": "",
+              "id": 8,
+              "imageUrl": "",
+              "name": "Double Waffle",
+              "positionInList": 8,
+              "price": 300
+            },
+            "D9aTatli009": {
+              "description": "",
+              "id": 9,
+              "imageUrl": "",
+              "name": "Tiramisu",
+              "positionInList": 9,
+              "price": 180
+            }
+          },
+          "name": "TATLILAR"
+        },
+        "category013": {
+          "displayOrder": 13,
+          "id": 13,
+          "menuItem": {
+            "E10aIcecek010": {
+              "description": "",
+              "id": 10,
+              "imageUrl": "",
+              "name": "Türk Kahvesi",
+              "positionInList": 10,
+              "price": 95
+            },
+            "E11aIcecek011": {
+              "description": "",
+              "id": 11,
+              "imageUrl": "",
+              "name": "Double Türk Kahvesi",
+              "positionInList": 11,
+              "price": 150
+            },
+            "E12aIcecek012": {
+              "description": "",
+              "id": 12,
+              "imageUrl": "",
+              "name": "Dibek Kahvesi",
+              "positionInList": 12,
+              "price": 100
+            },
+            "E13aIcecek013": {
+              "description": "",
+              "id": 13,
+              "imageUrl": "",
+              "name": "Menengiç Kahvesi",
+              "positionInList": 13,
+              "price": 100
+            },
+            "E14aIcecek014": {
+              "description": "",
+              "id": 14,
+              "imageUrl": "",
+              "name": "Damla Sakızlı Türk Kahvesi",
+              "positionInList": 14,
+              "price": 100
+            },
+            "E15aIcecek015": {
+              "description": "",
+              "id": 15,
+              "imageUrl": "",
+              "name": "Sütlü Türk Kahvesi",
+              "positionInList": 15,
+              "price": 100
+            },
+            "E16aIcecek016": {
+              "description": "",
+              "id": 16,
+              "imageUrl": "",
+              "name": "Filtre Kahve",
+              "positionInList": 16,
+              "price": 130
+            },
+            "E17aIcecek017": {
+              "description": "",
+              "id": 17,
+              "imageUrl": "",
+              "name": "Sıcak Çikolata",
+              "positionInList": 17,
+              "price": 130
+            },
+            "E18aIcecek018": {
+              "description": "",
+              "id": 18,
+              "imageUrl": "",
+              "name": "Sıcak Beyaz Çikolata",
+              "positionInList": 18,
+              "price": 140
+            },
+            "E19aIcecek019": {
+              "description": "",
+              "id": 19,
+              "imageUrl": "",
+              "name": "Portakallı Sıcak Çikolata",
+              "positionInList": 19,
+              "price": 140
+            },
+            "E1aIcecek001": {
+              "description": "",
+              "id": 1,
+              "imageUrl": "",
+              "name": "Çay",
+              "positionInList": 1,
+              "price": 30
+            },
+            "E20aIcecek020": {
+              "description": "",
+              "id": 20,
+              "imageUrl": "",
+              "name": "Salep",
+              "positionInList": 20,
+              "price": 120
+            },
+            "E21aIcecek021": {
+              "description": "",
+              "id": 21,
+              "imageUrl": "",
+              "name": "Bal Badem Salep",
+              "positionInList": 21,
+              "price": 140
+            },
+            "E22aIcecek022": {
+              "description": "",
+              "id": 22,
+              "imageUrl": "",
+              "name": "Kış Çayı",
+              "positionInList": 22,
+              "price": 160
+            },
+            "E2aIcecek002": {
+              "description": "",
+              "id": 2,
+              "imageUrl": "",
+              "name": "Büyük Çay",
+              "positionInList": 2,
+              "price": 60
+            },
+            "E3aIcecek003": {
+              "description": "Demleme",
+              "id": 3,
+              "imageUrl": "",
+              "name": "Ihlamur",
+              "positionInList": 3,
+              "price": 140
+            },
+            "E4aIcecek004": {
+              "description": "Demleme",
+              "id": 4,
+              "imageUrl": "",
+              "name": "Yeşil Çay",
+              "positionInList": 4,
+              "price": 140
+            },
+            "E5aIcecek005": {
+              "description": "Demleme",
+              "id": 5,
+              "imageUrl": "",
+              "name": "Ada Çayı",
+              "positionInList": 5,
+              "price": 140
+            },
+            "E6aIcecek006": {
+              "description": "Demleme",
+              "id": 6,
+              "imageUrl": "",
+              "name": "Papatya Çayı",
+              "positionInList": 6,
+              "price": 140
+            },
+            "E7aIcecek007": {
+              "description": "Demleme",
+              "id": 7,
+              "imageUrl": "",
+              "name": "Nane Limon",
+              "positionInList": 7,
+              "price": 140
+            },
+            "E8aIcecek008": {
+              "description": "Demleme",
+              "id": 8,
+              "imageUrl": "",
+              "name": "Gül Kurusu",
+              "positionInList": 8,
+              "price": 140
+            },
+            "E9aIcecek009": {
+              "description": "Demleme",
+              "id": 9,
+              "imageUrl": "",
+              "name": "Forknife Özel Karışım",
+              "positionInList": 9,
+              "price": 160
+            }
+          },
+          "name": "SICAK İÇECEKLER"
+        },
+        "category014": {
+          "displayOrder": 14,
+          "id": 14,
+          "menuItem": {
+            "F10aKahve010": {
+              "description": "",
+              "id": 10,
+              "imageUrl": "",
+              "name": "White Chocolate Mocha",
+              "positionInList": 10,
+              "price": 130
+            },
+            "F11aKahve011": {
+              "description": "",
+              "id": 11,
+              "imageUrl": "",
+              "name": "Machiato",
+              "positionInList": 11,
+              "price": 125
+            },
+            "F12aKahve012": {
+              "description": "",
+              "id": 12,
+              "imageUrl": "",
+              "name": "Karamel Machiato",
+              "positionInList": 12,
+              "price": 130
+            },
+            "F13aKahve013": {
+              "description": "",
+              "id": 13,
+              "imageUrl": "",
+              "name": "Filtre Kahve",
+              "positionInList": 13,
+              "price": 130
+            },
+            "F1aKahve001": {
+              "description": "",
+              "id": 1,
+              "imageUrl": "",
+              "name": "Espresso",
+              "positionInList": 1,
+              "price": 80
+            },
+            "F2aKahve002": {
+              "description": "",
+              "id": 2,
+              "imageUrl": "",
+              "name": "Double Espresso",
+              "positionInList": 2,
+              "price": 120
+            },
+            "F3aKahve003": {
+              "description": "",
+              "id": 3,
+              "imageUrl": "",
+              "name": "Americano",
+              "positionInList": 3,
+              "price": 110
+            },
+            "F4aKahve004": {
+              "description": "",
+              "id": 4,
+              "imageUrl": "",
+              "name": "Cortado",
+              "positionInList": 4,
+              "price": 110
+            },
+            "F5aKahve005": {
+              "description": "",
+              "id": 5,
+              "imageUrl": "",
+              "name": "Flat White",
+              "positionInList": 5,
+              "price": 120
+            },
+            "F6aKahve006": {
+              "description": "",
+              "id": 6,
+              "imageUrl": "",
+              "name": "Cappuccino",
+              "positionInList": 6,
+              "price": 110
+            },
+            "F7aKahve007": {
+              "description": "",
+              "id": 7,
+              "imageUrl": "",
+              "name": "Latte",
+              "positionInList": 7,
+              "price": 110
+            },
+            "F8aKahve008": {
+              "description": "Toffle Nut, Vanilya, Fındık, Cookie, Lotus&Tarçın, Tuzlu Karamel",
+              "id": 8,
+              "imageUrl": "",
+              "name": "Aromatik Latte",
+              "positionInList": 8,
+              "price": 125
+            },
+            "F9aKahve009": {
+              "description": "",
+              "id": 9,
+              "imageUrl": "",
+              "name": "Mocha",
+              "positionInList": 9,
+              "price": 125
+            }
+          },
+          "name": "ESPRESSO BAZLI KAHVELER"
+        },
+        "category015": {
+          "displayOrder": 15,
+          "id": 15,
+          "menuItem": {
+            "G1aMilk001": {
+              "description": "",
+              "id": 1,
+              "imageUrl": "",
+              "name": "Kavunlu Milkshake",
+              "positionInList": 1,
+              "price": 165
+            },
+            "G2aMilk002": {
+              "description": "",
+              "id": 2,
+              "imageUrl": "",
+              "name": "Tropikal Milkshake",
+              "positionInList": 2,
+              "price": 165
+            },
+            "G3aMilk003": {
+              "description": "",
+              "id": 3,
+              "imageUrl": "",
+              "name": "Egzotik Milkshake",
+              "positionInList": 3,
+              "price": 165
+            },
+            "G4aMilk004": {
+              "description": "",
+              "id": 4,
+              "imageUrl": "",
+              "name": "Vanilyalı Milkshake",
+              "positionInList": 4,
+              "price": 165
+            },
+            "G5aMilk005": {
+              "description": "",
+              "id": 5,
+              "imageUrl": "",
+              "name": "Çikolatalı Milkshake",
+              "positionInList": 5,
+              "price": 165
+            },
+            "G6aMilk006": {
+              "description": "",
+              "id": 6,
+              "imageUrl": "",
+              "name": "Çilekli Milkshake",
+              "positionInList": 6,
+              "price": 165
+            },
+            "G7aMilk007": {
+              "description": "",
+              "id": 7,
+              "imageUrl": "",
+              "name": "Muzlu Milkshake",
+              "positionInList": 7,
+              "price": 165
+            },
+            "G8aMilk008": {
+              "description": "",
+              "id": 8,
+              "imageUrl": "",
+              "name": "Karamelli Milkshake",
+              "positionInList": 8,
+              "price": 165
+            }
+          },
+          "name": "MILKSHAKELER"
+        },
+        "category016": {
+          "displayOrder": 16,
+          "id": 16,
+          "menuItem": {
+            "H1aSogukKahve001": {
+              "description": "",
+              "id": 1,
+              "imageUrl": "",
+              "name": "Ice Latte",
+              "positionInList": 1,
+              "price": 165
+            },
+            "H2aSogukKahve002": {
+              "description": "",
+              "id": 2,
+              "imageUrl": "",
+              "name": "Ice Americano",
+              "positionInList": 2,
+              "price": 165
+            },
+            "H3aSogukKahve003": {
+              "description": "",
+              "id": 3,
+              "imageUrl": "",
+              "name": "Ice Mocha",
+              "positionInList": 3,
+              "price": 165
+            },
+            "H4aSogukKahve004": {
+              "description": "",
+              "id": 4,
+              "imageUrl": "",
+              "name": "Ice White Chocolate Mocha",
+              "positionInList": 4,
+              "price": 165
+            },
+            "H5aSogukKahve005": {
+              "description": "",
+              "id": 5,
+              "imageUrl": "",
+              "name": "Ice Karamel Machiato",
+              "positionInList": 5,
+              "price": 165
+            },
+            "H6aSogukKahve006": {
+              "description": "",
+              "id": 6,
+              "imageUrl": "",
+              "name": "Ice Nutella Latte",
+              "positionInList": 6,
+              "price": 165
+            },
+            "H7aSogukKahve007": {
+              "description": "",
+              "id": 7,
+              "imageUrl": "",
+              "name": "Ice Karamel Latte",
+              "positionInList": 7,
+              "price": 165
+            }
+          },
+          "name": "SOĞUK KAHVELER"
+        },
+        "category017": {
+          "displayOrder": 17,
+          "id": 17,
+          "menuItem": {
+            "I1aFrappe001": {
+              "description": "",
+              "id": 1,
+              "imageUrl": "",
+              "name": "Vanilyalı Frappe",
+              "positionInList": 1,
+              "price": 170
+            },
+            "I2aFrappe002": {
+              "description": "",
+              "id": 2,
+              "imageUrl": "",
+              "name": "Fındıklı Frappe",
+              "positionInList": 2,
+              "price": 170
+            },
+            "I3aFrappe003": {
+              "description": "",
+              "id": 3,
+              "imageUrl": "",
+              "name": "Tuffle Nut Frappe",
+              "positionInList": 3,
+              "price": 170
+            }
+          },
+          "name": "FRAPPELER"
+        },
+        "category018": {
+          "displayOrder": 18,
+          "id": 18,
+          "menuItem": {
+            "J1aNargile001": {
+              "description": "",
+              "id": 1,
+              "imageUrl": "",
+              "name": "İzmir Romantik",
+              "positionInList": 1,
+              "price": 400
+            },
+            "J2aNargile002": {
+              "description": "",
+              "id": 2,
+              "imageUrl": "",
+              "name": "Yello Taksi",
+              "positionInList": 2,
+              "price": 400
+            },
+            "J3aNargile003": {
+              "description": "",
+              "id": 3,
+              "imageUrl": "",
+              "name": "Limon - Nane",
+              "positionInList": 3,
+              "price": 400
+            },
+            "J4aNargile004": {
+              "description": "",
+              "id": 4,
+              "imageUrl": "",
+              "name": "Karpuz",
+              "positionInList": 4,
+              "price": 400
+            },
+            "J5aNargile005": {
+              "description": "",
+              "id": 5,
+              "imageUrl": "",
+              "name": "Kavun",
+              "positionInList": 5,
+              "price": 400
+            },
+            "J6aNargile006": {
+              "description": "",
+              "id": 6,
+              "imageUrl": "",
+              "name": "Lady Killer",
+              "positionInList": 6,
+              "price": 400
+            }
+          },
+          "name": "NARGİLELER"
+        },
+        "category019": {
+          "displayOrder": 19,
+          "id": 19,
+          "menuItem": {
+            "K1aSpecialNargile001": {
+              "description": "",
+              "id": 1,
+              "imageUrl": "",
+              "name": "Love 66",
+              "positionInList": 1,
+              "price": 400
+            },
+            "K2aSpecialNargile002": {
+              "description": "",
+              "id": 2,
+              "imageUrl": "",
+              "name": "Cappicino",
+              "positionInList": 2,
+              "price": 400
+            },
+            "K3aSpecialNargile003": {
+              "description": "",
+              "id": 3,
+              "imageUrl": "",
+              "name": "Pung Of ( Forknife Special )",
+              "positionInList": 3,
+              "price": 400
+            },
+            "K4aSpecialNargile004": {
+              "description": "",
+              "id": 4,
+              "imageUrl": "",
+              "name": "Pişmiş Şeftali",
+              "positionInList": 4,
+              "price": 400
+            },
+            "K5aSpecialNargile005": {
+              "description": "",
+              "id": 5,
+              "imageUrl": "",
+              "name": "Mango",
+              "positionInList": 5,
+              "price": 400
+            },
+            "K6aSpecialNargile006": {
+              "description": "",
+              "id": 6,
+              "imageUrl": "",
+              "name": "Yaban Mersini",
+              "positionInList": 6,
+              "price": 400
+            }
+          },
+          "name": "SPECIAL NARGİLELER"
+        },
+        "category020": {
+          "displayOrder": 20,
+          "id": 20,
+          "menuItem": {
+            "-OjWpzDcNAPA_ugKOtZU": {
+              "description": "",
+              "id": 6,
+              "imageUrl": "",
+              "name": "Mavi Kelebek",
+              "positionInList": 6,
+              "price": 185
+            },
+            "L1aKokteyl001": {
+              "description": "",
+              "id": 1,
+              "imageUrl": "",
+              "name": "Forknife Lady",
+              "positionInList": 1,
+              "price": 185
+            },
+            "L2aKokteyl002": {
+              "description": "",
+              "id": 2,
+              "imageUrl": "",
+              "name": "Alkolsüz Mojito",
+              "positionInList": 2,
+              "price": 185
+            },
+            "L3aKokteyl003": {
+              "description": "",
+              "id": 3,
+              "imageUrl": "",
+              "name": "Forknife Cool Lime",
+              "positionInList": 3,
+              "price": 185
+            },
+            "L4aKokteyl004": {
+              "description": "",
+              "id": 4,
+              "imageUrl": "",
+              "name": "Forknife Esintisi",
+              "positionInList": 4,
+              "price": 185
+            },
+            "L5aKokteyl005": {
+              "description": "",
+              "id": 5,
+              "imageUrl": "",
+              "name": "Forknife Tropical",
+              "positionInList": 5,
+              "price": 185
+            }
+          },
+          "name": "ALKOLSÜZ KOKTEYLLER"
+        },
+        "category021": {
+          "displayOrder": 21,
+          "id": 21,
+          "menuItem": {
+            "M1aFrozen001": {
+              "description": "",
+              "id": 1,
+              "imageUrl": "",
+              "name": "Karpuz",
+              "positionInList": 1,
+              "price": 150
+            },
+            "M2aFrozen002": {
+              "description": "",
+              "id": 2,
+              "imageUrl": "",
+              "name": "Tropikal",
+              "positionInList": 2,
+              "price": 150
+            },
+            "M3aFrozen003": {
+              "description": "",
+              "id": 3,
+              "imageUrl": "",
+              "name": "Egzotik",
+              "positionInList": 3,
+              "price": 150
+            },
+            "M4aFrozen004": {
+              "description": "",
+              "id": 4,
+              "imageUrl": "",
+              "name": "Yeşil Elma",
+              "positionInList": 4,
+              "price": 150
+            },
+            "M5aFrozen005": {
+              "description": "",
+              "id": 5,
+              "imageUrl": "",
+              "name": "Çilek",
+              "positionInList": 5,
+              "price": 150
+            },
+            "M6aFrozen006": {
+              "description": "",
+              "id": 6,
+              "imageUrl": "",
+              "name": "Yaban Mersini",
+              "positionInList": 6,
+              "price": 150
+            },
+            "M7aFrozen007": {
+              "description": "",
+              "id": 7,
+              "imageUrl": "",
+              "name": "Çarkı Felek",
+              "positionInList": 7,
+              "price": 150
+            },
+            "M8aFrozen008": {
+              "description": "",
+              "id": 8,
+              "imageUrl": "",
+              "name": "Mango",
+              "positionInList": 8,
+              "price": 150
+            },
+            "M9aFrozen009": {
+              "description": "",
+              "id": 9,
+              "imageUrl": "",
+              "name": "Karadut",
+              "positionInList": 9,
+              "price": 150
+            }
+          },
+          "name": "FROZENLAR"
+        },
+        "category022": {
+          "displayOrder": 22,
+          "id": 22,
+          "menuItem": {
+            "-Oj7C8PBPtLzyYCsVNKf": {
+              "description": "",
+              "id": 7,
+              "imageUrl": "",
+              "name": "Çilekli Limonata",
+              "positionInList": 7,
+              "price": 140
+            },
+            "N1aLimonata001": {
+              "description": "",
+              "id": 1,
+              "imageUrl": "",
+              "name": "Limonata",
+              "positionInList": 1,
+              "price": 130
+            },
+            "N2aLimonata002": {
+              "description": "",
+              "id": 2,
+              "imageUrl": "",
+              "name": "Naneli Limonata",
+              "positionInList": 2,
+              "price": 140
+            },
+            "N3aLimonata003": {
+              "description": "",
+              "id": 3,
+              "imageUrl": "",
+              "name": "Portakallı Limonata",
+              "positionInList": 3,
+              "price": 130
+            },
+            "N4aLimonata004": {
+              "description": "",
+              "id": 4,
+              "imageUrl": "",
+              "name": "Yeşil Elmalı Limonata",
+              "positionInList": 4,
+              "price": 130
+            },
+            "N5aLimonata005": {
+              "description": "",
+              "id": 5,
+              "imageUrl": "",
+              "name": "Yaban Mersinli Limonata",
+              "positionInList": 5,
+              "price": 130
+            },
+            "N6aLimonata006": {
+              "description": "",
+              "id": 6,
+              "imageUrl": "",
+              "name": "Mavi Kelebek",
+              "positionInList": 6,
+              "price": 130
+            }
+          },
+          "name": "LİMONATALAR"
+        },
+        "category023": {
+          "displayOrder": 24,
+          "id": 23,
+          "menuItem": {
+            "-Oj781FXoBgs0klowH_0": {
+              "description": "",
+              "id": 24,
+              "imageUrl": "",
+              "name": "Enerji içeceği",
+              "positionInList": 24,
+              "price": 120
+            },
+            "SOGUK001": {
+              "description": "",
+              "id": 1,
+              "imageUrl": "",
+              "name": "Coca Cola",
+              "positionInList": 1,
+              "price": 70
+            },
+            "SOGUK002": {
+              "description": "",
+              "id": 2,
+              "imageUrl": "",
+              "name": "Coca Cola Zero",
+              "positionInList": 2,
+              "price": 70
+            },
+            "SOGUK003": {
+              "description": "",
+              "id": 3,
+              "imageUrl": "",
+              "name": "Fanta",
+              "positionInList": 3,
+              "price": 70
+            },
+            "SOGUK004": {
+              "description": "",
+              "id": 4,
+              "imageUrl": "",
+              "name": "Sprite",
+              "positionInList": 4,
+              "price": 70
+            },
+            "SOGUK005": {
+              "description": "",
+              "id": 5,
+              "imageUrl": "",
+              "name": "Ayran",
+              "positionInList": 5,
+              "price": 40
+            },
+            "SOGUK006": {
+              "description": "",
+              "id": 6,
+              "imageUrl": "",
+              "name": "Fuse Tea Limon",
+              "positionInList": 6,
+              "price": 70
+            },
+            "SOGUK007": {
+              "description": "",
+              "id": 7,
+              "imageUrl": "",
+              "name": "Fuse Tea Şeftali",
+              "positionInList": 7,
+              "price": 70
+            },
+            "SOGUK008": {
+              "description": "",
+              "id": 8,
+              "imageUrl": "",
+              "name": "Fuse Tea Mango",
+              "positionInList": 8,
+              "price": 70
+            },
+            "SOGUK009": {
+              "description": "",
+              "id": 9,
+              "imageUrl": "",
+              "name": "Fuse Tea Karpuz",
+              "positionInList": 9,
+              "price": 70
+            },
+            "SOGUK010": {
+              "description": "",
+              "id": 10,
+              "imageUrl": "",
+              "name": "Fuse Tea Çilek",
+              "positionInList": 10,
+              "price": 70
+            },
+            "SOGUK011": {
+              "description": "",
+              "id": 11,
+              "imageUrl": "",
+              "name": "Cappy Şeftali",
+              "positionInList": 11,
+              "price": 65
+            },
+            "SOGUK012": {
+              "description": "",
+              "id": 12,
+              "imageUrl": "",
+              "name": "Cappy Vişne",
+              "positionInList": 12,
+              "price": 65
+            },
+            "SOGUK013": {
+              "description": "",
+              "id": 13,
+              "imageUrl": "",
+              "name": "Cappy Karışık",
+              "positionInList": 13,
+              "price": 65
+            },
+            "SOGUK014": {
+              "description": "",
+              "id": 14,
+              "imageUrl": "",
+              "name": "Portakal Suyu",
+              "positionInList": 14,
+              "price": 150
+            },
+            "SOGUK015": {
+              "description": "",
+              "id": 15,
+              "imageUrl": "",
+              "name": "Sade Soda",
+              "positionInList": 15,
+              "price": 45
+            },
+            "SOGUK016": {
+              "description": "",
+              "id": 16,
+              "imageUrl": "",
+              "name": "Limonlu Soda",
+              "positionInList": 16,
+              "price": 50
+            },
+            "SOGUK017": {
+              "description": "",
+              "id": 17,
+              "imageUrl": "",
+              "name": "Elmalı Soda",
+              "positionInList": 17,
+              "price": 50
+            },
+            "SOGUK018": {
+              "description": "",
+              "id": 18,
+              "imageUrl": "",
+              "name": "Karpuz Çilekli Soda",
+              "positionInList": 18,
+              "price": 50
+            },
+            "SOGUK019": {
+              "description": "",
+              "id": 19,
+              "imageUrl": "",
+              "name": "Narlı Soda",
+              "positionInList": 19,
+              "price": 50
+            },
+            "SOGUK020": {
+              "description": "",
+              "id": 20,
+              "imageUrl": "",
+              "name": "Kırmızı Meyveli Soda",
+              "positionInList": 20,
+              "price": 50
+            },
+            "SOGUK021": {
+              "description": "",
+              "id": 21,
+              "imageUrl": "",
+              "name": "Niğde Gazozu",
+              "positionInList": 21,
+              "price": 70
+            },
+            "SOGUK022": {
+              "description": "",
+              "id": 22,
+              "imageUrl": "",
+              "name": "Churchill",
+              "positionInList": 22,
+              "price": 60
+            },
+            "SOGUK023": {
+              "description": "",
+              "id": 23,
+              "imageUrl": "",
+              "name": "Su",
+              "positionInList": 23,
+              "price": 30
+            }
+          },
+          "name": "SOĞUK İÇECEKLER"
+        }
+      }
+    },
+    "menuKey_nfc17": {
+      "categories": {
+        "-Oe3suHw4Urze2odYhvW": {
+          "createdAt": "2025-11-15T00:21:43.022Z",
+          "description": "",
+          "displayOrder": 1,
+          "isActive": true,
+          "menuId": "menuKey_nfc17",
+          "menuItem": {
+            "-Oe3tuyYOqJlliFmJsll": {
+              "available": true,
+              "createdAt": "2025-11-15T00:26:07.956Z",
+              "description": "NFC tavuk burger, el yapımı ranch sos, turşu, cheddar peynir, patates kızartması, seçilen 2 sos ile",
+              "displayOrder": 1,
+              "id": 1923019790,
+              "imageUrl": "",
+              "isActive": true,
+              "name": "Golden Rancher Burger Menü",
+              "price": 201,
+              "updatedAt": "2025-12-02T17:24:13.116Z"
+            },
+            "-Oe3u37IjHRzIUe5kt9b": {
+              "available": true,
+              "createdAt": "2025-11-15T00:26:45.444Z",
+              "description": "NFC tavuk burger, el yapımı sarımsaklı mayonez, el yapımı kam acı sos, marul, patates kızartması, seçilen 2 sos ile",
+              "displayOrder": 2,
+              "imageUrl": "",
+              "isActive": true,
+              "name": "Kam Heat Burger Menü",
+              "price": 200,
+              "updatedAt": "2025-12-02T17:24:33.631Z"
+            },
+            "-Oe3u9GBmzlC5va_YRpI": {
+              "available": true,
+              "createdAt": "2025-11-15T00:27:10.589Z",
+              "description": "NFC BBQ tavuk burger, el yapımı tatlı acı mayonez, turşu, marul, patates kızartması, seçilen 2 sos ile",
+              "displayOrder": 3,
+              "imageUrl": "",
+              "isActive": true,
+              "name": "BBQ Kiss Burger Menü",
+              "price": 200,
+              "updatedAt": "2025-12-02T17:24:20.760Z"
+            },
+            "-Oe3uDt9h_SJ-jaJoXEt": {
+              "available": true,
+              "createdAt": "2025-11-15T00:27:29.532Z",
+              "description": "NFC tavuk burger, el yapımı tatlı acı sos, cheddar peyniri, turşu, marul, patates kızartması, seçilen 2 sos ile",
+              "displayOrder": 4,
+              "imageUrl": "",
+              "isActive": true,
+              "name": "Sweet Chili Burger Menü",
+              "price": 200,
+              "updatedAt": "2025-12-02T17:24:40.585Z"
+            },
+            "-Oe3uI9xjl_CdKKhvYqm": {
+              "available": true,
+              "createdAt": "2025-11-15T00:27:47.054Z",
+              "description": "NFC tavuk burger, el yapımı sarımsaklı mayonez, jalapeno, marul, patates kızartması, seçilen 2 sos ile",
+              "displayOrder": 5,
+              "imageUrl": "",
+              "isActive": true,
+              "name": "Garlic Heat Burger Menü",
+              "price": 200,
+              "updatedAt": "2025-12-02T17:24:47.641Z"
+            },
+            "-OfUlkX7vwyYTHeTTvOE": {
+              "available": true,
+              "createdAt": "2025-12-02T15:55:52.948Z",
+              "description": "NFC tavuk burger, el yapımı dinamit sos, el yapımı tatlı acı sos, marul, patates kızartması, seçilen 2 sos",
+              "displayOrder": 6,
+              "imageUrl": "",
+              "isActive": true,
+              "name": "Dynamite Bite Burger Menü",
+              "price": 200,
+              "updatedAt": "2025-12-02T17:24:53.396Z"
+            }
+          },
+          "name": "NFChicken Burger Menüler",
+          "updatedAt": "2025-12-01T21:52:44.496Z"
+        },
+        "-Oe3t6fv46cggKh0UWkO": {
+          "createdAt": "2025-11-15T00:22:37.869Z",
+          "description": "",
+          "displayOrder": 2,
+          "isActive": true,
+          "menuId": "menuKey_nfc17",
+          "menuItem": {
+            "-OfUlxOu9pHHQiD526wy": {
+              "available": true,
+              "createdAt": "2025-12-02T15:56:45.670Z",
+              "description": "3 çıtır tenders, 10 çıtır shot, patates kızartması, seçilen 2 el yapımı sos",
+              "displayOrder": 0,
+              "imageUrl": "",
+              "isActive": true,
+              "name": "NFC Tenders Menü",
+              "price": 300,
+              "updatedAt": "2025-12-02T17:42:41.738Z"
+            },
+            "-OfUm3PhDtyk28S36W3U": {
+              "available": true,
+              "createdAt": "2025-12-02T15:57:14.394Z",
+              "description": "10 adet kanat, patates kızartması, seçilen 2 sos ile",
+              "displayOrder": 0,
+              "imageUrl": "",
+              "isActive": true,
+              "name": "NFC Wings Menü",
+              "price": 300,
+              "updatedAt": "2025-12-16T15:13:52.943Z"
+            },
+            "-OfUm8mL4z195AkK6Fud": {
+              "available": true,
+              "createdAt": "2025-12-02T15:57:36.387Z",
+              "description": "6 çıtır tenders, 20 çıtır shot, double patates kızartması, ketçap, mayonez",
+              "displayOrder": 0,
+              "imageUrl": "",
+              "isActive": true,
+              "name": "NFC Double Tenders Menü",
+              "price": 550,
+              "updatedAt": "2025-12-02T17:42:53.678Z"
+            },
+            "-OfUmF9hl2k2Nm5ElgCG": {
+              "available": false,
+              "createdAt": "2025-12-02T15:58:02.522Z",
+              "description": "20 kanat, double patates kızartması, seçilen 2 sos",
+              "displayOrder": 0,
+              "imageUrl": "",
+              "isActive": true,
+              "name": "NFC Double Wings Menü",
+              "price": 0,
+              "updatedAt": "2025-12-02T17:25:37.557Z"
+            },
+            "-OfUmJTl_HEKCY1E5i35": {
+              "available": false,
+              "createdAt": "2025-12-02T15:58:20.189Z",
+              "description": "10 kanat, 3 çıtır tenders, 10 shot, double patates kızartması, ketçap, mayonez",
+              "displayOrder": 0,
+              "imageUrl": "",
+              "isActive": true,
+              "name": "NFC Çıtır Mix Menü",
+              "price": 0,
+              "updatedAt": "2025-12-02T17:25:41.227Z"
+            }
+          },
+          "name": "Çıtır Menüler",
+          "updatedAt": "2025-11-15T01:12:24.376Z"
+        },
+        "-Oe3tAkmBf2XNt9fgTVh": {
+          "createdAt": "2025-11-15T00:22:54.563Z",
+          "description": "",
+          "displayOrder": 3,
+          "isActive": true,
+          "menuId": "menuKey_nfc17",
+          "menuItem": {
+            "-OfUmbabi5d5zf68KFAR": {
+              "available": true,
+              "createdAt": "2025-12-02T15:59:38.516Z",
+              "description": "Seçilen NFC tavuk burger, 2 tenders, patates kızartması, seçilen 2 sos",
+              "displayOrder": 0,
+              "imageUrl": "",
+              "isActive": true,
+              "name": "Combo 1",
+              "price": 300,
+              "updatedAt": "2025-12-02T17:38:08.455Z"
+            },
+            "-OfUmgknAjLAY0BjcXOe": {
+              "available": true,
+              "createdAt": "2025-12-02T15:59:59.647Z",
+              "description": "Seçilen NFC tavuk burger, 2 kanat, patates kızartması, seçilen 2 sos",
+              "displayOrder": 0,
+              "imageUrl": "",
+              "isActive": true,
+              "name": "Combo 2",
+              "price": 300,
+              "updatedAt": "2025-12-16T15:12:07.344Z"
+            },
+            "-OfUmnxlMA4Ug_BWPmr8": {
+              "available": false,
+              "createdAt": "2025-12-02T16:00:29.150Z",
+              "description": "Seçilen NFC tavuk burger, 5 shot, patates kızartması, ketçap, mayonez",
+              "displayOrder": 0,
+              "imageUrl": "",
+              "isActive": true,
+              "name": "Combo 3",
+              "price": 0,
+              "updatedAt": "2025-12-02T17:25:49.752Z"
+            },
+            "-OfUmr-uvvS9yvrN53ii": {
+              "available": false,
+              "createdAt": "2025-12-02T16:00:41.639Z",
+              "description": "Seçilen NFC tavuk burger, 2 tenders, 2 kanat, 5 shot, patates kızartması, seçilen 4 sos",
+              "displayOrder": 0,
+              "imageUrl": "",
+              "isActive": true,
+              "name": "Combo 4",
+              "price": 0,
+              "updatedAt": "2025-12-02T17:25:49.479Z"
+            }
+          },
+          "name": "Combo Menüler",
+          "updatedAt": "2025-11-15T01:12:24.380Z"
+        },
+        "-Oe3tGdNztzgp2mhJol1": {
+          "createdAt": "2025-11-15T00:23:18.666Z",
+          "description": "",
+          "displayOrder": 4,
+          "isActive": true,
+          "menuId": "menuKey_nfc17",
+          "menuItem": {
+            "-OfUn95gY6vqKHNztZSv": {
+              "available": true,
+              "createdAt": "2025-12-02T16:01:59.833Z",
+              "description": "",
+              "displayOrder": 0,
+              "imageUrl": "",
+              "isActive": true,
+              "name": "5'li Tenders",
+              "price": 200,
+              "updatedAt": "2025-12-02T17:33:48.070Z"
+            },
+            "-OfUn9fYwFYrjPdmm-yO": {
+              "available": true,
+              "createdAt": "2025-12-02T16:02:02.192Z",
+              "description": "",
+              "displayOrder": 0,
+              "imageUrl": "",
+              "isActive": true,
+              "name": "9'lu Tenders",
+              "price": 350,
+              "updatedAt": "2025-12-02T17:34:01.386Z"
+            },
+            "-OfUnB0BZQWXhItdYYIt": {
+              "available": false,
+              "createdAt": "2025-12-02T16:02:07.673Z",
+              "description": "",
+              "displayOrder": 0,
+              "imageUrl": "",
+              "isActive": true,
+              "name": "10'lu Kanat",
+              "price": 0,
+              "updatedAt": "2025-12-02T17:25:53.756Z"
+            },
+            "-OfUnCR4GJ1P0jU1MhDq": {
+              "available": false,
+              "createdAt": "2025-12-02T16:02:13.490Z",
+              "description": "",
+              "displayOrder": 0,
+              "imageUrl": "",
+              "isActive": true,
+              "name": "20'li Kanat",
+              "price": 0,
+              "updatedAt": "2025-12-02T17:25:54.087Z"
+            },
+            "-OfUnDxm3JE5KCpjajWG": {
+              "available": true,
+              "createdAt": "2025-12-02T16:02:19.743Z",
+              "description": "",
+              "displayOrder": 0,
+              "imageUrl": "",
+              "isActive": true,
+              "name": "Patates kızartması",
+              "price": 80,
+              "updatedAt": "2025-12-02T17:34:59.868Z"
+            }
+          },
+          "name": "Ek lezzetler",
+          "updatedAt": "2025-11-15T01:12:24.383Z"
+        },
+        "-Oe3tJCSCih41zbJm-gb": {
+          "createdAt": "2025-11-15T00:23:29.166Z",
+          "description": "",
+          "displayOrder": 7,
+          "isActive": true,
+          "menuId": "menuKey_nfc17",
+          "menuItem": {
+            "-OfUo8LTpebeCN4Ft5sV": {
+              "available": true,
+              "createdAt": "2025-12-02T16:06:18.891Z",
+              "description": "",
+              "displayOrder": 0,
+              "imageUrl": "",
+              "isActive": true,
+              "name": "El Yapımı Sarımsaklı Mayonez Sos",
+              "price": 10,
+              "updatedAt": "2025-12-02T17:53:10.334Z"
+            },
+            "-OfUoApnOVwuAWhxgph6": {
+              "available": true,
+              "createdAt": "2025-12-02T16:06:29.088Z",
+              "description": "",
+              "displayOrder": 1,
+              "imageUrl": "",
+              "isActive": true,
+              "name": "El Yapımı Ranch Sos",
+              "price": 10,
+              "updatedAt": "2025-12-02T17:53:15.754Z"
+            },
+            "-OfUoCIVeswfJdy14l1M": {
+              "available": true,
+              "createdAt": "2025-12-02T16:06:35.085Z",
+              "description": "",
+              "displayOrder": 2,
+              "imageUrl": "",
+              "isActive": true,
+              "name": "El Yapımı Tatlı Acı Sos",
+              "price": 10,
+              "updatedAt": "2025-12-02T17:53:21.332Z"
+            },
+            "-OfUoDiTsyUgdkVtyRgH": {
+              "available": false,
+              "createdAt": "2025-12-02T16:06:40.907Z",
+              "description": "",
+              "displayOrder": 3,
+              "imageUrl": "",
+              "isActive": true,
+              "name": "El Yapımı Ballı Hardal Sos",
+              "price": 10,
+              "updatedAt": "2025-12-02T17:53:26.369Z"
+            },
+            "-OfUoFCqQ1fMdQHY_9iV": {
+              "available": true,
+              "createdAt": "2025-12-02T16:06:47.011Z",
+              "description": "",
+              "displayOrder": 4,
+              "imageUrl": "",
+              "isActive": true,
+              "name": "El Yapımı Kam Acı Sos",
+              "price": 10,
+              "updatedAt": "2025-12-02T17:53:31.483Z"
+            },
+            "-OfUoGGnn8Ph7T3kVbNN": {
+              "available": true,
+              "createdAt": "2025-12-02T16:06:51.360Z",
+              "description": "",
+              "displayOrder": 6,
+              "imageUrl": "",
+              "isActive": true,
+              "name": "Mayonez",
+              "price": 10,
+              "updatedAt": "2025-12-02T17:53:45.718Z"
+            },
+            "-OfUoHb2SwWvpIoKvlSi": {
+              "available": true,
+              "createdAt": "2025-12-02T16:06:56.816Z",
+              "description": "",
+              "displayOrder": 5,
+              "imageUrl": "",
+              "isActive": true,
+              "name": "Ketçap",
+              "price": 10,
+              "updatedAt": "2025-12-02T17:53:39.838Z"
+            }
+          },
+          "name": "Soslar",
+          "updatedAt": "2025-11-15T01:12:24.390Z"
+        },
+        "-Oe3tNGDIOEzlrIlI2C8": {
+          "createdAt": "2025-11-15T00:23:45.791Z",
+          "description": "",
+          "displayOrder": 6,
+          "isActive": true,
+          "menuId": "menuKey_nfc17",
+          "menuItem": {
+            "-OfUoMsjQB7ehI8Xo2Kc": {
+              "available": true,
+              "createdAt": "2025-12-02T16:07:18.428Z",
+              "description": "",
+              "displayOrder": 0,
+              "imageUrl": "",
+              "isActive": true,
+              "name": "Pepsi Pet (33 cl)",
+              "price": 50,
+              "updatedAt": "2025-12-02T17:26:22.076Z"
+            },
+            "-OfUoO0HED4HMu4JfSQh": {
+              "available": true,
+              "createdAt": "2025-12-02T16:07:23.071Z",
+              "description": "",
+              "displayOrder": 0,
+              "imageUrl": "",
+              "isActive": true,
+              "name": "Pepsi Max Pet (33 cl)",
+              "price": 50,
+              "updatedAt": "2025-12-02T17:26:27.606Z"
+            },
+            "-OfUoP1EZkXiXRPq0aIe": {
+              "available": true,
+              "createdAt": "2025-12-02T16:07:27.228Z",
+              "description": "",
+              "displayOrder": 0,
+              "imageUrl": "",
+              "isActive": true,
+              "name": "Su",
+              "price": 25,
+              "updatedAt": "2025-12-02T17:26:39.300Z"
+            }
+          },
+          "name": "Soğuk İçecekler",
+          "updatedAt": "2025-11-15T01:12:24.393Z"
+        },
+        "-Oe3tRYlbT07uDXQPAm3": {
+          "createdAt": "2025-11-15T00:24:03.362Z",
+          "description": "",
+          "displayOrder": 5,
+          "isActive": true,
+          "menuId": "menuKey_nfc17",
+          "menuItem": {
+            "-OfUnj9KGs49_xi1_FjS": {
+              "available": true,
+              "createdAt": "2025-12-02T16:04:31.618Z",
+              "description": "Seçilen 2 NFC tavuk burger, patates kızartması, 4 adet seçtilen sos",
+              "displayOrder": 0,
+              "imageUrl": "",
+              "isActive": true,
+              "name": "Double Trouble Menü",
+              "price": 375,
+              "updatedAt": "2025-12-16T11:47:43.351Z"
+            },
+            "-OfUnr3q5AKuWxinrKtW": {
+              "available": true,
+              "createdAt": "2025-12-02T16:05:04.034Z",
+              "description": "Seçilen 3 NFC tavuk burger, patates kızartması, 6 adet seçtilen sos",
+              "displayOrder": 0,
+              "imageUrl": "",
+              "isActive": true,
+              "name": "Triplex Burger Menü",
+              "price": 550,
+              "updatedAt": "2025-12-02T17:55:27.670Z"
+            },
+            "-OfUntq9tO5nYYl5QecR": {
+              "available": true,
+              "createdAt": "2025-12-02T16:05:15.383Z",
+              "description": "Seçilen 4 NFC tavuk burger, patates kızartması, 8 adet seçilen sos",
+              "displayOrder": 0,
+              "imageUrl": "",
+              "isActive": true,
+              "name": "2 + 2 Burger Menü",
+              "price": 700,
+              "updatedAt": "2025-12-02T17:55:41.914Z"
+            }
+          },
+          "name": "Ekonomix Menüler",
+          "updatedAt": "2025-11-15T01:12:24.387Z"
+        },
+        "category_1770381241149": {
+          "displayOrder": 999,
+          "isActive": true,
+          "name": "yeni2"
+        }
+      }
+    }
+  },
+  "myConfiguration": {
+    "asfd": "sadf",
+    "menuKey_forknife": {
+      "primaryColor": "#1D2D46"
+    }
+  },
+  "orders": {
+    "menuKey_forknife": {
+      "-OjvEy05JivfrA1E1wpb": {
+        "courierPhone": "",
+        "customerName": "Furr",
+        "displayOrderNumber": "#0005",
+        "id": "-OjvEy05JivfrA1E1wpb",
+        "itemCount": 1,
+        "items": [
+          {
+            "name": "Menemen Tabağı",
+            "price": 290,
+            "quantity": 1
+          }
+        ],
+        "note": "",
+        "orderTime": "2026-01-26T17:00:23.065Z",
+        "paymentMethod": "Credit Card",
+        "status": "COMPLETED",
+        "statusHistory": {
+          "accepted": "20:00",
+          "delivered": "21:04",
+          "paymentReceived": "21:37",
+          "prepared": "20:35"
+        },
+        "totalAmount": 290,
+        "userId": "Kj8hLfo5jkb54HtJVXqpbQOJwuX2"
+      },
+      "-OjvFLBLd4O9e9Xhs6EO": {
+        "courierPhone": "",
+        "customerName": "Furr",
+        "displayOrderNumber": "#0006",
+        "id": "-OjvFLBLd4O9e9Xhs6EO",
+        "itemCount": 1,
+        "items": [
+          {
+            "name": "Sahanda Yumurta",
+            "price": 200,
+            "quantity": 1
+          }
+        ],
+        "note": "",
+        "orderTime": "2026-01-26T17:02:02.089Z",
+        "parentOrderId": "-OjvV2Y9DTnMMVDTwL4D",
+        "paymentMethod": "Credit Card",
+        "status": "DELIVERED",
+        "statusHistory": {
+          "accepted": "20:32",
+          "delivered": "21:50",
+          "prepared": "21:50"
+        },
+        "totalAmount": 200,
+        "userId": "Kj8hLfo5jkb54HtJVXqpbQOJwuX2"
+      },
+      "-OjvHFz064YfTjLUMXGd": {
+        "courierPhone": "",
+        "customerName": "Furr",
+        "displayOrderNumber": "#0007",
+        "id": "-OjvHFz064YfTjLUMXGd",
+        "itemCount": 1,
+        "items": [
+          {
+            "name": "Mini Kahvaltı",
+            "price": 320,
+            "quantity": 1
+          }
+        ],
+        "note": "",
+        "orderTime": "2026-01-26T17:10:25.044Z",
+        "paymentMethod": "Credit Card",
+        "status": "COMPLETED",
+        "statusHistory": {
+          "accepted": "20:32",
+          "delivered": "22:55",
+          "paymentReceived": "22:55",
+          "prepared": "21:14"
+        },
+        "totalAmount": 320,
+        "userId": "Kj8hLfo5jkb54HtJVXqpbQOJwuX2"
+      },
+      "-OjvIZ0C_qQ_h8VOOeoG": {
+        "courierPhone": "",
+        "customerName": "Furr",
+        "displayOrderNumber": "#0008",
+        "id": "-OjvIZ0C_qQ_h8VOOeoG",
+        "isMerged": true,
+        "itemCount": 1,
+        "items": [
+          {
+            "name": "Mini Kahvaltı",
+            "price": 320,
+            "quantity": 1
+          }
+        ],
+        "mergedChildOrderIds": [
+          "-OjvY44ZLIH1MIjTzsS8",
+          "-OjvlCnYQfqVOXwLp8z7"
+        ],
+        "note": "",
+        "orderTime": "2026-01-26T17:16:05.118Z",
+        "originalTotalAmount": 320,
+        "paymentMethod": "Credit Card",
+        "status": "COMPLETED",
+        "statusHistory": {
+          "accepted": "20:32",
+          "delivered": "21:41",
+          "paymentReceived": "23:24",
+          "prepared": "21:41"
+        },
+        "totalAmount": 830,
+        "userId": "Kj8hLfo5jkb54HtJVXqpbQOJwuX2"
+      },
+      "-OjvL9ltbEdqPmoQec6y": {
+        "courierPhone": "",
+        "customerName": "Furr",
+        "displayOrderNumber": "#0009",
+        "id": "-OjvL9ltbEdqPmoQec6y",
+        "itemCount": 1,
+        "items": [
+          {
+            "name": "Karışık Tost",
+            "note": "fff",
+            "price": 190,
+            "quantity": 1
+          }
+        ],
+        "note": "",
+        "orderTime": "2026-01-26T17:27:28.170Z",
+        "paymentMethod": "Credit Card",
+        "status": "COMPLETED",
+        "statusHistory": {
+          "accepted": "20:32",
+          "delivered": "23:27",
+          "paymentReceived": "23:27",
+          "prepared": "23:27"
+        },
+        "totalAmount": 190,
+        "userId": "Kj8hLfo5jkb54HtJVXqpbQOJwuX2"
+      },
+      "-OjvV2Y9DTnMMVDTwL4D": {
+        "courierPhone": "",
+        "customerName": "Furr",
+        "displayOrderNumber": "#0010",
+        "id": "-OjvV2Y9DTnMMVDTwL4D",
+        "isMerged": false,
+        "itemCount": 2,
+        "items": [
+          {
+            "name": "Mini Kahvaltı",
+            "note": "",
+            "price": 320,
+            "quantity": 2
+          }
+        ],
+        "note": "",
+        "orderTime": "2026-01-26T18:10:39.962Z",
+        "originalTotalAmount": 640,
+        "status": "COMPLETED",
+        "statusHistory": {
+          "accepted": "23:18",
+          "delivered": "23:18",
+          "paymentReceived": "23:18",
+          "prepared": "23:18"
+        },
+        "totalAmount": 640,
+        "userId": "Kj8hLfo5jkb54HtJVXqpbQOJwuX2"
+      },
+      "-OjvY44ZLIH1MIjTzsS8": {
+        "courierPhone": "",
+        "customerName": "Furr",
+        "displayOrderNumber": "#0011",
+        "id": "-OjvY44ZLIH1MIjTzsS8",
+        "itemCount": 1,
+        "items": [
+          {
+            "name": "Mini Kahvaltı",
+            "note": "",
+            "price": 320,
+            "quantity": 1
+          }
+        ],
+        "note": "",
+        "orderTime": "2026-01-26T18:23:52.691Z",
+        "parentOrderId": "-OjvIZ0C_qQ_h8VOOeoG",
+        "status": "DELIVERED",
+        "statusHistory": {
+          "accepted": "21:29",
+          "delivered": "21:29",
+          "prepared": "21:29"
+        },
+        "totalAmount": 320,
+        "userId": "Kj8hLfo5jkb54HtJVXqpbQOJwuX2"
+      },
+      "-OjvlCnYQfqVOXwLp8z7": {
+        "courierPhone": "",
+        "customerName": "Furr",
+        "displayOrderNumber": "#0012",
+        "id": "-OjvlCnYQfqVOXwLp8z7",
+        "itemCount": 1,
+        "items": [
+          {
+            "name": "Kaşarlı Tost",
+            "note": "",
+            "price": 190,
+            "quantity": 1
+          }
+        ],
+        "note": "",
+        "orderTime": "2026-01-26T19:25:38.392Z",
+        "parentOrderId": "-OjvIZ0C_qQ_h8VOOeoG",
+        "status": "NEW",
+        "totalAmount": 190,
+        "userId": "Kj8hLfo5jkb54HtJVXqpbQOJwuX2"
+      },
+      "-OjvwQjTjwIerYXdPTj5": {
+        "courierPhone": "",
+        "customerName": "Furr",
+        "displayOrderNumber": "#0013",
+        "id": "-OjvwQjTjwIerYXdPTj5",
+        "itemCount": 1,
+        "items": [
+          {
+            "name": "Kova Waffle",
+            "note": "notlarim",
+            "price": 275,
+            "quantity": 1
+          }
+        ],
+        "note": "",
+        "orderTime": "2026-01-26T20:14:39.032Z",
+        "status": "COMPLETED",
+        "statusHistory": {
+          "accepted": "23:24",
+          "delivered": "23:28",
+          "paymentReceived": "23:28",
+          "prepared": "23:25"
+        },
+        "totalAmount": 275,
+        "userId": "Kj8hLfo5jkb54HtJVXqpbQOJwuX2"
+      },
+      "-OjvwZCFMFSx692_-T9K": {
+        "courierPhone": "",
+        "customerName": "Furr",
+        "displayOrderNumber": "#0016",
+        "id": "-OjvwZCFMFSx692_-T9K",
+        "itemCount": 2,
+        "items": [
+          {
+            "name": "Fettucine Alfredo",
+            "note": "",
+            "price": 250,
+            "quantity": 2
+          }
+        ],
+        "note": "",
+        "orderTime": "2026-01-26T20:15:13.706Z",
+        "status": "COMPLETED",
+        "statusHistory": {
+          "accepted": "23:16",
+          "delivered": "23:16",
+          "paymentReceived": "23:16",
+          "prepared": "23:16"
+        },
+        "totalAmount": 500,
+        "userId": "Kj8hLfo5jkb54HtJVXqpbQOJwuX2"
+      },
+      "-Ojw31K5vOvOCpcZRMDH": {
+        "courierPhone": "",
+        "customerName": "Furr",
+        "displayOrderNumber": "#0019",
+        "id": "-Ojw31K5vOvOCpcZRMDH",
+        "itemCount": 2,
+        "items": [
+          {
+            "name": "Menemen Tabağı",
+            "note": "",
+            "price": 290,
+            "quantity": 2
+          }
+        ],
+        "note": "",
+        "orderTime": "2026-01-26T20:47:52.052Z",
+        "status": "NEW",
+        "totalAmount": 580,
+        "userId": "Kj8hLfo5jkb54HtJVXqpbQOJwuX2"
+      },
+      "-Ok8ud7eL89boOmxCc7v": {
+        "courierPhone": "",
+        "customerName": "Furr",
+        "displayOrderNumber": "#0001",
+        "id": "-Ok8ud7eL89boOmxCc7v",
+        "itemCount": 3,
+        "items": [
+          {
+            "name": "Mini Kahvaltı",
+            "note": "",
+            "price": 320,
+            "quantity": 3
+          }
+        ],
+        "note": "",
+        "orderTime": "2026-01-29T13:21:29.573Z",
+        "status": "NEW",
+        "tableId": "17",
+        "totalAmount": 960,
+        "userId": "Kj8hLfo5jkb54HtJVXqpbQOJwuX2"
+      }
+    }
+  },
+  "products": [
+    {
+      "categoryId": "category1",
+      "description": "Ezine Peyniri, Kaşar Peyniri, Yeşil Zeytin, Siyah Zeytin, Bal, Tereyağ, Reçel, Yumurta, Domates, Salatalık",
+      "id": "1",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Mini Kahvaltı",
+      "price": 230
+    },
+    {
+      "categoryId": "category1",
+      "description": "Menemen, Beyaz Peynir, Zeytin, Salça, Bal, tereyağı",
+      "id": "2",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Menemen Tabağı",
+      "price": 270
+    },
+    {
+      "categoryId": "category1",
+      "description": "Börek, Baget Ekmeği, Peynir, Salça, Zeytin, Kaynamış Yumurta, Bal, Kaymak",
+      "id": "3",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Börek Tabağı",
+      "price": 230
+    },
+    {
+      "categoryId": "category1",
+      "description": "Ezine Peyniri, Kaşar Peyniri, Çeçil Peyniri, Salça, Zeytin Yağ, Yeşil Zeytin, Siyah Zeytin, Bal, Kaymak, tereyağı, reçel, Tahin&Pekmez, Domates, Salatalık, Yeşillik, Çikolata, Kruvasan, Baget Ekmeği, Simit, Yumurta, Pankek, Sosis, Sigara Böreği, Nugget, Patates Kızartması",
+      "id": "4",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Serpme Kahvaltı",
+      "price": 600
+    },
+    {
+      "categoryId": "category2",
+      "description": "Sour Cream Sos ve Patates Kızartması ile servis edilir",
+      "id": "5",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Kaşarlı Tost",
+      "price": 90
+    },
+    {
+      "categoryId": "category2",
+      "description": "Sour Cream Sos ve Patates Kızartması ile servis edilir",
+      "id": "6",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Karışık Tost",
+      "price": 120
+    },
+    {
+      "categoryId": "category2",
+      "description": "Sour Cream Sos ve Patates Kızartması ile servis edilir",
+      "id": "7",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Üç Peynirli Tost",
+      "price": 130
+    },
+    {
+      "categoryId": "category2",
+      "description": "Sour Cream Sos ve Patates Kızartması ile servis edilir",
+      "id": "8",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Beyaz Peynirli Tost",
+      "price": 110
+    },
+    {
+      "categoryId": "category2",
+      "description": "Sour Cream Sos ve Patates Kızartması ile servis edilir",
+      "id": "9",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "ForkKnife Special Tost",
+      "price": 140
+    },
+    {
+      "categoryId": "category3",
+      "description": "Şefin Özel Sosunda, Roka Yatağında Popcorn Karides",
+      "id": "10",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Popcorn Karides",
+      "price": 150
+    },
+    {
+      "categoryId": "category3",
+      "description": "6 Adet Sigara Böreği ve Patates Kızartması ile servis edilir",
+      "id": "11",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Sigara Böreği",
+      "price": 100
+    },
+    {
+      "categoryId": "category3",
+      "description": "",
+      "id": "12",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Patates Kızartması",
+      "price": 80
+    },
+    {
+      "categoryId": "category3",
+      "description": "6 Adet El Yapımı Çıtır Tavuk ve Patates Kızartması ile servis edilir",
+      "id": "13",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Çıtır Tavuk",
+      "price": 130
+    },
+    {
+      "categoryId": "category3",
+      "description": "2 Adet Çıtır Tavuk, 2 Adet Sosis, 2 Adet Sigara Böreği, 2 Adet Nugget ve Patates Kızartmasıyla servis edilir",
+      "id": "14",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Aperatif Tabağı",
+      "price": 140
+    },
+    {
+      "categoryId": "category3",
+      "description": "6 Adet Sosis ve Patates Kızartması ile servis edilir",
+      "id": "15",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Sosis Tabağı",
+      "price": 100
+    },
+    {
+      "categoryId": "category3",
+      "description": "Sahanda servis edilir",
+      "id": "16",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Mıhlama",
+      "price": 120
+    },
+    {
+      "categoryId": "category3",
+      "description": "",
+      "id": "17",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Sahanda Sucuk",
+      "price": 110
+    },
+    {
+      "categoryId": "category3",
+      "description": "",
+      "id": "18",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Sahanda Yumurta",
+      "price": 80
+    },
+    {
+      "categoryId": "category3",
+      "description": "",
+      "id": "19",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Sahanda Sucuklu Yumurta",
+      "price": 120
+    },
+    {
+      "categoryId": "category3",
+      "description": "Sahanda servis edilir",
+      "id": "20",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Menemen",
+      "price": 90
+    },
+    {
+      "categoryId": "category3",
+      "description": "Sahanda servis edilir",
+      "id": "21",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Kaşarlı Menemen",
+      "price": 130
+    },
+    {
+      "categoryId": "category3",
+      "description": "Sahanda servis edilir",
+      "id": "22",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Karışık Menemen",
+      "price": 100
+    },
+    {
+      "categoryId": "category3",
+      "description": "",
+      "id": "23",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Omlet",
+      "price": 90
+    },
+    {
+      "categoryId": "category3",
+      "description": "",
+      "id": "24",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Kaşarlı Omlet",
+      "price": 100
+    },
+    {
+      "categoryId": "category3",
+      "description": "",
+      "id": "25",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Karışık Omlet",
+      "price": 120
+    },
+    {
+      "categoryId": "category4",
+      "description": "Bonfile Tavuk, Mantar, Rosto, Sarımsak, Pesto Sos, Krema ve Parmesan ile servis edilir",
+      "id": "26",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Fettucine Alfredo",
+      "price": 180
+    },
+    {
+      "categoryId": "category4",
+      "description": "Bonfile Dana Eti, Mantar, Rosto Sarımsak, Pesto Sos, Krema, ve Parmesan ile servis edilir",
+      "id": "27",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Beef Alfredo",
+      "price": 210
+    },
+    {
+      "categoryId": "category4",
+      "description": "Acılı Arabiata Sos, Zeytin, Pesto Sos ve Parmesan ile servis edilir",
+      "id": "28",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Penne Arabiata",
+      "price": 150
+    },
+    {
+      "categoryId": "category4",
+      "description": "Bolognese Sos, Domates Sos ve Parmesan ile servis edilir",
+      "id": "29",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Spaghetti Bolognese",
+      "price": 200
+    },
+    {
+      "categoryId": "category4",
+      "description": "Lahana, Havuç, Kırmızı Soğan, Mısır, Soya Sos, Taze Soğan, Rosta Sarımsak, Yumurta ile servis edilir",
+      "id": "30",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Uzak Doğu Spaghetti",
+      "price": 170
+    },
+    {
+      "categoryId": "category4",
+      "description": "Şefin Özel Sosunda Bekletilmiş Makarna Üzerinde Özel Köftesi ile servis edilir",
+      "id": "31",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "ForkKnife Special Makarna",
+      "price": 200
+    },
+    {
+      "categoryId": "category4",
+      "description": "El Yapımı Domates Sos ve Yoğurt ile servis edilir",
+      "id": "32",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "ForkKnife Mantı",
+      "price": 170
+    },
+    {
+      "categoryId": "category5",
+      "description": "El Açması Hamur, Üzerinde Özel Domates Sos, Mozarella Peyniri ve Parmesan ile servis edilir",
+      "id": "33",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Margaritta Pizza",
+      "price": 190
+    },
+    {
+      "categoryId": "category5",
+      "description": "El Açması Hamur, Üzerinde Özel Domates Sos, Mozarella Peyniri, Dana Sucuk ve Parmesan ile servis edilir",
+      "id": "34",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Pepperoni Pizza",
+      "price": 220
+    },
+    {
+      "categoryId": "category5",
+      "description": "El Açması Hamur, Üzerinde Özel Domates Sos, Mozarella Peyniri, Dana Sucuk, Kırmızı Biber, Yeşil Biber, Mantar, Mısır, Dilim Zeytin ve Parmesan ile servis edilir",
+      "id": "35",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Mixxo Pizza",
+      "price": 130
+    },
+    {
+      "categoryId": "category5",
+      "description": "El Açması Hamur, Üzerinde Özel Domates Sos, Mozarella Peyniri, Bonfile Tavuk Parçaları, Karamelize Soğan, Köz Kırmızı Biber, BBQ ve Parmesan ile servis edilir",
+      "id": "36",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Chicken BBQ Pizza",
+      "price": 220
+    },
+    {
+      "categoryId": "category5",
+      "description": "El Açması Hamur Üzerinde Özel Domates Sos, Mozarella Peyniri, Bonfile Dana Parçaları, Tütsülenmiş Dana Kaburga Parçaları, Kurutulmuş Domates ve Parmesan ile servis edilir",
+      "id": "37",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Bisteca Pizza",
+      "price": 240
+    },
+    {
+      "categoryId": "category5",
+      "description": "El Açması Hamur Üzerinde Özel Domates Sos, Mozarella Peyniri, Kabak, Patlıcan, Köz Kırmızı Biber, Ricotta Peyniri, Pesto Sos ve Parmesan ile servis edilir",
+      "id": "38",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Sebzeli Pizza",
+      "price": 195
+    },
+    {
+      "categoryId": "category6",
+      "description": "El Yapımı Brioche Ekmeği, Köfte, El Yapımı Binada Sos, Marul, Domates, Turşu, Sour Cream Sos ve Patates Kızartması ile servis edilir",
+      "id": "39",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Klasik Burger",
+      "price": 190
+    },
+    {
+      "categoryId": "category6",
+      "description": "El Yapımı Brioche Ekmeği, Köfte, El Yapımı Binada Sos, Cheddar Peyniri, Marul, Domates, Turşu, Sour Cream Sos ve Patates Kızartması ile servis edilir",
+      "id": "40",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Cheese Burger",
+      "price": 200
+    },
+    {
+      "categoryId": "category6",
+      "description": "El Yapımı Brioche Ekmeği, Köfte, El Yapımı Binada Sos, Cheddar Peyniri, Karamelize Soğan, Marul, Domates, Turşu, Sour Cream Sos ve Patates Kızartması ile servis edilir",
+      "id": "41",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Karamelize Burger",
+      "price": 220
+    },
+    {
+      "categoryId": "category6",
+      "description": "El Yapımı Brioche Ekmeği, Köfte, El Yapımı Binada Sos, Cheddar Peyniri, Karamelize Soğan, Tütsülenmiş Kaburga Eti Parçaları, Marul, Domates, Turşu, Sour Cream Sos ve Patates Kızartması ile servis edilir",
+      "id": "42",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Smoke Burger",
+      "price": 240
+    },
+    {
+      "categoryId": "category6",
+      "description": "El Yapımı Brioche Ekmeği, Köfte, El Yapımı Binada Sos, Cheddar Peyniri, Ağır Ateşte Pişmiş Tiftik Dana Kaburga, Marul, Domates, Turşu, Sour Cream Sos ve Patates Kızartması ile servis edilir",
+      "id": "43",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Tiftik Burger",
+      "price": 260
+    },
+    {
+      "categoryId": "category6",
+      "description": "El Yapımı Brioche Ekmeği, Köfte, El Yapımı Özel Sos, Cheddar Peyniri, Karamelize Soğan, Tütsülenmiş Kaburga Eti Parçaları, Köz Biber, Marul, Domates, Turşu, Sour Cream Sos ve Patates Kızartması ile servis edilir",
+      "id": "44",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "ForkKnife Special Burger",
+      "price": 280
+    },
+    {
+      "categoryId": "category6",
+      "description": "El Yapımı Brioche Ekmeği, Double Köfte, El Yapımı Binada Sos, Cheddar Peyniri, Marul, Domates, Turşu, Sour Cream Sos ve Patates Kızartması ile servis edilir",
+      "id": "45",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Double Burger",
+      "price": 330
+    },
+    {
+      "categoryId": "category6",
+      "description": "El Yapımı Brioche Ekmeği, Çıtır Tavuk Parçaları, El Yapımı Binada Sos, Marul, Domates, Turşu, Sour Cream Sos ve Patates ile servis edilir",
+      "id": "46",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Chicken Burger",
+      "price": 175
+    },
+    {
+      "categoryId": "category6",
+      "description": "El Yapımı Brioche Ekmeği, Köfte, El Yapımı Binada Sos, Mantar Sos, Marul, Domates, Turşu, Sour Cream Sos ve Patates Kızartması ile servis edilir",
+      "id": "47",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Mantar Soslu Burger",
+      "price": 230
+    },
+    {
+      "categoryId": "category6",
+      "description": "El Yapımı Brioche Ekmeği, Panelenmiş Bütün Tavuk, El Yapımı Binada Sos, Marul, Domates, Turşu ve Patates Kızartması ile servis edilir",
+      "id": "48",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Öğrenci Tavuk Burger",
+      "price": 150
+    },
+    {
+      "categoryId": "category7",
+      "description": "El Yapımı Sezar Sos, Izgara Bonfile, Tavuk, Kruton Ekmek, Parmesan Peyniri ve Mevsim Yeşillikleri ile servis edilir",
+      "id": "49",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Sezar Salata",
+      "price": 190
+    },
+    {
+      "categoryId": "category7",
+      "description": "El Yapımı Özel Sos, Karides, Kavrulmuş Panko, Taze Fesleğen, Taze Kekik ve Mevsim Yeşillikleri ile servis edilir",
+      "id": "50",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Karides Salata",
+      "price": 280
+    },
+    {
+      "categoryId": "category7",
+      "description": "El Yapımı Özel Sos, Izgara Dana Eti, Peynir, Mısır ve Mevsim Yeşillikleri ile servis edilir",
+      "id": "51",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Şefin Salatası",
+      "price": 310
+    },
+    {
+      "categoryId": "category7",
+      "description": "Domates, Salatalık, Biber, Soğan ve Mevsim Yeşillikleri ile servis edilir",
+      "id": "52",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Çoban Salata",
+      "price": 130
+    },
+    {
+      "categoryId": "category8",
+      "description": "Bonfile Tavuk Parçaları, Kırmızı Biber, Yeşil Biber, Mantar, Özel Sos, Mozarella Peyniri, Sour Cream Sos ve Patates ile servis edilir",
+      "id": "53",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Chicken Wrap",
+      "price": 160
+    },
+    {
+      "categoryId": "category8",
+      "description": "Bonfile Dana Parçaları, Kırmızı Biber, Yeşil Biber, Mantar, Özel Sos, Mozarella Peyniri, Sour Cream Sos ve Patates ile servis edilir",
+      "id": "54",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Beef Wrap",
+      "price": 180
+    },
+    {
+      "categoryId": "category9",
+      "description": "Izgara Dana Bonfile, Şefin Özel Sosu, Izgara Sebzeler ile servis edilir",
+      "id": "55",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Izgara Dana Bonfile",
+      "price": 650
+    },
+    {
+      "categoryId": "category9",
+      "description": "El Yapımı Kasap Köfte, Pilav, Salata ile servis edilir",
+      "id": "56",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Kasap Köfte",
+      "price": 280
+    },
+    {
+      "categoryId": "category9",
+      "description": "Izgara Bonfile Tavuk, Şefin Özel Sosu, Pilav ve Patates ile servis edilir",
+      "id": "57",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Izgara Tavuk Bonfile",
+      "price": 225
+    },
+    {
+      "categoryId": "category9",
+      "description": "Izgara Bonfile Tavuk Parçaları, Mantar, Şefin Özel Sosu, Pilav ve Patates ile servis edilir",
+      "id": "58",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Kremalı Mantarlı Tavuk",
+      "price": 210
+    },
+    {
+      "categoryId": "category9",
+      "description": "Izgara Bonfile Tavuk Parçaları, Mantar, Kırmızı Biber, Yeşil Biber, Köri Sosu, Pilav ve Patates ile servis edilir",
+      "id": "59",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Köri Soslu Tavuk",
+      "price": 200
+    },
+    {
+      "categoryId": "category9",
+      "description": "Şefin Özel Sosunda, Roka Yatağında, Izgara Levrek Fileto",
+      "id": "60",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Izgara Levrek",
+      "price": 320
+    },
+    {
+      "categoryId": "category10",
+      "description": "",
+      "id": "61",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Dondurma",
+      "price": 20
+    },
+    {
+      "categoryId": "category10",
+      "description": "",
+      "id": "62",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Magnolia Çilekli",
+      "price": 110
+    },
+    {
+      "categoryId": "category10",
+      "description": "",
+      "id": "63",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Magnolia Muzlu",
+      "price": 110
+    },
+    {
+      "categoryId": "category10",
+      "description": "",
+      "id": "64",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Magnolia Oreolu",
+      "price": 110
+    },
+    {
+      "categoryId": "category10",
+      "description": "",
+      "id": "65",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Waffle",
+      "price": 130
+    },
+    {
+      "categoryId": "category10",
+      "description": "",
+      "id": "66",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Double Waffle",
+      "price": 200
+    },
+    {
+      "categoryId": "category10",
+      "description": "",
+      "id": "67",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Tiramisu",
+      "price": 120
+    },
+    {
+      "categoryId": "category10",
+      "description": "",
+      "id": "68",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Fıstık Rüyası",
+      "price": 130
+    },
+    {
+      "categoryId": "category10",
+      "description": "Limonlu, Frambuazlı, Lotus",
+      "id": "69",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Cheese Cake",
+      "price": 110
+    },
+    {
+      "categoryId": "category10",
+      "description": "",
+      "id": "70",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Sütlaç",
+      "price": 100
+    },
+    {
+      "categoryId": "category10",
+      "description": "",
+      "id": "71",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Red Velvet",
+      "price": 120
+    },
+    {
+      "categoryId": "category10",
+      "description": "",
+      "id": "72",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Trileçe",
+      "price": 120
+    },
+    {
+      "categoryId": "category10",
+      "description": "",
+      "id": "73",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Çikolatalı Pasta",
+      "price": 130
+    },
+    {
+      "categoryId": "category10",
+      "description": "",
+      "id": "74",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Ballı Cevizli Pasta",
+      "price": 120
+    },
+    {
+      "categoryId": "category10",
+      "description": "",
+      "id": "75",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Sufle",
+      "price": 120
+    },
+    {
+      "categoryId": "category10",
+      "description": "",
+      "id": "76",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Pankek Tabağı",
+      "price": 120
+    },
+    {
+      "categoryId": "category10",
+      "description": "",
+      "id": "77",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Kurabiye Tabağı",
+      "price": 70
+    },
+    {
+      "categoryId": "category10",
+      "description": "Mayhoş, Egzotik, Tropikal",
+      "id": "78",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "ForkKnife Special",
+      "price": 130
+    },
+    {
+      "categoryId": "category10",
+      "description": "",
+      "id": "79",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Donut",
+      "price": 60
+    },
+    {
+      "categoryId": "category11",
+      "description": "",
+      "id": "80",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Çay",
+      "price": 20
+    },
+    {
+      "categoryId": "category11",
+      "description": "",
+      "id": "81",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Büyük Çay",
+      "price": 30
+    },
+    {
+      "categoryId": "category11",
+      "description": "Demleme",
+      "id": "82",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Ihlamur",
+      "price": 80
+    },
+    {
+      "categoryId": "category11",
+      "description": "Demleme",
+      "id": "83",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Yeşil Çay",
+      "price": 80
+    },
+    {
+      "categoryId": "category11",
+      "description": "Demleme",
+      "id": "84",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Ada Çayı",
+      "price": 80
+    },
+    {
+      "categoryId": "category11",
+      "description": "Demleme",
+      "id": "85",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Papatya Çayı",
+      "price": 80
+    },
+    {
+      "categoryId": "category11",
+      "description": "Demleme",
+      "id": "86",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Nane Limon",
+      "price": 80
+    },
+    {
+      "categoryId": "category11",
+      "description": "Demleme",
+      "id": "87",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Gül Kurusu",
+      "price": 90
+    },
+    {
+      "categoryId": "category11",
+      "description": "Demleme",
+      "id": "88",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Kış Çayı",
+      "price": 90
+    },
+    {
+      "categoryId": "category11",
+      "description": "Demleme",
+      "id": "89",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "ForkKnife Özel Karışım",
+      "price": 100
+    },
+    {
+      "categoryId": "category11",
+      "description": "",
+      "id": "90",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Türk Kahvesi",
+      "price": 60
+    },
+    {
+      "categoryId": "category11",
+      "description": "",
+      "id": "91",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Double Türk Kahvesi",
+      "price": 90
+    },
+    {
+      "categoryId": "category11",
+      "description": "",
+      "id": "92",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Dibek Kahvesi",
+      "price": 70
+    },
+    {
+      "categoryId": "category11",
+      "description": "",
+      "id": "93",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Menengiç Kahvesi",
+      "price": 70
+    },
+    {
+      "categoryId": "category11",
+      "description": "",
+      "id": "94",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Damla Sakızlı Türk Kahvesi",
+      "price": 70
+    },
+    {
+      "categoryId": "category11",
+      "description": "",
+      "id": "95",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Sütlü Türk Kahvesi",
+      "price": 75
+    },
+    {
+      "categoryId": "category11",
+      "description": "",
+      "id": "96",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Filtre Kahve",
+      "price": 100
+    },
+    {
+      "categoryId": "category11",
+      "description": "",
+      "id": "97",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Sıcak Çikolata",
+      "price": 85
+    },
+    {
+      "categoryId": "category11",
+      "description": "",
+      "id": "98",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Sıcak Beyaz Çikolata",
+      "price": 85
+    },
+    {
+      "categoryId": "category11",
+      "description": "",
+      "id": "99",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Portakallı Sıcak Çikolata",
+      "price": 90
+    },
+    {
+      "categoryId": "category11",
+      "description": "",
+      "id": "100",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Salep",
+      "price": 85
+    },
+    {
+      "categoryId": "category11",
+      "description": "",
+      "id": "101",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Bal Badem Salep",
+      "price": 80
+    },
+    {
+      "categoryId": "category12",
+      "description": "",
+      "id": "102",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Espresso",
+      "price": 85
+    },
+    {
+      "categoryId": "category12",
+      "description": "",
+      "id": "103",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Double Espresso",
+      "price": 75
+    },
+    {
+      "categoryId": "category12",
+      "description": "",
+      "id": "104",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Americano",
+      "price": 75
+    },
+    {
+      "categoryId": "category12",
+      "description": "",
+      "id": "105",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Cortado",
+      "price": 70
+    },
+    {
+      "categoryId": "category12",
+      "description": "",
+      "id": "106",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Flat White",
+      "price": 95
+    },
+    {
+      "categoryId": "category12",
+      "description": "",
+      "id": "107",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Cappuccino",
+      "price": 80
+    },
+    {
+      "categoryId": "category12",
+      "description": "",
+      "id": "108",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Latte",
+      "price": 90
+    },
+    {
+      "categoryId": "category12",
+      "description": "Toffle Nut, Vanilya, Fındık, Cookie, Lotus&Tarçın, Tuzlu Karamel",
+      "id": "109",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Aromatik Latte",
+      "price": 100
+    },
+    {
+      "categoryId": "category12",
+      "description": "",
+      "id": "110",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Mocha",
+      "price": 100
+    },
+    {
+      "categoryId": "category12",
+      "description": "",
+      "id": "111",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "White Chocolate Mocha",
+      "price": 100
+    },
+    {
+      "categoryId": "category12",
+      "description": "",
+      "id": "112",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Machiato",
+      "price": 80
+    },
+    {
+      "categoryId": "category12",
+      "description": "",
+      "id": "113",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Karamel Machiato",
+      "price": 90
+    },
+    {
+      "categoryId": "category12",
+      "description": "",
+      "id": "114",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Filtre Kahve",
+      "price": 100
+    },
+    {
+      "categoryId": "category13",
+      "description": "",
+      "id": "115",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Kavunlu Milkshake",
+      "price": 120
+    },
+    {
+      "categoryId": "category13",
+      "description": "",
+      "id": "116",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Tropikal Milkshake",
+      "price": 130
+    },
+    {
+      "categoryId": "category13",
+      "description": "",
+      "id": "117",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Egzotik Milkshake",
+      "price": 180
+    },
+    {
+      "categoryId": "category13",
+      "description": "",
+      "id": "118",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Vanilyalı Milkshake",
+      "price": 110
+    },
+    {
+      "categoryId": "category13",
+      "description": "",
+      "id": "119",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Çikolatalı Milkshake",
+      "price": 110
+    },
+    {
+      "categoryId": "category13",
+      "description": "",
+      "id": "120",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Çilekli Milkshake",
+      "price": 110
+    },
+    {
+      "categoryId": "category13",
+      "description": "",
+      "id": "121",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Muzlu Milkshake",
+      "price": 110
+    },
+    {
+      "categoryId": "category13",
+      "description": "",
+      "id": "122",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Karamelli Milkshake",
+      "price": 110
+    },
+    {
+      "categoryId": "category14",
+      "description": "",
+      "id": "123",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Ice Latte",
+      "price": 100
+    },
+    {
+      "categoryId": "category14",
+      "description": "",
+      "id": "124",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Ice Mocha",
+      "price": 110
+    },
+    {
+      "categoryId": "category14",
+      "description": "",
+      "id": "125",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Ice White Chocolate Mocha",
+      "price": 110
+    },
+    {
+      "categoryId": "category14",
+      "description": "",
+      "id": "126",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Ice Karamel Machiato",
+      "price": 110
+    },
+    {
+      "categoryId": "category14",
+      "description": "",
+      "id": "127",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Vanilyalı Frappe",
+      "price": 110
+    },
+    {
+      "categoryId": "category14",
+      "description": "",
+      "id": "128",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Fındıklık Frappe",
+      "price": 110
+    },
+    {
+      "categoryId": "category14",
+      "description": "",
+      "id": "129",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Tuffle Nut Frappe",
+      "price": 110
+    },
+    {
+      "categoryId": "category15",
+      "description": "",
+      "id": "130",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Galaxy",
+      "price": 120
+    },
+    {
+      "categoryId": "category15",
+      "description": "",
+      "id": "131",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Green Land",
+      "price": 120
+    },
+    {
+      "categoryId": "category15",
+      "description": "",
+      "id": "132",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Guns And Roses",
+      "price": 120
+    },
+    {
+      "categoryId": "category15",
+      "description": "",
+      "id": "133",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Mocha Ball",
+      "price": 120
+    },
+    {
+      "categoryId": "category15",
+      "description": "",
+      "id": "134",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Sleepy",
+      "price": 120
+    },
+    {
+      "categoryId": "category16",
+      "description": "",
+      "id": "135",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Western",
+      "price": 130
+    },
+    {
+      "categoryId": "category16",
+      "description": "",
+      "id": "136",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Freezer",
+      "price": 130
+    },
+    {
+      "categoryId": "category16",
+      "description": "",
+      "id": "137",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "ForkKnife Ice Tea",
+      "price": 100
+    },
+    {
+      "categoryId": "category16",
+      "description": "",
+      "id": "138",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Alfredo",
+      "price": 90
+    },
+    {
+      "categoryId": "category16",
+      "description": "",
+      "id": "139",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Sunset",
+      "price": 100
+    },
+    {
+      "categoryId": "category16",
+      "description": "",
+      "id": "140",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Unknown",
+      "price": 120
+    },
+    {
+      "categoryId": "category16",
+      "description": "",
+      "id": "141",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Universe",
+      "price": 140
+    },
+    {
+      "categoryId": "category16",
+      "description": "",
+      "id": "142",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Blue Skye",
+      "price": 130
+    },
+    {
+      "categoryId": "category16",
+      "description": "",
+      "id": "143",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Forest",
+      "price": 120
+    },
+    {
+      "categoryId": "category16",
+      "description": "",
+      "id": "144",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Pink Panther",
+      "price": 120
+    },
+    {
+      "categoryId": "category16",
+      "description": "",
+      "id": "145",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Top Secret",
+      "price": 180
+    },
+    {
+      "categoryId": "category16",
+      "description": "",
+      "id": "146",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Mixology",
+      "price": 120
+    },
+    {
+      "categoryId": "category16",
+      "description": "",
+      "id": "147",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Lovers",
+      "price": 130
+    },
+    {
+      "categoryId": "category16",
+      "description": "",
+      "id": "148",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Efendy",
+      "price": 120
+    },
+    {
+      "categoryId": "category16",
+      "description": "",
+      "id": "149",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Ice Saloop",
+      "price": 120
+    },
+    {
+      "categoryId": "category17",
+      "description": "",
+      "id": "150",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Tropikal",
+      "price": 100
+    },
+    {
+      "categoryId": "category17",
+      "description": "",
+      "id": "151",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Egzotik",
+      "price": 100
+    },
+    {
+      "categoryId": "category17",
+      "description": "",
+      "id": "152",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Yeşil Elma",
+      "price": 90
+    },
+    {
+      "categoryId": "category17",
+      "description": "",
+      "id": "153",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Çilek",
+      "price": 90
+    },
+    {
+      "categoryId": "category17",
+      "description": "",
+      "id": "154",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Yaban Mersini",
+      "price": 90
+    },
+    {
+      "categoryId": "category17",
+      "description": "",
+      "id": "155",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Çarkı Felek",
+      "price": 90
+    },
+    {
+      "categoryId": "category17",
+      "description": "",
+      "id": "156",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Mango",
+      "price": 90
+    },
+    {
+      "categoryId": "category18",
+      "description": "",
+      "id": "157",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Çilekli Limonata",
+      "price": 90
+    },
+    {
+      "categoryId": "category18",
+      "description": "",
+      "id": "158",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Naneli Limonata",
+      "price": 90
+    },
+    {
+      "categoryId": "category18",
+      "description": "",
+      "id": "159",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Portakallı Limonata",
+      "price": 90
+    },
+    {
+      "categoryId": "category18",
+      "description": "",
+      "id": "160",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Yeşil Elmalı Limonata",
+      "price": 90
+    },
+    {
+      "categoryId": "category18",
+      "description": "",
+      "id": "161",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Yaban Mersinli Limonata",
+      "price": 90
+    },
+    {
+      "categoryId": "category18",
+      "description": "",
+      "id": "162",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Mavi Kelebek",
+      "price": 100
+    },
+    {
+      "categoryId": "category19",
+      "description": "",
+      "id": "163",
+      "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ85kdOTfeRk1gOxlEk63hE9QxOlC5sozn2sg&s",
+      "name": "Coca Cola",
+      "price": 50
+    },
+    {
+      "categoryId": "category19",
+      "description": "",
+      "id": "164",
+      "imageUrl": "https://images.migrosone.com/sanalmarket/product/08011849/8011849_yan-50a596-1650x1650.jpg",
+      "name": "Coca Cola Zero",
+      "price": 50
+    },
+    {
+      "categoryId": "category19",
+      "description": "",
+      "id": "165",
+      "imageUrl": "https://www.bazaarfood.nl/cdn/shop/files/330_538915b8-34f7-4ae8-a968-40b8b2f88dc6.jpg?v=1689242714",
+      "name": "Fanta",
+      "price": 50
+    },
+    {
+      "categoryId": "category19",
+      "description": "",
+      "id": "166",
+      "imageUrl": "https://ik.imagekit.io/dunzo/b68b6856470f11ee840f7c1a9aaf9176_VARIANT_64ec54bbb0e45a0026313635_1.JPG",
+      "name": "Sprite",
+      "price": 50
+    },
+    {
+      "categoryId": "category19",
+      "description": "",
+      "id": "167",
+      "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0PJ274rGV-MMzqcaefBNlP3Hp0Knf4VTsGw&s",
+      "name": "Ayran",
+      "price": 30
+    },
+    {
+      "categoryId": "category19",
+      "description": "",
+      "id": "168",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Fuse Tea Limon",
+      "price": 50
+    },
+    {
+      "categoryId": "category19",
+      "description": "",
+      "id": "169",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Fuse Tea Şeftali",
+      "price": 50
+    },
+    {
+      "categoryId": "category19",
+      "description": "",
+      "id": "170",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Fuse Tea Mango",
+      "price": 50
+    },
+    {
+      "categoryId": "category19",
+      "description": "",
+      "id": "171",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Fuse Tea Karpuz",
+      "price": 50
+    },
+    {
+      "categoryId": "category19",
+      "description": "",
+      "id": "172",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Fuse Tea Çilek",
+      "price": 50
+    },
+    {
+      "categoryId": "category19",
+      "description": "",
+      "id": "173",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Cappy Şeftali",
+      "price": 50
+    },
+    {
+      "categoryId": "category19",
+      "description": "",
+      "id": "174",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Cappy Vişne",
+      "price": 50
+    },
+    {
+      "categoryId": "category19",
+      "description": "",
+      "id": "175",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Cappy Karışık",
+      "price": 50
+    },
+    {
+      "categoryId": "category19",
+      "description": "",
+      "id": "176",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Portakal Suyu",
+      "price": 90
+    },
+    {
+      "categoryId": "category19",
+      "description": "",
+      "id": "177",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Sade Soda",
+      "price": 35
+    },
+    {
+      "categoryId": "category19",
+      "description": "",
+      "id": "178",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Limonlu Soda",
+      "price": 40
+    },
+    {
+      "categoryId": "category19",
+      "description": "",
+      "id": "179",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Elmalı Soda",
+      "price": 40
+    },
+    {
+      "categoryId": "category19",
+      "description": "",
+      "id": "180",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Karpuz Çilekli Soda",
+      "price": 40
+    },
+    {
+      "categoryId": "category19",
+      "description": "",
+      "id": "181",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Narlı Soda",
+      "price": 40
+    },
+    {
+      "categoryId": "category19",
+      "description": "",
+      "id": "182",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Kırmızı Meyveli Soda",
+      "price": 40
+    },
+    {
+      "categoryId": "category19",
+      "description": "",
+      "id": "183",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Niğde Gazozu",
+      "price": 45
+    },
+    {
+      "categoryId": "category19",
+      "description": "",
+      "id": "184",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Churchill",
+      "price": 60
+    },
+    {
+      "categoryId": "category19",
+      "description": "",
+      "id": "185",
+      "imageUrl": "logo/forknife-logo.png",
+      "name": "Su",
+      "price": 20
+    }
+  ],
+  "restaurantUsers": {
+    "-OjkEONRs7g0KrrYd7ED": {
+      "createdAt": "2026-01-24T13:42:06.388Z",
+      "displayName": "fff",
+      "email": "foorcun@gmail.com",
+      "isActive": true,
+      "relatedRestaurantsIds": [
+        "-OjkBierbH1EO2Gz7KEd",
+        "-OiyBNtvgZPQM6_Rv7K0"
+      ],
+      "role": "admin",
+      "uid": "Kj8hLfo5jkb54HtJVXqpbQOJwuX2",
+      "updatedAt": "2026-02-04T13:23:55.231Z"
+    },
+    "-OjlMEmDrrTe_pypu0SQ": {
+      "createdAt": "2026-01-24T18:56:01.316Z",
+      "displayName": "nurkan",
+      "email": "gs.nurkan17@gmail.com",
+      "isActive": true,
+      "relatedRestaurantsIds": [
+        "-OjkBierbH1EO2Gz7KEd",
+        "-OjlwO-OSNp_YSag06QH"
+      ],
+      "role": "admin",
+      "uid": "-OjlMEmDrrTe_pypu0SQ",
+      "updatedAt": "2026-01-24T21:38:29.780Z"
+    },
+    "-OkjPPxaZe8NrQwBU5Z3": {
+      "createdAt": "2026-02-05T20:06:17.208Z",
+      "displayName": "troy",
+      "email": "troyatech17@gmail.com",
+      "isActive": true,
+      "relatedRestaurantsIds": [
+        "-OjkBierbH1EO2Gz7KEd"
+      ],
+      "role": "manager",
+      "uid": "-OkjPPxaZe8NrQwBU5Z3",
+      "updatedAt": "2026-02-05T20:06:17.208Z"
+    },
+    "-OlDsxswQ6n4wAnFxTiQ": {
+      "createdAt": "2026-02-11T22:47:52.559Z",
+      "email": "nfcompany17@gmail.com",
+      "isActive": true,
+      "relatedRestaurantsIds": [
+        "-OjkBierbH1EO2Gz7KEd"
+      ],
+      "role": "owner",
+      "uid": "-OlDsxswQ6n4wAnFxTiQ",
+      "updatedAt": "2026-02-11T22:47:52.559Z"
+    }
+  },
+  "restaurants": {
+    "-OiyBNtvgZPQM6_Rv7K0": {
+      "closeHour": "02:00",
+      "menuKey": "menuKey_forknife",
+      "openHour": "08:00",
+      "restaurantName": "forknife"
+    },
+    "-OjkBierbH1EO2Gz7KEd": {
+      "closeHour": "03:00",
+      "menuKey": "menuKey_nfc17",
+      "openHour": "12:00",
+      "restaurantName": "NFC"
+    },
+    "-OjlwO-OSNp_YSag06QH": {
+      "closeHour": "03:00",
+      "menuKey": "wiki-wings",
+      "openHour": "12:00",
+      "restaurantName": "Wiki Wings"
+    },
+    "-OkPqOF2wE0GwoMoqgFM": {
+      "closeHour": "02:00",
+      "menuKey": "key_tesis3",
+      "openHour": "08:00",
+      "restaurantName": "tesis3"
+    },
+    "-OkSuc7Xn1hpPmGyikqn": {
+      "closeHour": "02:00",
+      "menuKey": "key_millet-bahcesi-lapseki-sosyal-tesisleri",
+      "openHour": "08:00",
+      "restaurantName": "millet-bahcesi-lapseki-sosyal-tesisleri"
+    },
+    "-OlKaa_kkRKIq2GCwcrE": {
+      "closeHour": "23:00",
+      "menuKey": "robot-test-key",
+      "openHour": "09:00",
+      "restaurantName": "RobotTest_20260213_090508"
+    }
+  },
+  "shared_config": {
+    "key_millet-bahcesi-lapseki-sosyal-tesisleri": {
+      "PlanTiersPlanner": {
+        "orderingEnabled": false
+      },
+      "themeSettingsPlanner": {
+        "cardLogoBackgroundColor": "#132D2A",
+        "logoUrlLink": "https://raw.githubusercontent.com/troya-tech/forknife-images/refs/heads/main/tesis3/tesis3_logo.png",
+        "orderingEnabled": false,
+        "primaryColor": "#132D2A",
+        "titleColor": "#132D2A"
+      }
+    },
+    "key_tesis3": {
+      "PlanTiersPlanner": {
+        "orderingEnabled": false
+      },
+      "themeSettingsPlanner": {
+        "cardLogoBackgroundColor": "#132D2A",
+        "logoUrlLink": "https://raw.githubusercontent.com/troya-tech/forknife-images/refs/heads/main/tesis3/tesis3_logo.png",
+        "orderingEnabled": false,
+        "primaryColor": "#132D2A",
+        "titleColor": "#132D2A"
+      }
+    },
+    "menuKey_forknife": {
+      "planTiersPlanner": {
+        "orderingEnabled": true
+      },
+      "themeSettingsPlanner": {
+        "logoUrlLink": "https://raw.githubusercontent.com/troya-tech/forknife-images/refs/heads/main/forknifeYeniImageler/logo.png",
+        "orderingEnabled": true,
+        "primaryColor": "#1D2D46"
+      }
+    },
+    "menuKey_nfc17": {
+      "PlanTiersPlanner": {
+        "orderingEnabled": true
+      },
+      "themeSettingsPlanner": {
+        "logoUrlLink": "https://raw.githubusercontent.com/troya-tech/forknife-images/refs/heads/main/NFC_images/logo.png",
+        "orderingEnabled": false,
+        "primaryColor": "#B53322"
+      }
+    }
+  },
+  "users": {
+    "userkey_nfc17": {
+      "7UMNf9av9YZSU4fUx17D5IGHG6I2": {
+        "createdAt": "2025-11-09T00:00:00.000Z",
+        "email": "foorcun@gmail.com",
+        "role": "ADMIN",
+        "updatedAt": "2025-11-09T00:00:00.000Z",
+        "userId": "7UMNf9av9YZSU4fUx17D5IGHG6I2"
+      }
+    }
+  }
+}
