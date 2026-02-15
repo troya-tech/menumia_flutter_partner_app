@@ -13,24 +13,14 @@ import '../../features/restaurant/application/restaurant_service.dart';
 import '../../features/restaurant/infrastructure/repositories/firebase_restaurant_repository.dart';
 import '../../features/shared-config-feature/application/shared_config_service.dart';
 import '../../features/shared-config-feature/infrastructure/repositories/firebase_shared_config_repository.dart';
-import '../../features/menu/application/services/menu_service.dart';
-import '../../features/menu/infrastructure/repositories/firebase_menu_repository.dart';
-import '../../features/menu/domain/entities/menu.dart';
+export '../../features/menu/application/menu_providers.dart';
 import '../services/profile_page_facade.dart';
 
 /// Legacy alias for authServiceProvider, now pointing to authRepositoryProvider
 /// Note: This now returns Key AuthRepository interface, not the implementation
 final authServiceProvider = authRepositoryProvider;
 
-/// Provider for the MenuService
-final menuServiceProvider = Provider<MenuService>((ref) {
-  return MenuService(FirebaseMenuRepository());
-});
-
-/// StreamProvider for a specific menu
-final menuProvider = StreamProvider.family<Menu, String>((ref, menuKey) {
-  return ref.watch(menuServiceProvider).watchMenu(menuKey);
-});
+/// Note: menuServiceProvider and menuProvider are now imported from menu_providers.dart
 
 /// Provider for the RestaurantContextService
 final restaurantContextServiceProvider = Provider<RestaurantContextService>((ref) {
