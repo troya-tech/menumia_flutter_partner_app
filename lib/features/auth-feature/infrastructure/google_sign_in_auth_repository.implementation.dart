@@ -4,15 +4,10 @@ import '../../../../utils/app_logger.dart';
 import '../domain/auth_repository.dart';
 import '../domain/auth_user.dart';
 
-/// Authentication service implementation using Firebase and Google Sign-In
-class AuthService implements AuthRepository {
-  // Singleton pattern
-  const AuthService._();
-  static const AuthService instance = AuthService._();
-  factory AuthService() => instance;
-
+/// Google Sign-In implementation of AuthRepository
+class GoogleSignInAuthRepository implements AuthRepository {
   // Logger
-  static final _logger = AppLogger('AuthService');
+  static final _logger = AppLogger('GoogleSignInAuthRepository');
 
   // Firebase Auth instance
   FirebaseAuth get _auth => FirebaseAuth.instance;
@@ -32,7 +27,7 @@ class AuthService implements AuthRepository {
     if (user == null) return null;
     return AuthUser(
       uid: user.uid,
-      email: user.email,
+      email: user.email ?? '',
       displayName: user.displayName,
       photoUrl: user.photoURL,
     );
@@ -49,10 +44,10 @@ class AuthService implements AuthRepository {
       if (user == null) {
         throw Exception('Google Sign-In succeeded but user is null');
       }
-      // return _mapFirebaseUser(user)!;
+      
       AuthUser mappedUser = _mapFirebaseUser(user)!;
-      _logger.info('User signed in successfully, context: ', context);
-      _logger.info('User signed in successfully, authUser: $mappedUser', context);
+      _logger.info('User signed in successfully', context);
+      _logger.info('AuthUser: $mappedUser', context);
       return mappedUser;
 
     } on GoogleSignInException catch (e) {
@@ -126,7 +121,7 @@ class AuthService implements AuthRepository {
     _logger.data('Account email', account.email, context);
 
     _logger.debug('Getting authentication tokens...', context);
-    final GoogleSignInAuthentication auth = account.authentication;
+    final GoogleSignInAuthentication auth = await account.authentication;
 
     final String? idToken = auth.idToken;
     if (idToken == null) {
@@ -147,17 +142,10 @@ class AuthService implements AuthRepository {
         scopes,
       );
       accessToken = authorization.accessToken;
-      if (accessToken != null) {
-        _logger.debug(
-          'Access token obtained successfully: ${accessToken.substring(0, 10)}...',
-          context,
-        );
-      } else {
-        _logger.debug(
-          'Access token is null (valid for idToken-only flows)',
-          context,
-        );
-      }
+      _logger.debug(
+        'Access token obtained successfully: ${accessToken.substring(0, 10)}...',
+        context,
+      );
     } catch (authzError) {
       _logger.warning(
         'Authorization failed (proceeding with idToken only): $authzError',

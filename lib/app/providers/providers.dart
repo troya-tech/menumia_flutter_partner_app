@@ -16,9 +16,6 @@ import '../../features/shared-config-feature/infrastructure/repositories/firebas
 export '../../features/menu/application/menu_providers.dart';
 import '../services/profile_page_facade.dart';
 
-/// Legacy alias for authServiceProvider, now pointing to authRepositoryProvider
-/// Note: This now returns Key AuthRepository interface, not the implementation
-final authServiceProvider = authRepositoryProvider;
 
 /// Note: menuServiceProvider and menuProvider are now imported from menu_providers.dart
 
