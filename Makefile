@@ -1,4 +1,4 @@
-.PHONY: help run-uat run-prod run-prod-release build-appbundle-prod
+.PHONY: run-fake help run-uat run-prod run-prod-release build-appbundle-prod
 
 # Display help information
 help:
@@ -6,11 +6,16 @@ help:
 	@echo ""
 	@echo "Targets:"
 	@echo "  run-uat               Run app in UAT environment"
+	@echo "  run-fake              Run app with Fake Auth (using UAT Firebase)"
 	@echo "  run-prod              Run app in Production environment (debug mode)"
 	@echo "  run-prod-release      Run app in Production environment (release mode)"
 	@echo "  build-appbundle-prod  Build Android App Bundle for Production"
 	@echo "  help                  Display this help information"
 
+
+# Run app with Fake Auth (using UAT Firebase)
+run-fake:
+	flutter run --flavor uat -t lib/main_fake.dart
 
 # Run app in UAT environment
 run-uat:
