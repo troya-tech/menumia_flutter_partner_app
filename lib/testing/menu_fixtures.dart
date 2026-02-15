@@ -14,6 +14,9 @@ class MenuFixtures {
   /// Returns the Tesis 3 menu fixture.
   static Menu get tesis3 => _fromRaw('key_tesis3');
 
+  /// Returns a fake menu fixture for testing.
+  static Menu get fake => _fromRaw('key_fake');
+
   /// Helper to create a Menu entity from the raw data.
   static Menu _fromRaw(String key) {
     final data = rawMenuData[key];
@@ -325,6 +328,50 @@ class MenuFixtures {
           },
           "name": "NFChicken Burger Menüler",
           "updatedAt": "2025-12-01T21:52:44.496Z"
+        }
+      }
+    },
+    "key_fake": {
+      "categories": {
+        "fake_cat_001": {
+          "displayOrder": 1,
+          "id": "fake_cat_001",
+          "isActive": true,
+          "menuItem": {
+            "fake_prod_001": {
+              "description": "A delicious fake burger for testing",
+              "displayOrder": 1,
+              "id": "fake_prod_001",
+              "imageUrl": "https://example.com/fake_burger.jpg",
+              "name": "Fake Burger",
+              "price": 100.0
+            },
+            "fake_prod_002": {
+              "description": "Cheesy fake burger",
+              "displayOrder": 2,
+              "id": "fake_prod_002",
+              "imageUrl": "",
+              "name": "Fake Cheeseburger",
+              "price": 120.0
+            }
+          },
+          "name": "Fake Burgers"
+        },
+        "fake_cat_002": {
+          "displayOrder": 2,
+          "id": "fake_cat_002",
+          "isActive": true,
+          "menuItem": {
+            "fake_prod_003": {
+              "description": "Refreshing fake cola",
+              "displayOrder": 1,
+              "id": "fake_prod_003",
+              "imageUrl": "",
+              "name": "Fake Cola",
+              "price": 25.0
+            }
+          },
+          "name": "Fake Drinks"
         }
       }
     }
