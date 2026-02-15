@@ -28,4 +28,10 @@ class RestaurantUserService {
   Future<void> deleteUser(String id) => _repository.deleteUser(id);
 
   Future<List<RestaurantUser>> getAllUsers() => _repository.getAllUsers();
+
+  Stream<RestaurantUser?> watchUserById(String id) => _repository.watchUserById(id);
+  Stream<RestaurantUser?> watchUserByEmail(String email) => _repository.watchUserByEmail(email);
+  Stream<List<RestaurantUser>> watchUsersByRestaurantId(String restaurantId) => 
+      _repository.watchUsersByRestaurantId(restaurantId);
+  Stream<List<RestaurantUser>> watchAllUsers() => _repository.watchAllUsers();
 }

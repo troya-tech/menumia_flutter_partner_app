@@ -1,26 +1,26 @@
 import 'dart:async';
-import 'package:collection/collection.dart'; // for firstOrNull
+import 'package:collection/collection.dart';
+import 'package:rxdart/rxdart.dart';
 
 import 'package:menumia_flutter_partner_app/features/auth-feature/domain/auth_repository.dart';
-
 import '../../features/restaurant-user-feature/application/restaurant_user_service.dart';
 import '../../features/restaurant-user-feature/domain/entities/restaurant_user.dart';
 import '../../features/restaurant/application/restaurant_service.dart';
 import '../../features/restaurant/domain/entities/restaurant.dart';
-
 import '../../utils/app_logger.dart';
 
 class RestaurantContextService {
-
   final RestaurantUserService _userService;
   final RestaurantService _restaurantService;
+  final AuthRepository _authRepository;
   static final _logger = AppLogger('RestaurantContextService');
 
   // State Controllers
-  final _currentUserController = StreamController<RestaurantUser?>.broadcast();
-  final _relatedRestaurantsController = StreamController<List<Restaurant>>.broadcast();
-  final _activeRestaurantIdController = StreamController<String?>.broadcast();
-  final _activeMenuKeyController = StreamController<String?>.broadcast();
+  final _currentUserController = BehaviorSubject<RestaurantUser?>.seeded(null);
+  final _relatedRestaurantsController = BehaviorSubject<List<Restaurant>>.seeded([]);
+  final _activeRestaurantIdController = BehaviorSubject<String?>.seeded(null);
+  final _activeMenuKeyController = BehaviorSubject<String?>.seeded(null);
+
 
   // Streams
   Stream<RestaurantUser?> get currentUser$ => _currentUserController.stream;
@@ -28,12 +28,9 @@ class RestaurantContextService {
   Stream<String?> get activeRestaurantId$ => _activeRestaurantIdController.stream;
   Stream<String?> get activeMenuKey$ => _activeMenuKeyController.stream;
 
-  // Internal State
-  List<Restaurant> _loadedRestaurants = [];
-  String? _currentActiveId;
-  RestaurantUser? _currentUser;
-
-  final AuthRepository _authRepository;
+  // Subscriptions
+  StreamSubscription? _userSub;
+  StreamSubscription? _restaurantsSub;
 
   RestaurantContextService({
     required AuthRepository authRepository,
@@ -42,123 +39,87 @@ class RestaurantContextService {
   })  : _authRepository = authRepository,
         _userService = userService,
         _restaurantService = restaurantService {
-    // Listen for auth state changes to automatically clear state on sign-out
-    _authRepository.authStateChanges().listen((user) {
-      if (user == null) {
+    _initAuthListener();
+  }
+
+  void _initAuthListener() {
+    _authRepository.authStateChanges().listen((authUser) {
+      _userSub?.cancel();
+      _restaurantsSub?.cancel();
+
+      if (authUser == null) {
         _clearState();
+      } else {
+        final email = authUser.email;
+        if (email != null) {
+          _userSub = _userService.watchUserByEmail(email).listen((user) {
+            _currentUserController.add(user);
+            if (user != null) {
+              _syncRestaurants(user.relatedRestaurantsIds);
+            }
+          });
+        }
       }
     });
   }
 
-  /// Clear all internal state and emit empty/null values to streams
-  void _clearState() {
-    _logger.info('Clearing state due to user sign-out');
-    _currentUser = null;
-    _loadedRestaurants = [];
-    _currentActiveId = null;
-    _initFuture = null; // Important: Clear the init future so next init() runs fresh
+  void _syncRestaurants(List<String> restaurantIds) {
+    _restaurantsSub?.cancel();
+    _restaurantsSub = _restaurantService.watchRestaurantsByIds(restaurantIds).listen((restaurants) {
+      _relatedRestaurantsController.add(restaurants);
+      
+      // Update active restaurant if needed
+      final currentActiveId = _activeRestaurantIdController.value;
+      if (currentActiveId == null && restaurants.isNotEmpty) {
+        setActiveRestaurant(restaurants.first.id);
+      } else if (currentActiveId != null) {
+        // Update menu key if restaurant data changed
+        final r = restaurants.firstWhereOrNull((r) => r.id == currentActiveId);
+        if (r != null) {
+          _activeMenuKeyController.add(r.menuKey);
+        }
+      }
+    });
+  }
 
-    // Emit cleared state to all listeners
+  void _clearState() {
+    _logger.info('Clearing state');
     _currentUserController.add(null);
     _relatedRestaurantsController.add([]);
     _activeRestaurantIdController.add(null);
     _activeMenuKeyController.add(null);
   }
 
-  // Completion future for init
-  Future<void>? _initFuture;
-
-  /// Initialize and load data
+  /// Compatibility method for existing calls
   Future<void> init() async {
-    // If already initialized (must have user), just emit current state
-    if (_currentUser != null) {
-      _emitCurrentState();
-      return;
-    }
-
-    // If initialization is in progress, wait for it
-    if (_initFuture != null) {
-      await _initFuture;
-      _emitCurrentState();
-      return;
-    }
-
-    // Start initialization
-    _initFuture = _loadUser();
-    await _initFuture;
-    _initFuture = null; // Clear future when done (optional, but cleaner)
-  }
-
-  void _emitCurrentState() {
-     // Emit everything current for late subscribers (since we use broadcast)
-     
-     if (_currentUser != null) {
-       _currentUserController.add(_currentUser);
-     }
-     if (_loadedRestaurants.isNotEmpty) {
-       _relatedRestaurantsController.add(_loadedRestaurants);
-     }
-     if (_currentActiveId != null) {
-       _activeRestaurantIdController.add(_currentActiveId);
-       final r = _loadedRestaurants.firstWhereOrNull((r) => r.id == _currentActiveId);
-       if (r != null) _activeMenuKeyController.add(r.menuKey);
-     }
-  }
-
-  Future<void> _loadUser() async {
-    _logger.debug('Loading user data...');
-    final currentUser = _authRepository.currentUser;
-
-    if (currentUser == null) {
-      _logger.warning('No authenticated user found');
-      _currentUserController.add(null);
-      return;
-    }
-
-    final userEmail = currentUser.email;
-    if (userEmail == null) {
-      _logger.error('Authenticated user has no email address');
-      _currentUserController.add(null);
-      return;
-    }
-
-    final user = await _userService.getUserByEmail(userEmail);
-    if (user != null) {
-      _logger.success('User data loaded successfully: ${user.displayName}');
-      _currentUser = user; // SAVE STATE
-      _currentUserController.add(user);
-      await _loadRestaurants(user.relatedRestaurantsIds);
-    } else {
-      _logger.error('User not found in database with email: $userEmail');
-      _currentUserController.add(null);
-    }
-  }
-
-  Future<void> _loadRestaurants(List<String> restaurantIds) async {
-    _logger.debug('Loading ${restaurantIds.length} restaurant(s)...');
+    // With BehaviorSubject and reactive listeners, explicit init is less critical
+    // but we can wait for the first user emission if needed.
+    if (_currentUserController.value != null) return;
     
-    _loadedRestaurants = await _restaurantService.getRestaurantsByIds(restaurantIds);
-
-    _logger.success('Loaded ${_loadedRestaurants.length} restaurant(s) via RestaurantService');
-    _relatedRestaurantsController.add(_loadedRestaurants);
-
-    // Default to first restaurant if none active
-    if (_loadedRestaurants.isNotEmpty && _currentActiveId == null) {
-       setActiveRestaurant(_loadedRestaurants.first.id);
-    }
+    // Pulse the auth stream if needed? No, it should be automatic.
+    await _currentUserController.firstWhere((u) => u != null).timeout(
+      const Duration(seconds: 5),
+      onTimeout: () => null,
+    );
   }
 
   void setActiveRestaurant(String restaurantId) {
-    if (_currentActiveId == restaurantId) return;
+    if (_activeRestaurantIdController.value == restaurantId) return;
 
-    final restaurant = _loadedRestaurants.firstWhereOrNull((r) => r.id == restaurantId);
+    final restaurant = _relatedRestaurantsController.value.firstWhereOrNull((r) => r.id == restaurantId);
     if (restaurant != null) {
-      _currentActiveId = restaurantId;
       _activeRestaurantIdController.add(restaurantId);
       _activeMenuKeyController.add(restaurant.menuKey);
-      _logger.info('Set active restaurant: ${restaurant.restaurantName} (${restaurant.menuKey})');
-    } else {
-      _logger.warning('Attempted to set active restaurant $restaurantId but it was not found in loaded restaurants');
+      _logger.info('Set active restaurant: ${restaurant.restaurantName}');
     }
+  }
+
+  void dispose() {
+    _userSub?.cancel();
+    _restaurantsSub?.cancel();
+    _currentUserController.close();
+    _relatedRestaurantsController.close();
+    _activeRestaurantIdController.close();
+    _activeMenuKeyController.close();
   }
 }

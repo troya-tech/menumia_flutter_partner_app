@@ -8,6 +8,8 @@ import 'package:menumia_flutter_partner_app/features/menu/application/services/m
 import 'package:menumia_flutter_partner_app/app/pages/home_page/home_page_categories_widgets/categories_page/categories_page_widgets/category_details_page_widgets/edit_product_dialog.dart';
 import 'package:menumia_flutter_partner_app/app/pages/home_page/home_page_categories_widgets/categories_page/categories_page_widgets/category_details_page_widgets/add_product_dialog.dart';
 import 'package:menumia_flutter_partner_app/app/pages/home_page/home_page_categories_widgets/categories_page/categories_page_widgets/category_details_page_widgets/edit_category_name_dialog.dart';
+import 'package:menumia_flutter_partner_app/utils/app_logger.dart';
+
 
 class CategoryDetailsPage extends StatefulWidget {
   final Category initialCategory;
@@ -26,7 +28,9 @@ class CategoryDetailsPage extends StatefulWidget {
 }
 
 class _CategoryDetailsPageState extends State<CategoryDetailsPage> {
+  static final _logger = AppLogger('CategoryDetailsPage');
   late final Stream<Menu> _menuStream;
+
 
   @override
   void initState() {
@@ -43,12 +47,14 @@ class _CategoryDetailsPageState extends State<CategoryDetailsPage> {
   }
 
   Future<void> _editCategoryName(BuildContext context, Category category) async {
+    _logger.debug('Opening EditCategoryNameDialog for: ${category.name}');
     await showDialog(
       context: context,
       builder: (context) {
         return EditCategoryNameDialog(
           category: category, 
           onSave: (newName) {
+            _logger.info('Saving new category name: $newName (ID: ${category.id})');
              widget.menuService.updateCategory(
               widget.menuKey, 
               category.copyWith(name: newName),
@@ -59,13 +65,16 @@ class _CategoryDetailsPageState extends State<CategoryDetailsPage> {
     );
   }
 
+
   Future<void> _createNewMenuItem(BuildContext context, Category category) async {
+    _logger.debug('Opening AddProductDialog for category: ${category.name}');
     await showDialog(
       context: context,
       builder: (context) {
         return AddProductDialog(
           category: category, 
           onSave: (name, price, description) {
+            _logger.info('Saving new product: $name in category: ${category.name}');
             final newProduct = Product(
               id: 'product_${DateTime.now().millisecondsSinceEpoch}',
               name: name,
@@ -86,13 +95,16 @@ class _CategoryDetailsPageState extends State<CategoryDetailsPage> {
     );
   }
 
+
   Future<void> _editMenuItem(BuildContext context, Category category, Product product) async {
+    _logger.debug('Opening EditProductDialog for product: ${product.name}');
     await showDialog(
       context: context,
       builder: (context) {
         return EditProductDialog(
           product: product, 
           onSave: (name, price, description) {
+            _logger.info('Updating product: $name (ID: ${product.id})');
             final updatedProduct = product.copyWith(
               name: name,
               description: description,
@@ -109,6 +121,7 @@ class _CategoryDetailsPageState extends State<CategoryDetailsPage> {
       },
     );
   }
+
 
   @override
   Widget build(BuildContext context) {

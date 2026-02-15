@@ -8,4 +8,9 @@ abstract class RestaurantUserRepository {
   Future<void> updateUser(String id, Map<String, dynamic> data);
   Future<void> deleteUser(String id);
   Future<List<RestaurantUser>> getAllUsers();
+
+  Stream<RestaurantUser?> watchUserById(String id);
+  Stream<RestaurantUser?> watchUserByEmail(String email);
+  Stream<List<RestaurantUser>> watchUsersByRestaurantId(String restaurantId);
+  Stream<List<RestaurantUser>> watchAllUsers();
 }

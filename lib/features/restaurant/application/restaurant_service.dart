@@ -13,4 +13,12 @@ class RestaurantService {
   Future<List<Restaurant>> getRestaurantsByIds(List<String> ids) {
     return _repository.getRestaurantsByIds(ids);
   }
+
+  Stream<Restaurant?> watchRestaurant(String id) {
+    return _repository.watchRestaurant(id);
+  }
+
+  Stream<List<Restaurant>> watchRestaurantsByIds(List<String> ids) {
+    return _repository.watchRestaurantsByIds(ids);
+  }
 }

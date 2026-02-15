@@ -136,4 +136,63 @@ class FirebaseRestaurantUserRepository implements RestaurantUserRepository {
     }
     return users;
   }
+
+  @override
+  Stream<RestaurantUser?> watchUserById(String id) {
+    return _database.ref('$_basePath/$id').onValue.map((event) {
+      final snapshot = event.snapshot;
+      if (!snapshot.exists || snapshot.value == null) return null;
+      try {
+        final jsonMap = jsonDecode(jsonEncode(snapshot.value)) as Map<String, dynamic>;
+        return RestaurantUserDto.fromJson(jsonMap, id).toDomain();
+      } catch (e) {
+        _logger.error('Error parsing user $id from stream', e);
+        return null;
+      }
+    });
+  }
+
+  @override
+  Stream<RestaurantUser?> watchUserByEmail(String email) {
+    return _database.ref(_basePath).orderByChild('email').equalTo(email).limitToFirst(1).onValue.map((event) {
+      final snapshot = event.snapshot;
+      if (!snapshot.exists || snapshot.value == null) return null;
+      try {
+        final data = snapshot.value as Map<dynamic, dynamic>;
+        final key = data.keys.first.toString();
+        final jsonMap = jsonDecode(jsonEncode(data[key])) as Map<String, dynamic>;
+        return RestaurantUserDto.fromJson(jsonMap, key).toDomain();
+      } catch (e) {
+        _logger.error('Error parsing user by email $email from stream', e);
+        return null;
+      }
+    });
+  }
+
+  @override
+  Stream<List<RestaurantUser>> watchUsersByRestaurantId(String restaurantId) {
+    // Note: Filtering client-side for now as in the Future implementation
+    return watchAllUsers().map((users) =>
+        users.where((u) => u.relatedRestaurantsIds.contains(restaurantId)).toList());
+  }
+
+  @override
+  Stream<List<RestaurantUser>> watchAllUsers() {
+    return _database.ref(_basePath).onValue.map((event) {
+      final snapshot = event.snapshot;
+      if (!snapshot.exists || snapshot.value == null) return [];
+      
+      final users = <RestaurantUser>[];
+      try {
+        final data = snapshot.value as Map<dynamic, dynamic>;
+        data.forEach((key, value) {
+          final jsonMap = jsonDecode(jsonEncode(value)) as Map<String, dynamic>;
+          users.add(RestaurantUserDto.fromJson(jsonMap, key.toString()).toDomain());
+        });
+      } catch (e) {
+        _logger.error('Error parsing all users from stream', e);
+      }
+      return users;
+    });
+  }
 }
