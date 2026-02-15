@@ -8,6 +8,7 @@ import 'package:menumia_flutter_partner_app/features/menu/application/services/m
 import 'package:menumia_flutter_partner_app/app/providers/providers.dart';
 import 'categories_page_widgets/category_reorder_page.dart';
 import 'categories_page_widgets/category_details_page.dart';
+import 'package:menumia_flutter_partner_app/utils/app_logger.dart';
 
 /// Categories page component
 class CategoriesPage extends ConsumerStatefulWidget {
@@ -18,6 +19,8 @@ class CategoriesPage extends ConsumerStatefulWidget {
 }
 
 class _CategoriesPageState extends ConsumerState<CategoriesPage> {
+  static final _logger = AppLogger('CategoriesPage');
+
   @override
   Widget build(BuildContext context) {
     final menuKeyAsync = ref.watch(activeMenuKeyProvider);
@@ -27,20 +30,29 @@ class _CategoriesPageState extends ConsumerState<CategoriesPage> {
     // If the user isn't in the database (or auth is missing), show warning immediately
     // This handles the "Signed in but not in restaurantUsers" case
     if (currentUserAsync is AsyncData<RestaurantUser?> && currentUserAsync.value == null) {
+      final logCtx = _logger.createContext();
+      _logger.warning('No restaurant user found for current auth user', logCtx);
       return const _NoRestaurantAssignedWarning();
     }
 
+
     return menuKeyAsync.when(
       data: (menuKey) {
+        final logCtx = _logger.createContext();
         if (menuKey == null) {
+          _logger.debug('No active menu key selected', logCtx);
           return const _NoStoreSelected();
         }
+
 
         final menuAsync = ref.watch(menuProvider(menuKey));
 
         return menuAsync.when(
           data: (menu) {
+            _logger.info('Menu loaded with ${menu.categories.length} categories (Key: $menuKey)', menu.context);
             final categories = menu.categories;
+
+
             return Column(
               children: [
                 _buildAppBar(categories, menuKey, menuService),
@@ -57,14 +69,18 @@ class _CategoriesPageState extends ConsumerState<CategoriesPage> {
                               return _CategoryCard(
                                 category: category,
                                 onToggle: (isActive) {
+                                  final logCtx = _logger.createContext();
+                                  _logger.info('Toggling category ${category.name} to $isActive', logCtx);
                                   menuService.updateCategory(
                                     menuKey,
                                     category.copyWith(isActive: isActive),
+                                    logCtx,
                                   );
                                 },
                                 menuService: menuService,
                                 menuKey: menuKey,
                               );
+
                             },
                           ),
                   ),
@@ -153,6 +169,8 @@ class _CategoriesPageState extends ConsumerState<CategoriesPage> {
 
   Future<void> _showAddCategoryDialog(BuildContext context, String menuKey, MenuService menuService) async {
     String categoryName = '';
+    final logCtx = _logger.createContext();
+    _logger.debug('Opening _AddCategoryDialog', logCtx);
     await showDialog(
       context: context,
       builder: (dialogContext) {
@@ -160,7 +178,7 @@ class _CategoriesPageState extends ConsumerState<CategoriesPage> {
           onCategoryNameChanged: (name) => categoryName = name,
           onAdd: () {
             if (categoryName.isNotEmpty) {
-              _addNewCategory(categoryName, menuKey, menuService);
+              _addNewCategory(categoryName, menuKey, menuService, logCtx);
               Navigator.pop(dialogContext);
             }
           },
@@ -170,7 +188,8 @@ class _CategoriesPageState extends ConsumerState<CategoriesPage> {
     );
   }
 
-  void _addNewCategory(String name, String menuKey, MenuService menuService) {
+  void _addNewCategory(String name, String menuKey, MenuService menuService, LogContext logCtx) {
+    _logger.info('Adding new category: $name', logCtx);
     final id = 'category_${DateTime.now().millisecondsSinceEpoch}';
     final newCategory = Category(
       id: id,
@@ -178,7 +197,8 @@ class _CategoriesPageState extends ConsumerState<CategoriesPage> {
       displayOrder: 999,
       isActive: true,
     );
-    menuService.updateCategory(menuKey, newCategory).catchError((e) {
+    menuService.updateCategory(menuKey, newCategory, logCtx).catchError((e) {
+      _logger.error('Failed to add category: $name', e, null, logCtx);
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text('Hata: $e'), backgroundColor: AppColors.error),

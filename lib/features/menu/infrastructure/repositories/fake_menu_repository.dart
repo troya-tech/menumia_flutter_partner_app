@@ -16,16 +16,13 @@ class FakeMenuRepository implements MenuRepository {
     _logger.info('Initialized FakeMenuRepository');
   }
 
-  void _logMenuDetails(String menuKey, Menu menu) {
+  void _logMenuDetails(String menuKey, Menu menu, [LogContext? context]) {
     final catCount = menu.categories.length;
     final prodCount = menu.categories.fold<int>(0, (sum, cat) => sum + cat.items.length);
-    _logger.info('Menu State [$menuKey]: $catCount categories, $prodCount products total');
+    _logger.info('Menu State [$menuKey]: $catCount categories, $prodCount products total', context);
   }
 
-
-
-
-  Menu _getOrCreateMenu(String menuKey) {
+  Menu _getOrCreateMenu(String menuKey, [LogContext? context]) {
     if (!_menuCache.containsKey(menuKey)) {
       try {
         Menu menu;
@@ -38,37 +35,36 @@ class FakeMenuRepository implements MenuRepository {
         
         _menuCache[menuKey] = menu;
       } catch (e) {
-        _logger.error('Error creating menu for key: $menuKey', e);
+        _logger.error('Error creating menu for key: $menuKey', e, null, context);
         _menuCache[menuKey] = MenuFixtures.fake;
       }
     }
     return _menuCache[menuKey]!;
-
   }
 
-  BehaviorSubject<Menu> _getSubject(String menuKey) {
-    _logger.debug('Getting subject for menuKey: $menuKey');
+  BehaviorSubject<Menu> _getSubject(String menuKey, [LogContext? context]) {
+    _logger.debug('Getting subject for menuKey: $menuKey', context);
     if (!_menuSubjects.containsKey(menuKey)) {
-      final initialMenu = _getOrCreateMenu(menuKey);
+      final initialMenu = _getOrCreateMenu(menuKey, context);
       _menuSubjects[menuKey] = BehaviorSubject<Menu>.seeded(initialMenu);
     }
     return _menuSubjects[menuKey]!;
   }
 
-
   @override
-  Stream<Menu> watchMenu(String menuKey) {
-    _logger.debug('Watching menu: $menuKey');
-    final menu = _getOrCreateMenu(menuKey);
-    _logMenuDetails(menuKey, menu);
-    return _getSubject(menuKey).stream;
+  Stream<Menu> watchMenu(String menuKey, [LogContext? context]) {
+    _logger.debug('Watching menu: $menuKey', context);
+    final menu = _getOrCreateMenu(menuKey, context);
+    _logMenuDetails(menuKey, menu, context);
+    return _getSubject(menuKey, context).stream.map((m) => m.copyWith(context: context));
   }
 
 
 
+
   @override
-  Future<void> updateCategory(String menuKey, Category category) async {
-    final menu = _getOrCreateMenu(menuKey);
+  Future<void> updateCategory(String menuKey, Category category, [LogContext? context]) async {
+    final menu = _getOrCreateMenu(menuKey, context);
     final categories = List<Category>.from(menu.categories);
     
     final index = categories.indexWhere((c) => c.id == category.id);
@@ -80,42 +76,42 @@ class FakeMenuRepository implements MenuRepository {
     
     final updatedMenu = menu.copyWith(categories: categories);
     _menuCache[menuKey] = updatedMenu;
-    _getSubject(menuKey).add(updatedMenu);
-    _logger.success('Category ${category.name} (${category.id}) updated in menu $menuKey');
-    _logMenuDetails(menuKey, updatedMenu);
+    _getSubject(menuKey, context).add(updatedMenu);
+    _logger.success('Category ${category.name} (${category.id}) updated in menu $menuKey', context);
+    _logMenuDetails(menuKey, updatedMenu, context);
   }
 
 
 
   @override
-  Future<void> updateCategoriesOrder(String menuKey, List<Category> categories) async {
-    final menu = _getOrCreateMenu(menuKey);
+  Future<void> updateCategoriesOrder(String menuKey, List<Category> categories, [LogContext? context]) async {
+    final menu = _getOrCreateMenu(menuKey, context);
     final updatedMenu = menu.copyWith(categories: categories);
     _menuCache[menuKey] = updatedMenu;
-    _getSubject(menuKey).add(updatedMenu);
-    _logger.success('Categories order updated for ${categories.length} items in $menuKey');
-    _logMenuDetails(menuKey, updatedMenu);
+    _getSubject(menuKey, context).add(updatedMenu);
+    _logger.success('Categories order updated for ${categories.length} items in $menuKey', context);
+    _logMenuDetails(menuKey, updatedMenu, context);
   }
 
 
 
   @override
-  Future<void> deleteCategory(String menuKey, String categoryId) async {
-    final menu = _getOrCreateMenu(menuKey);
+  Future<void> deleteCategory(String menuKey, String categoryId, [LogContext? context]) async {
+    final menu = _getOrCreateMenu(menuKey, context);
     final categories = menu.categories.where((c) => c.id != categoryId).toList();
     
     final updatedMenu = menu.copyWith(categories: categories);
     _menuCache[menuKey] = updatedMenu;
-    _getSubject(menuKey).add(updatedMenu);
-    _logger.warning('Category $categoryId deleted from menu $menuKey');
-    _logMenuDetails(menuKey, updatedMenu);
+    _getSubject(menuKey, context).add(updatedMenu);
+    _logger.warning('Category $categoryId deleted from menu $menuKey', context);
+    _logMenuDetails(menuKey, updatedMenu, context);
   }
 
 
 
   @override
-  Future<void> updateProduct(String menuKey, String categoryId, Product product) async {
-    final menu = _getOrCreateMenu(menuKey);
+  Future<void> updateProduct(String menuKey, String categoryId, Product product, [LogContext? context]) async {
+    final menu = _getOrCreateMenu(menuKey, context);
     final categories = List<Category>.from(menu.categories);
     
     final catIndex = categories.indexWhere((c) => c.id == categoryId);
@@ -133,19 +129,19 @@ class FakeMenuRepository implements MenuRepository {
       categories[catIndex] = category.copyWith(items: items);
       final updatedMenu = menu.copyWith(categories: categories);
       _menuCache[menuKey] = updatedMenu;
-      _getSubject(menuKey).add(updatedMenu);
-      _logger.success('Product ${product.name} (${product.id}) updated in category $categoryId (Menu: $menuKey)');
-      _logMenuDetails(menuKey, updatedMenu);
+      _getSubject(menuKey, context).add(updatedMenu);
+      _logger.success('Product ${product.name} (${product.id}) updated in category $categoryId (Menu: $menuKey)', context);
+      _logMenuDetails(menuKey, updatedMenu, context);
     } else {
-      _logger.warning('Failed to update product: Category $categoryId not found in menu $menuKey');
+      _logger.warning('Failed to update product: Category $categoryId not found in menu $menuKey', context);
     }
   }
 
 
 
   @override
-  Future<void> updateProductsOrder(String menuKey, String categoryId, List<Product> products) async {
-    final menu = _getOrCreateMenu(menuKey);
+  Future<void> updateProductsOrder(String menuKey, String categoryId, List<Product> products, [LogContext? context]) async {
+    final menu = _getOrCreateMenu(menuKey, context);
     final categories = List<Category>.from(menu.categories);
     
     final catIndex = categories.indexWhere((c) => c.id == categoryId);
@@ -153,19 +149,18 @@ class FakeMenuRepository implements MenuRepository {
       categories[catIndex] = categories[catIndex].copyWith(items: products);
       final updatedMenu = menu.copyWith(categories: categories);
       _menuCache[menuKey] = updatedMenu;
-      _getSubject(menuKey).add(updatedMenu);
-      _logger.success('Products order updated for category $categoryId in $menuKey');
-      _logMenuDetails(menuKey, updatedMenu);
+      _getSubject(menuKey, context).add(updatedMenu);
+      _logger.success('Products order updated for category $categoryId in $menuKey', context);
+      _logMenuDetails(menuKey, updatedMenu, context);
     } else {
-
-      _logger.warning('Failed to update products order: Category $categoryId not found in menu $menuKey');
+      _logger.warning('Failed to update products order: Category $categoryId not found in menu $menuKey', context);
     }
   }
 
 
   @override
-  Future<void> deleteProduct(String menuKey, String categoryId, String productId) async {
-    final menu = _getOrCreateMenu(menuKey);
+  Future<void> deleteProduct(String menuKey, String categoryId, String productId, [LogContext? context]) async {
+    final menu = _getOrCreateMenu(menuKey, context);
     final categories = List<Category>.from(menu.categories);
     
     final catIndex = categories.indexWhere((c) => c.id == categoryId);
@@ -176,12 +171,11 @@ class FakeMenuRepository implements MenuRepository {
       categories[catIndex] = category.copyWith(items: items);
       final updatedMenu = menu.copyWith(categories: categories);
       _menuCache[menuKey] = updatedMenu;
-      _getSubject(menuKey).add(updatedMenu);
-      _logger.warning('Product $productId deleted from category $categoryId in $menuKey');
-      _logMenuDetails(menuKey, updatedMenu);
+      _getSubject(menuKey, context).add(updatedMenu);
+      _logger.warning('Product $productId deleted from category $categoryId in $menuKey', context);
+      _logMenuDetails(menuKey, updatedMenu, context);
     } else {
-
-      _logger.warning('Failed to delete product: Category $categoryId not found in menu $menuKey');
+      _logger.warning('Failed to delete product: Category $categoryId not found in menu $menuKey', context);
     }
   }
 

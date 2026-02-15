@@ -1,3 +1,4 @@
+import '../../../../utils/app_logger.dart';
 import '../../domain/entities/restaurant.dart';
 
 class RestaurantDto {
@@ -25,13 +26,15 @@ class RestaurantDto {
     );
   }
 
-  Restaurant toDomain() {
+  Restaurant toDomain([LogContext? context]) {
     return Restaurant(
       id: id,
       menuKey: menuKey,
       restaurantName: restaurantName,
       openHour: openHour,
       closeHour: closeHour,
+      context: context,
     );
   }
 }
+

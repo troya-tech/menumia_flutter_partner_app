@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:menumia_flutter_partner_app/app/providers/providers.dart';
+import 'package:menumia_flutter_partner_app/utils/app_logger.dart';
 
 /// Login page with Google authentication
 ///
@@ -13,11 +14,14 @@ class LoginPage extends ConsumerStatefulWidget {
 }
 
 class _LoginPageState extends ConsumerState<LoginPage> {
+  static final _logger = AppLogger('LoginPage');
   bool _loading = false;
   String? _error;
 
   /// Handle Google Login
   Future<void> _signInWithGoogle() async {
+    final logCtx = _logger.createContext();
+    _logger.info('Attempting Google Sign-In', logCtx);
     setState(() {
       _loading = true;
       _error = null;
@@ -26,10 +30,13 @@ class _LoginPageState extends ConsumerState<LoginPage> {
     try {
       final authService = ref.read(authServiceProvider);
       await authService.signInWithGoogle();
+      _logger.success('Google Sign-In service call completed', logCtx);
       // Navigation is handled automatically by AuthGate
-    } catch (e) {
+    } catch (e, stack) {
+      _logger.error('Google Sign-In failed', e, stack, logCtx);
       setState(() => _error = e.toString());
     } finally {
+
       if (mounted) {
         setState(() => _loading = false);
       }

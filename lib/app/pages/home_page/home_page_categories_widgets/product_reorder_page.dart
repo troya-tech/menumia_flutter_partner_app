@@ -3,8 +3,10 @@ import 'package:menumia_flutter_partner_app/app/theme/app_colors.dart';
 import 'package:menumia_flutter_partner_app/features/menu/domain/entities/category.dart';
 import 'package:menumia_flutter_partner_app/features/menu/domain/entities/product.dart';
 import 'package:menumia_flutter_partner_app/features/menu/application/services/menu_service.dart';
+import 'package:menumia_flutter_partner_app/utils/app_logger.dart';
 
 class ProductReorderPage extends StatefulWidget {
+
   final Category category;
   final MenuService menuService;
   final String menuKey;
@@ -21,12 +23,15 @@ class ProductReorderPage extends StatefulWidget {
 }
 
 class _ProductReorderPageState extends State<ProductReorderPage> {
+  static final _logger = AppLogger('ProductReorderPage');
   late List<Product> _localProducts;
   bool _isSaving = false;
 
   @override
   void initState() {
     super.initState();
+    final logCtx = _logger.createContext();
+    _logger.debug('Initializing ProductReorderPage for category: ${widget.category.name}', logCtx);
     _localProducts = List.from(widget.category.items);
   }
 
@@ -49,10 +54,13 @@ class _ProductReorderPageState extends State<ProductReorderPage> {
       }
       
       if (updatedProducts.isNotEmpty) {
+        final logCtx = _logger.createContext();
+        _logger.info('Saving new product order for category ${widget.category.id} in menu ${widget.menuKey}', logCtx);
         await widget.menuService.updateProductsOrder(
           widget.menuKey,
           widget.category.id,
           updatedProducts,
+          logCtx,
         );
       }
       
@@ -65,7 +73,8 @@ class _ProductReorderPageState extends State<ProductReorderPage> {
           ),
         );
       }
-    } catch (e) {
+    } catch (e, stack) {
+      _logger.error('Failed to save product order', e, stack);
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text('Hata: $e'), backgroundColor: AppColors.error),

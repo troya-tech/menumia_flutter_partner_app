@@ -1,7 +1,9 @@
+import '../../../../utils/app_logger.dart';
 import '../../domain/entities/menu.dart';
 import 'category_dto.dart';
 
 class MenuDto {
+// ... existing properties and fromJson ...
   final String menuKey;
   final List<CategoryDto> categories;
 
@@ -40,10 +42,12 @@ class MenuDto {
     );
   }
 
-  Menu toDomain() {
+  Menu toDomain([LogContext? context]) {
     return Menu(
       menuKey: menuKey,
       categories: categories.map((e) => e.toDomain()).toList(),
+      context: context,
     );
   }
 }
+

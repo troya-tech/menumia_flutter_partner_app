@@ -5,6 +5,7 @@ import 'package:menumia_flutter_partner_app/app/pages/home_page/home_page_catego
 import '../orders_page.dart';
 import '../profile_page.dart';
 import '../../providers/providers.dart';
+import 'package:menumia_flutter_partner_app/utils/app_logger.dart';
 
 /// Home page for Menumia Partner App
 class HomePage extends ConsumerStatefulWidget {
@@ -17,20 +18,28 @@ class HomePage extends ConsumerStatefulWidget {
 enum AppTab { categories, orders, profile }
 
 class _HomePageState extends ConsumerState<HomePage> {
+  static final _logger = AppLogger('HomePage');
   AppTab _selectedTab = AppTab.categories;
 
   @override
   void initState() {
     super.initState();
+    final logCtx = _logger.createContext();
+    _logger.info('Initializing HomePage', logCtx);
     // Initialize global restaurant context
     ref.read(restaurantContextServiceProvider).init();
   }
 
+
   void _onItemTapped(int index, List<AppTab> currentTabs) {
+    final newTab = currentTabs[index];
+    final logCtx = _logger.createContext();
+    _logger.debug('Tab changed: ${_selectedTab.name} -> ${newTab.name}', logCtx);
     setState(() {
-      _selectedTab = currentTabs[index];
+      _selectedTab = newTab;
     });
   }
+
 
   @override
   Widget build(BuildContext context) {

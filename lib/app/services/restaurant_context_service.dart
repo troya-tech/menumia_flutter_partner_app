@@ -52,10 +52,12 @@ class RestaurantContextService {
       } else {
         final email = authUser.email;
         if (email != null) {
-          _userSub = _userService.watchUserByEmail(email).listen((user) {
+          final logCtx = _logger.createContext();
+          _logger.info('User signed in: $email. Starting trace.', logCtx);
+          _userSub = _userService.watchUserByEmail(email, logCtx).listen((user) {
             _currentUserController.add(user);
             if (user != null) {
-              _syncRestaurants(user.relatedRestaurantsIds);
+              _syncRestaurants(user.relatedRestaurantsIds, logCtx);
             }
           });
         }
@@ -63,15 +65,15 @@ class RestaurantContextService {
     });
   }
 
-  void _syncRestaurants(List<String> restaurantIds) {
+  void _syncRestaurants(List<String> restaurantIds, [LogContext? context]) {
     _restaurantsSub?.cancel();
-    _restaurantsSub = _restaurantService.watchRestaurantsByIds(restaurantIds).listen((restaurants) {
+    _restaurantsSub = _restaurantService.watchRestaurantsByIds(restaurantIds, context).listen((restaurants) {
       _relatedRestaurantsController.add(restaurants);
       
       // Update active restaurant if needed
       final currentActiveId = _activeRestaurantIdController.value;
       if (currentActiveId == null && restaurants.isNotEmpty) {
-        setActiveRestaurant(restaurants.first.id);
+        setActiveRestaurant(restaurants.first.id, context);
       } else if (currentActiveId != null) {
         // Update menu key if restaurant data changed
         final r = restaurants.firstWhereOrNull((r) => r.id == currentActiveId);
@@ -103,14 +105,14 @@ class RestaurantContextService {
     );
   }
 
-  void setActiveRestaurant(String restaurantId) {
+  void setActiveRestaurant(String restaurantId, [LogContext? context]) {
     if (_activeRestaurantIdController.value == restaurantId) return;
 
     final restaurant = _relatedRestaurantsController.value.firstWhereOrNull((r) => r.id == restaurantId);
     if (restaurant != null) {
       _activeRestaurantIdController.add(restaurantId);
       _activeMenuKeyController.add(restaurant.menuKey);
-      _logger.info('Set active restaurant: ${restaurant.restaurantName}');
+      _logger.info('Set active restaurant: ${restaurant.restaurantName}', context);
     }
   }
 

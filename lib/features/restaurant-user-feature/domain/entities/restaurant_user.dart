@@ -1,3 +1,5 @@
+import '../../../../utils/app_logger.dart';
+
 class RestaurantUser {
   final String id;
   final String email;
@@ -7,6 +9,7 @@ class RestaurantUser {
   final DateTime createdAt;
   final DateTime updatedAt;
   final bool isActive;
+  final LogContext? context;
 
   const RestaurantUser({
     required this.id,
@@ -17,6 +20,7 @@ class RestaurantUser {
     required this.createdAt,
     required this.updatedAt,
     required this.isActive,
+    this.context,
   });
 
   factory RestaurantUser.empty() {
@@ -39,6 +43,7 @@ class RestaurantUser {
     DateTime? createdAt,
     DateTime? updatedAt,
     bool? isActive,
+    LogContext? context,
   }) {
     return RestaurantUser(
       id: id ?? this.id,
@@ -49,6 +54,8 @@ class RestaurantUser {
       createdAt: createdAt ?? this.createdAt,
       updatedAt: updatedAt ?? this.updatedAt,
       isActive: isActive ?? this.isActive,
+      context: context ?? this.context,
     );
   }
 }
+

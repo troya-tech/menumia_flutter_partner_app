@@ -1,3 +1,4 @@
+import '../../../../utils/app_logger.dart';
 import 'package:menumia_flutter_partner_app/features/restaurant-user-feature/domain/entities/restaurant_user.dart';
 
 class RestaurantUserDto {
@@ -47,7 +48,7 @@ class RestaurantUserDto {
     );
   }
 
-  RestaurantUser toDomain() {
+  RestaurantUser toDomain([LogContext? context]) {
     return RestaurantUser(
       id: id,
       email: email,
@@ -61,6 +62,7 @@ class RestaurantUserDto {
           ? DateTime.tryParse(updatedAt!) ?? DateTime.now() 
           : DateTime.now(),
       isActive: isActive ?? false,
+      context: context,
     );
   }
   

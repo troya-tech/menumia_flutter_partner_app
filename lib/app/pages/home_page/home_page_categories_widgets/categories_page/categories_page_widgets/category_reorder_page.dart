@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:menumia_flutter_partner_app/app/theme/app_colors.dart';
 import 'package:menumia_flutter_partner_app/features/menu/domain/entities/category.dart';
 import 'package:menumia_flutter_partner_app/features/menu/application/services/menu_service.dart';
+import 'package:menumia_flutter_partner_app/utils/app_logger.dart';
 
 class CategoryReorderPage extends StatefulWidget {
+
   final List<Category> categories;
   final MenuService menuService;
   final String menuKey;
@@ -20,12 +22,15 @@ class CategoryReorderPage extends StatefulWidget {
 }
 
 class _CategoryReorderPageState extends State<CategoryReorderPage> {
+  static final _logger = AppLogger('CategoryReorderPage');
   late List<Category> _localCategories;
   bool _isSaving = false;
 
   @override
   void initState() {
     super.initState();
+    final logCtx = _logger.createContext();
+    _logger.debug('Initializing CategoryReorderPage with ${widget.categories.length} categories', logCtx);
     _localCategories = List.from(widget.categories);
   }
 
@@ -48,9 +53,12 @@ class _CategoryReorderPageState extends State<CategoryReorderPage> {
       }
       
       if (updatedCategories.isNotEmpty) {
+        final logCtx = _logger.createContext();
+        _logger.info('Saving new category order for menu ${widget.menuKey}', logCtx);
         await widget.menuService.updateCategoriesOrder(
           widget.menuKey,
           updatedCategories,
+          logCtx,
         );
       }
       
@@ -63,7 +71,8 @@ class _CategoryReorderPageState extends State<CategoryReorderPage> {
           ),
         );
       }
-    } catch (e) {
+    } catch (e, stack) {
+      _logger.error('Failed to save category order', e, stack);
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text('Hata: $e'), backgroundColor: AppColors.error),

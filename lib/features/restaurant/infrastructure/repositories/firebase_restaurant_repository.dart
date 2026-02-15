@@ -14,24 +14,25 @@ class FirebaseRestaurantRepository implements RestaurantRepository {
       : _database = database ?? FirebaseDatabase.instance;
 
   @override
-  Future<Restaurant?> getRestaurantById(String id) async {
+  Future<Restaurant?> getRestaurantById(String id, [LogContext? context]) async {
     try {
       final snapshot = await _database.ref('restaurants/$id').get();
       if (snapshot.exists && snapshot.value != null) {
         final jsonMap = jsonDecode(jsonEncode(snapshot.value)) as Map<String, dynamic>;
-        return RestaurantDto.fromJson(jsonMap, id).toDomain();
+        return RestaurantDto.fromJson(jsonMap, id).toDomain(context);
       }
+
     } catch (e, stack) {
-      _logger.error('Error fetching restaurant $id', e, stack);
+      _logger.error('Error fetching restaurant $id', e, stack, context);
     }
     return null;
   }
 
   @override
-  Future<List<Restaurant>> getRestaurantsByIds(List<String> ids) async {
+  Future<List<Restaurant>> getRestaurantsByIds(List<String> ids, [LogContext? context]) async {
     final List<Restaurant> restaurants = [];
     for (var id in ids) {
-      final restaurant = await getRestaurantById(id);
+      final restaurant = await getRestaurantById(id, context);
       if (restaurant != null) {
         restaurants.add(restaurant);
       }
@@ -40,25 +41,26 @@ class FirebaseRestaurantRepository implements RestaurantRepository {
   }
 
   @override
-  Stream<Restaurant?> watchRestaurant(String id) {
+  Stream<Restaurant?> watchRestaurant(String id, [LogContext? context]) {
     return _database.ref('restaurants/$id').onValue.map((event) {
       final snapshot = event.snapshot;
       if (!snapshot.exists || snapshot.value == null) return null;
       try {
         final jsonMap = jsonDecode(jsonEncode(snapshot.value)) as Map<String, dynamic>;
-        return RestaurantDto.fromJson(jsonMap, id).toDomain();
+        return RestaurantDto.fromJson(jsonMap, id).toDomain(context);
       } catch (e) {
-        _logger.error('Error parsing restaurant $id from stream', e);
+
+        _logger.error('Error parsing restaurant $id from stream', e, null, context);
         return null;
       }
     });
   }
 
   @override
-  Stream<List<Restaurant>> watchRestaurantsByIds(List<String> ids) {
+  Stream<List<Restaurant>> watchRestaurantsByIds(List<String> ids, [LogContext? context]) {
     // This combines multiple streams into one.
     // If any restaurant updates, the entire list emits.
-    final streams = ids.map((id) => watchRestaurant(id)).toList();
+    final streams = ids.map((id) => watchRestaurant(id, context)).toList();
     
     // Use Rx.combineLatestList (need rxdart)
     // Actually, simple StreamGroup or rxdart's CombineLatestStream

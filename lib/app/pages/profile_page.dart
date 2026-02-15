@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:menumia_flutter_partner_app/app/providers/providers.dart';
 import 'package:menumia_flutter_partner_app/app/routing/app_routes.dart';
-import 'package:menumia_flutter_partner_app/app/services/profile_page_facade.dart';
 import 'package:menumia_flutter_partner_app/features/restaurant/domain/entities/restaurant.dart';
+
 import 'package:menumia_flutter_partner_app/utils/app_logger.dart';
 
 /// Profile page for user account management
@@ -20,12 +20,18 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
   @override
   void initState() {
     super.initState();
+    final logCtx = _logger.createContext();
+    _logger.info('Initializing ProfilePage', logCtx);
     // Initialization handled by HomePage
   }
 
+
   @override
   Widget build(BuildContext context) {
+    final logCtx = _logger.createContext();
+    _logger.debug('Building ProfilePage', logCtx);
     final userAsync = ref.watch(currentUserProvider);
+
     final facade = ref.watch(profilePageFacadeProvider);
 
     return Scaffold(
@@ -168,6 +174,8 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
           ),
           ElevatedButton(
             onPressed: () async {
+              final logCtx = _logger.createContext();
+              _logger.info('User confirmed logout', logCtx);
               Navigator.pop(context);
               try {
                 await ref.read(authServiceProvider).signOut();
@@ -177,10 +185,11 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                     (route) => false,
                   );
                 }
-              } catch (e) {
-                _logger.error('Logout failed', e);
+              } catch (e, stack) {
+                _logger.error('Logout failed', e, stack, logCtx);
               }
             },
+
             style: ElevatedButton.styleFrom(
               backgroundColor: Theme.of(context).colorScheme.error,
             ),
@@ -193,6 +202,8 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
 }
 
 class _RestaurantSelectionCard extends ConsumerWidget {
+  static final _logger = AppLogger('RestaurantSelectionCard');
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final restaurantsAsync = ref.watch(relatedRestaurantsProvider);
@@ -255,9 +266,12 @@ class _RestaurantSelectionCard extends ConsumerWidget {
                 ),
                 trailing: isActive ? const Icon(Icons.check, color: Colors.green) : null,
                 onTap: () {
-                  ref.read(restaurantContextServiceProvider).setActiveRestaurant(restaurant.id);
+                  final logCtx = _logger.createContext();
+                  _logger.info('Switching to restaurant: ${restaurant.restaurantName}', logCtx);
+                  ref.read(restaurantContextServiceProvider).setActiveRestaurant(restaurant.id, logCtx);
                   Navigator.pop(context);
                 },
+
               );
             },
           ),

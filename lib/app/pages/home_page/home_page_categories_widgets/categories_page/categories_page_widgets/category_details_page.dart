@@ -35,8 +35,11 @@ class _CategoryDetailsPageState extends State<CategoryDetailsPage> {
   @override
   void initState() {
     super.initState();
-    _menuStream = widget.menuService.watchMenu(widget.menuKey);
+    final logCtx = _logger.createContext();
+    _logger.debug('Initializing CategoryDetailsPage stream for ${widget.initialCategory.name}', logCtx);
+    _menuStream = widget.menuService.watchMenu(widget.menuKey, logCtx);
   }
+
 
   // Helper to find the current version of the category from the stream
   Category _getCurrentCategory(Menu menu) {
@@ -47,17 +50,19 @@ class _CategoryDetailsPageState extends State<CategoryDetailsPage> {
   }
 
   Future<void> _editCategoryName(BuildContext context, Category category) async {
-    _logger.debug('Opening EditCategoryNameDialog for: ${category.name}');
+    final logCtx = _logger.createContext();
+    _logger.debug('Opening EditCategoryNameDialog for: ${category.name}', logCtx);
     await showDialog(
       context: context,
       builder: (context) {
         return EditCategoryNameDialog(
           category: category, 
           onSave: (newName) {
-            _logger.info('Saving new category name: $newName (ID: ${category.id})');
+            _logger.info('Saving new category name: $newName (ID: ${category.id})', logCtx);
              widget.menuService.updateCategory(
               widget.menuKey, 
               category.copyWith(name: newName),
+              logCtx,
             );
           },
         );
@@ -67,14 +72,15 @@ class _CategoryDetailsPageState extends State<CategoryDetailsPage> {
 
 
   Future<void> _createNewMenuItem(BuildContext context, Category category) async {
-    _logger.debug('Opening AddProductDialog for category: ${category.name}');
+    final logCtx = _logger.createContext();
+    _logger.debug('Opening AddProductDialog for category: ${category.name}', logCtx);
     await showDialog(
       context: context,
       builder: (context) {
         return AddProductDialog(
           category: category, 
           onSave: (name, price, description) {
-            _logger.info('Saving new product: $name in category: ${category.name}');
+            _logger.info('Saving new product: $name in category: ${category.name}', logCtx);
             final newProduct = Product(
               id: 'product_${DateTime.now().millisecondsSinceEpoch}',
               name: name,
@@ -87,7 +93,8 @@ class _CategoryDetailsPageState extends State<CategoryDetailsPage> {
             widget.menuService.updateProduct(
               widget.menuKey, 
               category.id, 
-              newProduct
+              newProduct,
+              logCtx,
             );
           },
         );
@@ -97,14 +104,15 @@ class _CategoryDetailsPageState extends State<CategoryDetailsPage> {
 
 
   Future<void> _editMenuItem(BuildContext context, Category category, Product product) async {
-    _logger.debug('Opening EditProductDialog for product: ${product.name}');
+    final logCtx = _logger.createContext();
+    _logger.debug('Opening EditProductDialog for product: ${product.name}', logCtx);
     await showDialog(
       context: context,
       builder: (context) {
         return EditProductDialog(
           product: product, 
           onSave: (name, price, description) {
-            _logger.info('Updating product: $name (ID: ${product.id})');
+            _logger.info('Updating product: $name (ID: ${product.id})', logCtx);
             final updatedProduct = product.copyWith(
               name: name,
               description: description,
@@ -114,7 +122,8 @@ class _CategoryDetailsPageState extends State<CategoryDetailsPage> {
             widget.menuService.updateProduct(
               widget.menuKey, 
               category.id, 
-              updatedProduct
+              updatedProduct,
+              logCtx,
             );
           },
         );

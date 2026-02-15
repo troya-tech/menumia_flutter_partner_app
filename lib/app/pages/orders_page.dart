@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../theme/app_colors.dart';
+import 'package:menumia_flutter_partner_app/utils/app_logger.dart';
 
 /// Orders page for managing restaurant orders
 /// Displays active, pending, and completed orders
@@ -11,12 +12,23 @@ class OrdersPage extends StatefulWidget {
 }
 
 class _OrdersPageState extends State<OrdersPage> with SingleTickerProviderStateMixin {
+  static final _logger = AppLogger('OrdersPage');
   late TabController _tabController;
 
   @override
   void initState() {
     super.initState();
+    final logCtx = _logger.createContext();
+    _logger.info('Initializing OrdersPage', logCtx);
     _tabController = TabController(length: 3, vsync: this);
+
+    _tabController.addListener(() {
+      if (!_tabController.indexIsChanging) {
+        final logCtx = _logger.createContext();
+        _logger.debug('Tab changed to: ${_tabController.index}', logCtx);
+      }
+    });
+
   }
 
   @override

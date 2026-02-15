@@ -15,35 +15,39 @@ class FakeRestaurantRepository implements RestaurantRepository {
   static final _storeController = BehaviorSubject<Map<String, Restaurant>>.seeded(_cache);
 
   @override
-  Future<Restaurant?> getRestaurantById(String id) async {
-    _logger.debug('Getting restaurant by ID: $id');
+  Future<Restaurant?> getRestaurantById(String id, [LogContext? context]) async {
+    _logger.debug('Getting restaurant by ID: $id', context);
     await Future.delayed(const Duration(milliseconds: 100));
-    return _storeController.value[id];
+    return _storeController.value[id]?.copyWith(context: context);
   }
 
 
+
   @override
-  Future<List<Restaurant>> getRestaurantsByIds(List<String> ids) async {
-    _logger.debug('Getting restaurants by IDs: $ids');
+  Future<List<Restaurant>> getRestaurantsByIds(List<String> ids, [LogContext? context]) async {
+    _logger.debug('Getting restaurants by IDs: $ids', context);
     await Future.delayed(const Duration(milliseconds: 100));
     final store = _storeController.value;
-    return ids.map((id) => store[id]).whereType<Restaurant>().toList();
+    return ids.map((id) => store[id]?.copyWith(context: context)).whereType<Restaurant>().toList();
   }
 
 
+
   @override
-  Stream<Restaurant?> watchRestaurant(String id) {
-    _logger.debug('Watching restaurant: $id');
-    return _storeController.stream.map((store) => store[id]);
+  Stream<Restaurant?> watchRestaurant(String id, [LogContext? context]) {
+    _logger.debug('Watching restaurant: $id', context);
+    return _storeController.stream.map((store) => store[id]?.copyWith(context: context));
   }
 
 
+
   @override
-  Stream<List<Restaurant>> watchRestaurantsByIds(List<String> ids) {
-    _logger.debug('Watching restaurants by IDs: $ids');
+  Stream<List<Restaurant>> watchRestaurantsByIds(List<String> ids, [LogContext? context]) {
+    _logger.debug('Watching restaurants by IDs: $ids', context);
     return _storeController.stream.map((store) {
-      return ids.map((id) => store[id]).whereType<Restaurant>().toList();
+      return ids.map((id) => store[id]?.copyWith(context: context)).whereType<Restaurant>().toList();
     });
   }
+
 
 }

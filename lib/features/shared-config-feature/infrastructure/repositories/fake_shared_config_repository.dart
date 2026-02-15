@@ -10,8 +10,9 @@ class FakeSharedConfigRepository implements SharedConfigRepository {
 
   static final Map<String, BehaviorSubject<SharedConfig>> _subjects = {};
 
-  BehaviorSubject<SharedConfig> _getSubject(String menuKey) {
-    _logger.debug('Getting subject for menuKey: $menuKey');
+  BehaviorSubject<SharedConfig> _getSubject(String menuKey, [LogContext? context]) {
+    _logger.debug('Getting subject for menuKey: $menuKey', context);
+
     if (!_subjects.containsKey(menuKey)) {
       SharedConfig initial;
       try {
@@ -22,7 +23,8 @@ class FakeSharedConfigRepository implements SharedConfigRepository {
         else if (menuKey == 'key_fake') initial = SharedConfigFixtures.fake;
         else initial = SharedConfigFixtures.fake;
       } catch (e) {
-        _logger.error('Error getting shared config for $menuKey', e);
+        _logger.error('Error getting shared config for $menuKey', e, null, context);
+
         initial = SharedConfig.empty();
       }
       _subjects[menuKey] = BehaviorSubject<SharedConfig>.seeded(initial);
@@ -32,9 +34,9 @@ class FakeSharedConfigRepository implements SharedConfigRepository {
 
 
   @override
-  Stream<SharedConfig> watchSharedConfig(String menuKey) {
-    _logger.debug('Watching shared config for menu: $menuKey');
-    return _getSubject(menuKey).stream;
+  Stream<SharedConfig> watchSharedConfig(String menuKey, [LogContext? context]) {
+    _logger.debug('Watching shared config for menu: $menuKey', context);
+    return _getSubject(menuKey, context).stream;
   }
 
 }

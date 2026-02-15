@@ -15,6 +15,8 @@ import '../../features/shared-config-feature/application/shared_config_providers
 export '../../features/shared-config-feature/application/shared_config_providers.dart';
 export '../../features/menu/application/menu_providers.dart';
 import '../services/profile_page_facade.dart';
+import '../../utils/app_logger.dart';
+
 
 
 /// Note: menuServiceProvider and menuProvider are now imported from menu_providers.dart
@@ -55,10 +57,15 @@ final orderingEnabledProvider = StreamProvider<bool>((ref) {
   final menuKey = ref.watch(activeMenuKeyProvider).valueOrNull;
   if (menuKey == null) return Stream.value(false);
   
+  final logger = AppLogger('orderingEnabledProvider');
+  final logCtx = logger.createContext();
+  logger.debug('Watching shared config for menuKey: $menuKey', logCtx);
+
   return ref.watch(sharedConfigServiceProvider)
-      .watchSharedConfig(menuKey)
+      .watchSharedConfig(menuKey, logCtx)
       .map((config) => config.planTiersPlanner.orderingEnabled);
 });
+
 
 /// Provider for ProfilePageFacade
 final profilePageFacadeProvider = Provider<ProfilePageFacade>((ref) {
