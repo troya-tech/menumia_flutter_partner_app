@@ -33,9 +33,12 @@ import 'package:menumia_flutter_partner_app/features/restaurant-user-feature/dom
 // ─── Testable Auth Repository ────────────────────────────────────────────────
 
 /// Extends FakeAuthRepository to allow configurable error behavior for tests.
-/// - By default, signInWithGoogle works normally (delegates to super).
+/// - By default, signInWithGoogle works synchronously (no Future.delayed).
 /// - Set [signInError] to make signInWithGoogle throw that exception.
 /// - Set [onSignIn] to inject custom sign-in behavior (e.g. emit a specific user).
+///
+/// Unlike [FakeAuthRepository], this skips artificial delays so widget tests
+/// don't fail with "Timer is still pending" under FakeAsync.
 class TestableAuthRepository extends FakeAuthRepository {
   Exception? signInError;
   Future<AuthUser> Function()? onSignIn;
@@ -50,7 +53,15 @@ class TestableAuthRepository extends FakeAuthRepository {
     if (onSignIn != null) {
       return onSignIn!();
     }
-    return super.signInWithGoogle();
+    // Default: emit testUser immediately (no Future.delayed)
+    emitUser(AuthFixtures.testUser);
+    return AuthFixtures.testUser;
+  }
+
+  @override
+  Future<void> signOut() async {
+    // Immediate sign-out (no Future.delayed)
+    emitUser(null);
   }
 }
 
@@ -116,6 +127,17 @@ Widget buildTestApp({
   );
 }
 
+// ─── Test Helpers ────────────────────────────────────────────────────────────
+
+/// Helper to settle the widget tree while flushing pending timers.
+/// RestaurantContextService.init() has a 5-second timeout that blocks
+/// pumpAndSettle() in widget tests. This pumps past it.
+Future<void> pumpAndFlush(WidgetTester tester) async {
+  await tester.pump();                                    // Initial frame
+  await tester.pump(const Duration(seconds: 6));          // Flush the 5s timeout
+  await tester.pump();                                    // Settle remaining frames
+}
+
 // ─── Tests ───────────────────────────────────────────────────────────────────
 
 void main() {
@@ -158,7 +180,7 @@ void main() {
       profileFacade: profileFacade,
       sharedConfigService: sharedConfigService,
     ));
-    await tester.pumpAndSettle();
+    await pumpAndFlush(tester);
 
     // Verify: LoginPage is visible
     expect(find.byType(LoginPage), findsOneWidget);
@@ -180,7 +202,7 @@ void main() {
       profileFacade: profileFacade,
       sharedConfigService: sharedConfigService,
     ));
-    await tester.pumpAndSettle();
+    await pumpAndFlush(tester);
 
     // Verify: HomePage is visible with bottom navigation
     expect(find.byType(HomePage), findsOneWidget);
@@ -201,11 +223,11 @@ void main() {
       profileFacade: profileFacade,
       sharedConfigService: sharedConfigService,
     ));
-    await tester.pumpAndSettle();
+    await pumpAndFlush(tester);
 
     // Tap the "Login with Google" button
     await tester.tap(find.text('Login with Google'));
-    await tester.pumpAndSettle();
+    await pumpAndFlush(tester);
 
     // Verify: FakeAuthRepository signs in → user is now authenticated
     expect(fakeAuth.currentUser, isNotNull);
@@ -227,11 +249,11 @@ void main() {
       profileFacade: profileFacade,
       sharedConfigService: sharedConfigService,
     ));
-    await tester.pumpAndSettle();
+    await pumpAndFlush(tester);
 
     // Tap the "Login with Google" button
     await tester.tap(find.text('Login with Google'));
-    await tester.pumpAndSettle();
+    await pumpAndFlush(tester);
 
     // Verify: Error message is displayed in the UI
     expect(find.text(networkErrorMessage), findsOneWidget);
@@ -256,14 +278,14 @@ void main() {
       profileFacade: profileFacade,
       sharedConfigService: sharedConfigService,
     ));
-    await tester.pumpAndSettle();
+    await pumpAndFlush(tester);
 
     // Verify: starts on LoginPage
     expect(find.byType(LoginPage), findsOneWidget);
 
     // Tap login
     await tester.tap(find.text('Login with Google'));
-    await tester.pumpAndSettle();
+    await pumpAndFlush(tester);
 
     // Verify: navigated to HomePage
     expect(find.byType(HomePage), findsOneWidget);
@@ -286,11 +308,11 @@ void main() {
       profileFacade: profileFacade,
       sharedConfigService: sharedConfigService,
     ));
-    await tester.pumpAndSettle();
+    await pumpAndFlush(tester);
 
     // Tap login
     await tester.tap(find.text('Login with Google'));
-    await tester.pumpAndSettle();
+    await pumpAndFlush(tester);
 
     // Verify: error is shown, still on LoginPage
     expect(find.byType(LoginPage), findsOneWidget);
@@ -314,11 +336,11 @@ void main() {
       profileFacade: profileFacade,
       sharedConfigService: sharedConfigService,
     ));
-    await tester.pumpAndSettle();
+    await pumpAndFlush(tester);
 
     // Tap login
     await tester.tap(find.text('Login with Google'));
-    await tester.pumpAndSettle();
+    await pumpAndFlush(tester);
 
     // Verify: network error is shown
     expect(find.byType(LoginPage), findsOneWidget);
@@ -341,14 +363,14 @@ void main() {
       profileFacade: profileFacade,
       sharedConfigService: sharedConfigService,
     ));
-    await tester.pumpAndSettle();
+    await pumpAndFlush(tester);
 
     // Verify: on HomePage
     expect(find.byType(HomePage), findsOneWidget);
 
     // Tap "Profil" tab in bottom navigation
     await tester.tap(find.text('Profil'));
-    await tester.pumpAndSettle();
+    await pumpAndFlush(tester);
 
     // Verify: ProfilePage is visible
     expect(find.byType(ProfilePage), findsOneWidget);
@@ -370,31 +392,31 @@ void main() {
       sharedConfigService: sharedConfigService,
       currentUserStream: Stream.value(fakeRestaurantUser),
     ));
-    await tester.pumpAndSettle();
+    await pumpAndFlush(tester);
 
     // Verify: on HomePage
     expect(find.byType(HomePage), findsOneWidget);
 
     // Navigate to Profile tab
     await tester.tap(find.text('Profil'));
-    await tester.pumpAndSettle();
+    await pumpAndFlush(tester);
     expect(find.byType(ProfilePage), findsOneWidget);
 
     // Scroll the Logout button into view (it's below the fold on ProfilePage)
     final logoutButton = find.text('Logout');
     await tester.ensureVisible(logoutButton);
-    await tester.pumpAndSettle();
+    await pumpAndFlush(tester);
 
     // Tap Logout button (the OutlinedButton in ProfilePage)
     await tester.tap(logoutButton);
-    await tester.pumpAndSettle();
+    await pumpAndFlush(tester);
 
     // Verify: confirmation dialog appears
     expect(find.text('Are you sure you want to logout?'), findsOneWidget);
 
     // Tap confirm "Logout" button in the dialog (ElevatedButton)
     await tester.tap(find.widgetWithText(ElevatedButton, 'Logout'));
-    await tester.pumpAndSettle();
+    await pumpAndFlush(tester);
 
     // Verify: user is signed out
     expect(fakeAuth.currentUser, isNull);
@@ -425,30 +447,30 @@ void main() {
       sharedConfigService: sharedConfigService,
       currentUserStream: Stream.value(fakeRestaurantUser),
     ));
-    await tester.pumpAndSettle();
+    await pumpAndFlush(tester);
 
     // ── Phase 1: Logout ──
     // Navigate to Profile tab
     await tester.tap(find.text('Profil'));
-    await tester.pumpAndSettle();
+    await pumpAndFlush(tester);
 
     // Scroll Logout button into view and tap
     final logoutBtn = find.text('Logout');
     await tester.ensureVisible(logoutBtn);
-    await tester.pumpAndSettle();
+    await pumpAndFlush(tester);
     await tester.tap(logoutBtn);
-    await tester.pumpAndSettle();
+    await pumpAndFlush(tester);
 
     // Confirm logout
     await tester.tap(find.widgetWithText(ElevatedButton, 'Logout'));
-    await tester.pumpAndSettle();
+    await pumpAndFlush(tester);
 
     // Verify: on LoginPage
     expect(find.byType(LoginPage), findsOneWidget);
 
     // ── Phase 2: Re-login with same account ──
     await tester.tap(find.text('Login with Google'));
-    await tester.pumpAndSettle();
+    await pumpAndFlush(tester);
 
     // Verify: back on HomePage
     expect(find.byType(HomePage), findsOneWidget);
@@ -476,30 +498,30 @@ void main() {
       sharedConfigService: sharedConfigService,
       currentUserStream: Stream.value(fakeRestaurantUser),
     ));
-    await tester.pumpAndSettle();
+    await pumpAndFlush(tester);
 
     // ── Phase 1: Logout ──
     // Navigate to Profile tab
     await tester.tap(find.text('Profil'));
-    await tester.pumpAndSettle();
+    await pumpAndFlush(tester);
 
     // Scroll Logout button into view and tap
     final logoutBtn = find.text('Logout');
     await tester.ensureVisible(logoutBtn);
-    await tester.pumpAndSettle();
+    await pumpAndFlush(tester);
     await tester.tap(logoutBtn);
-    await tester.pumpAndSettle();
+    await pumpAndFlush(tester);
 
     // Confirm logout
     await tester.tap(find.widgetWithText(ElevatedButton, 'Logout'));
-    await tester.pumpAndSettle();
+    await pumpAndFlush(tester);
 
     // Verify: on LoginPage
     expect(find.byType(LoginPage), findsOneWidget);
 
     // ── Phase 2: Re-login with different account ──
     await tester.tap(find.text('Login with Google'));
-    await tester.pumpAndSettle();
+    await pumpAndFlush(tester);
 
     // Verify: back on HomePage with different user
     expect(find.byType(HomePage), findsOneWidget);

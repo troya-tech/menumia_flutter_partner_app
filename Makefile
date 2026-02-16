@@ -1,4 +1,4 @@
-.PHONY: run-fake help run-uat run-prod run-prod-release build-appbundle-prod test-ui test-ui-native
+.PHONY: run-fake help run-uat run-prod run-prod-release build-appbundle-prod test-ui test-ui-device test-ui-native
 
 # Display help information
 help:
@@ -10,7 +10,8 @@ help:
 	@echo "  run-prod              Run app in Production environment (debug mode)"
 	@echo "  run-prod-release      Run app in Production environment (release mode)"
 	@echo "  build-appbundle-prod  Build Android App Bundle for Production"
-	@echo "  test-ui               Run UI integration tests in Dart"
+	@echo "  test-ui               Run UI integration tests headlessly (no device needed)"
+	@echo "  test-ui-device        Run UI integration tests on a connected device"
 	@echo "  test-ui-native        Run UI integration tests as native Android tests (Espresso)"
 	@echo "  help                  Display this help information"
 
@@ -35,8 +36,12 @@ run-prod-release:
 build-appbundle-prod:
 	flutter build appbundle --flavor prod --release --dart-define=ENV=prod
 
-# Run UI integration tests (Dart)
+# Run UI integration tests (Dart, headless — no device needed)
 test-ui:
+	flutter test test/app_test.dart
+
+# Run UI integration tests on a connected device (requires --flavor)
+test-ui-device:
 	flutter test integration_test/app_test.dart --flavor uat
 
 # Run UI integration tests (Native/Espresso)
