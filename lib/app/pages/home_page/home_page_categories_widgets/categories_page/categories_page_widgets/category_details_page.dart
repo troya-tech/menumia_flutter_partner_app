@@ -187,7 +187,7 @@ class _CategoryDetailsPageState extends State<CategoryDetailsPage> {
                       children: [
                         Icon(Icons.edit, color: AppColors.brightBlue, size: 20),
                         SizedBox(width: 12),
-                        Text('Kategori Adını Düzenle', style: TextStyle(color: AppColors.textPrimary, fontWeight: FontWeight.w500)),
+                        Flexible(child: Text('Kategori Adını Düzenle', overflow: TextOverflow.ellipsis, style: TextStyle(color: AppColors.textPrimary, fontWeight: FontWeight.w500))),
                       ],
                     ),
                   ),
@@ -197,7 +197,7 @@ class _CategoryDetailsPageState extends State<CategoryDetailsPage> {
                       children: [
                         Icon(Icons.add_circle_outline, color: AppColors.brightBlue, size: 20),
                         SizedBox(width: 12),
-                        Text('Yeni Ürün Ekle', style: TextStyle(color: AppColors.textPrimary, fontWeight: FontWeight.w500)),
+                        Flexible(child: Text('Yeni Ürün Ekle', overflow: TextOverflow.ellipsis, style: TextStyle(color: AppColors.textPrimary, fontWeight: FontWeight.w500))),
                       ],
                     ),
                   ),
@@ -207,7 +207,7 @@ class _CategoryDetailsPageState extends State<CategoryDetailsPage> {
                       children: [
                         Icon(Icons.sort, color: AppColors.brightBlue, size: 20),
                         SizedBox(width: 12),
-                        Text('Ürün Sıralaması', style: TextStyle(color: AppColors.textPrimary, fontWeight: FontWeight.w500)),
+                        Flexible(child: Text('Ürün Sıralaması', overflow: TextOverflow.ellipsis, style: TextStyle(color: AppColors.textPrimary, fontWeight: FontWeight.w500))),
                       ],
                     ),
                   ),
