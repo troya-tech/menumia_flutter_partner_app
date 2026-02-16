@@ -126,6 +126,10 @@ class _CategoryDetailsPageState extends State<CategoryDetailsPage> {
               logCtx,
             );
           },
+          onDelete: () {
+            _logger.info('Deleting product: ${product.name} (ID: ${product.id})', logCtx);
+            widget.menuService.deleteProduct(widget.menuKey, category.id, product.id, logCtx);
+          },
         );
       },
     );

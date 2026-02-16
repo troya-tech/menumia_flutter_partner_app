@@ -5,11 +5,13 @@ import 'package:menumia_flutter_partner_app/features/menu/domain/entities/produc
 class EditProductDialog extends StatefulWidget {
   final Product product;
   final Function(String name, double price, String description) onSave;
+  final VoidCallback onDelete;
 
   const EditProductDialog({
     super.key,
     required this.product,
     required this.onSave,
+    required this.onDelete,
   });
 
   @override
@@ -44,20 +46,27 @@ class _EditProductDialogState extends State<EditProductDialog> {
       shadowColor: Colors.black.withOpacity(0.2),
       surfaceTintColor: Colors.white,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
-      titlePadding: const EdgeInsets.only(top: 24, left: 24, right: 24, bottom: 8),
+      titlePadding: const EdgeInsets.only(top: 16, left: 24, right: 12, bottom: 8),
       contentPadding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
       actionsPadding: const EdgeInsets.all(20),
-      title: const Row(
+      title: Row(
         children: [
-          Icon(Icons.edit_note_rounded, color: AppColors.brightBlue, size: 28),
-          SizedBox(width: 12),
-          Text(
-            'Ürünü Düzenle',
-            style: TextStyle(
-              color: AppColors.textPrimary,
-              fontWeight: FontWeight.bold,
-              fontSize: 22,
+          const Icon(Icons.edit_note_rounded, color: AppColors.brightBlue, size: 28),
+          const SizedBox(width: 12),
+          const Expanded(
+            child: Text(
+              'Ürünü Düzenle',
+              style: TextStyle(
+                color: AppColors.textPrimary,
+                fontWeight: FontWeight.bold,
+                fontSize: 22,
+              ),
             ),
+          ),
+          IconButton(
+            onPressed: _confirmDelete,
+            icon: const Icon(Icons.delete_outline_rounded, color: AppColors.error),
+            tooltip: 'Ürünü Sil',
           ),
         ],
       ),
@@ -211,5 +220,29 @@ class _EditProductDialogState extends State<EditProductDialog> {
         ),
       );
     }
+  }
+
+  void _confirmDelete() {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Ürünü Sil'),
+        content: Text('${widget.product.name} ürününü silmek istediğinize emin misiniz?'),
+      actions: [
+        TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('İptal', style: TextStyle(color: AppColors.textSecondary)),
+          ),
+          TextButton(
+            onPressed: () {
+              Navigator.pop(context); // Close confirmation
+              Navigator.pop(context); // Close edit dialog
+              widget.onDelete();
+            },
+            child: const Text('Sil', style: TextStyle(color: AppColors.error, fontWeight: FontWeight.bold)),
+          ),
+        ],
+      ),
+    );
   }
 }

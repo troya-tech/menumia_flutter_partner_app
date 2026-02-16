@@ -283,6 +283,7 @@ void main() {
         (tester) async {
       await navigateToCategoryDetails(tester);
 
+      // Tap on "Fake Burger" product card
       await tester.tap(find.text('Fake Burger'));
       await tester.pump();
       await tester.pump(const Duration(milliseconds: 500));
@@ -301,6 +302,37 @@ void main() {
       // Verify: Dialog closed, product name updated
       expect(find.byType(EditProductDialog), findsNothing);
       expect(find.text('Super Burger'), findsOneWidget);
+    });
+
+    testWidgets('Delete product and verify removal via stream', (tester) async {
+      suppressNetworkImageErrors();
+      await navigateToCategoryDetails(tester);
+
+      // Tap on "Fake Burger" product card
+      await tester.tap(find.text('Fake Burger'));
+      await tester.pump();
+      await tester.pump(const Duration(milliseconds: 500));
+
+      // Verify: EditProductDialog is shown
+      expect(find.byType(EditProductDialog), findsOneWidget);
+
+      // Tap the delete icon
+      await tester.tap(find.byIcon(Icons.delete_outline_rounded));
+      await tester.pumpAndSettle();
+
+      // Verify: Confirmation dialog is shown
+      expect(find.text('Ürünü Sil'), findsOneWidget); // Dialog Title
+      expect(find.widgetWithText(TextButton, 'Sil'), findsOneWidget); // Confirm button
+
+      // Tap "Sil" button in confirmation
+      await tester.tap(find.widgetWithText(TextButton, 'Sil'));
+      await pumpAndFlush(tester);
+
+      // Verify: Dialogs closed and product removed from list
+      expect(find.byType(EditProductDialog), findsNothing);
+      expect(find.text('Fake Burger'), findsNothing);
+      
+      // Verify other product remains
       expect(find.text('Fake Cheeseburger'), findsOneWidget);
     });
 

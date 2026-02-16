@@ -25,6 +25,7 @@ void main() {
                 builder: (_) => EditProductDialog(
                   product: testProduct,
                   onSave: (name, price, desc) {},
+                  onDelete: () {},
                 ),
               ),
               child: const Text('Open Dialog'),
@@ -68,6 +69,7 @@ void main() {
                     savedPrice = price;
                     savedDescription = desc;
                   },
+                  onDelete: () {},
                 ),
               ),
               child: const Text('Open Dialog'),
@@ -103,6 +105,7 @@ void main() {
                 builder: (_) => EditProductDialog(
                   product: testProduct,
                   onSave: (name, price, desc) {},
+                  onDelete: () {},
                 ),
               ),
               child: const Text('Open Dialog'),
@@ -137,6 +140,7 @@ void main() {
                 builder: (_) => EditProductDialog(
                   product: testProduct,
                   onSave: (name, price, desc) {},
+                  onDelete: () {},
                 ),
               ),
               child: const Text('Open Dialog'),
@@ -172,6 +176,7 @@ void main() {
                   onSave: (name, price, desc) {
                     savedPrice = price;
                   },
+                  onDelete: () {},
                 ),
               ),
               child: const Text('Open Dialog'),
@@ -192,6 +197,50 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(savedPrice, 99.99);
+    });
+
+    testWidgets('triggers onDelete after confirmation', (tester) async {
+      bool deleteCalled = false;
+
+      await tester.pumpWidget(MaterialApp(
+        home: Scaffold(
+          body: Builder(
+            builder: (context) => ElevatedButton(
+              onPressed: () => showDialog(
+                context: context,
+                builder: (_) => EditProductDialog(
+                  product: testProduct,
+                  onSave: (name, price, desc) {},
+                  onDelete: () {
+                    deleteCalled = true;
+                  },
+                ),
+              ),
+              child: const Text('Open Dialog'),
+            ),
+          ),
+        ),
+      ));
+
+      await tester.tap(find.text('Open Dialog'));
+      await tester.pumpAndSettle();
+
+      // Tap the delete icon
+      await tester.tap(find.byIcon(Icons.delete_outline_rounded));
+      await tester.pumpAndSettle();
+
+      // Verify confirmation dialog
+      expect(find.text('Ürünü Sil'), findsOneWidget); // Dialog Title
+      expect(find.widgetWithText(TextButton, 'Sil'), findsOneWidget); // Confirm button
+      expect(find.text('${testProduct.name} ürününü silmek istediğinize emin misiniz?'), findsOneWidget);
+
+      // Tap "Sil" button in confirmation
+      await tester.tap(find.widgetWithText(TextButton, 'Sil'));
+      await tester.pumpAndSettle();
+
+      expect(deleteCalled, true);
+      // Both dialogs should be closed
+      expect(find.text('Ürünü Düzenle'), findsNothing);
     });
   });
 }
