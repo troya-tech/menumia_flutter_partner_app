@@ -16,6 +16,15 @@ class FakeMenuRepository implements MenuRepository {
     _logger.info('Initialized FakeMenuRepository');
   }
 
+  /// Resets static caches. Call in test setUp to prevent state leakage.
+  static void reset() {
+    for (final subject in _menuSubjects.values) {
+      subject.close();
+    }
+    _menuSubjects.clear();
+    _menuCache.clear();
+  }
+
   void _logMenuDetails(String menuKey, Menu menu, [LogContext? context]) {
     final catCount = menu.categories.length;
     final prodCount = menu.categories.fold<int>(0, (sum, cat) => sum + cat.items.length);

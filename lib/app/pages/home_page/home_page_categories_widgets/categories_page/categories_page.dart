@@ -137,23 +137,23 @@ class _CategoriesPageState extends ConsumerState<CategoriesPage> {
                   }
                 },
                 itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
-                  const PopupMenuItem<String>(
+                  PopupMenuItem<String>(
                     value: 'add_category',
                     child: Row(
                       children: [
-                        Icon(Icons.add, color: AppColors.brightBlue, size: 20),
-                        SizedBox(width: 12),
-                        Text('Yeni Kategori Ekle', style: TextStyle(color: AppColors.textPrimary, fontWeight: FontWeight.w500)),
+                        const Icon(Icons.add, color: AppColors.brightBlue, size: 20),
+                        const SizedBox(width: 12),
+                        Flexible(child: Text('Yeni Kategori Ekle', style: const TextStyle(color: AppColors.textPrimary, fontWeight: FontWeight.w500))),
                       ],
                     ),
                   ),
-                  const PopupMenuItem<String>(
+                  PopupMenuItem<String>(
                     value: 'reorder_categories',
                     child: Row(
                       children: [
-                        Icon(Icons.sort, color: AppColors.brightBlue, size: 20),
-                        SizedBox(width: 12),
-                        Text('Kategori Sıralaması Düzenle', style: TextStyle(color: AppColors.textPrimary, fontWeight: FontWeight.w500)),
+                        const Icon(Icons.sort, color: AppColors.brightBlue, size: 20),
+                        const SizedBox(width: 12),
+                        Flexible(child: Text('Kategori Sıralaması Düzenle', style: const TextStyle(color: AppColors.textPrimary, fontWeight: FontWeight.w500))),
                       ],
                     ),
                   ),
