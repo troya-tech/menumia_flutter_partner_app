@@ -19,6 +19,7 @@ class EditProductDialog extends StatefulWidget {
 }
 
 class _EditProductDialogState extends State<EditProductDialog> {
+  final _formKey = GlobalKey<FormState>();
   late final TextEditingController _nameController;
   late final TextEditingController _priceController;
   late final TextEditingController _descriptionController;
@@ -71,32 +72,51 @@ class _EditProductDialogState extends State<EditProductDialog> {
         ],
       ),
       content: SingleChildScrollView(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            const SizedBox(height: 12),
-            _buildTextField(
-              controller: _nameController,
-              label: 'Ürün Adı',
-              prefixIcon: Icons.restaurant_menu_rounded,
-            ),
-            const SizedBox(height: 20),
-            _buildTextField(
-              controller: _priceController,
-              label: 'Fiyat (₺)',
-              keyboardType: const TextInputType.numberWithOptions(decimal: true),
-              prefixIcon: Icons.payments_rounded,
-            ),
-            const SizedBox(height: 20),
-            _buildTextField(
-              controller: _descriptionController,
-              label: 'Açıklama',
-              maxLines: 3,
-              prefixIcon: Icons.description_rounded,
-            ),
-            const SizedBox(height: 8),
-          ],
+        child: Form(
+          key: _formKey,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              const SizedBox(height: 12),
+              _buildTextField(
+                controller: _nameController,
+                label: 'Ürün Adı',
+                prefixIcon: Icons.restaurant_menu_rounded,
+                validator: (value) {
+                  if (value == null || value.trim().isEmpty) {
+                    return 'Lütfen ürün adı giriniz';
+                  }
+                  return null;
+                },
+              ),
+              const SizedBox(height: 20),
+              _buildTextField(
+                controller: _priceController,
+                label: 'Fiyat (₺)',
+                keyboardType: const TextInputType.numberWithOptions(decimal: true),
+                prefixIcon: Icons.payments_rounded,
+                validator: (value) {
+                  if (value == null || value.trim().isEmpty) {
+                    return 'Lütfen fiyat giriniz';
+                  }
+                  final priceText = value.trim().replaceAll(',', '.');
+                  if (double.tryParse(priceText) == null) {
+                    return 'Geçerli bir fiyat giriniz';
+                  }
+                  return null;
+                },
+              ),
+              const SizedBox(height: 20),
+              _buildTextField(
+                controller: _descriptionController,
+                label: 'Açıklama',
+                maxLines: 3,
+                prefixIcon: Icons.description_rounded,
+              ),
+              const SizedBox(height: 8),
+            ],
+          ),
         ),
       ),
       actions: [
@@ -149,6 +169,7 @@ class _EditProductDialogState extends State<EditProductDialog> {
     TextInputType keyboardType = TextInputType.text,
     bool autoFocus = false,
     int maxLines = 1,
+    String? Function(String?)? validator,
   }) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -164,12 +185,13 @@ class _EditProductDialogState extends State<EditProductDialog> {
             ),
           ),
         ),
-        TextField(
+        TextFormField(
           controller: controller,
           style: const TextStyle(color: AppColors.textPrimary, fontWeight: FontWeight.w500),
           keyboardType: keyboardType,
           autofocus: autoFocus,
           maxLines: maxLines,
+          validator: validator,
           decoration: InputDecoration(
             prefixIcon: Icon(prefixIcon, color: AppColors.brightBlue.withOpacity(0.7), size: 20),
             hintText: '$label giriniz',
@@ -193,6 +215,10 @@ class _EditProductDialogState extends State<EditProductDialog> {
               borderRadius: BorderRadius.circular(16),
               borderSide: const BorderSide(color: AppColors.error, width: 1),
             ),
+            focusedErrorBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(16),
+              borderSide: const BorderSide(color: AppColors.error, width: 2),
+            ),
           ),
         ),
       ],
@@ -200,25 +226,14 @@ class _EditProductDialogState extends State<EditProductDialog> {
   }
 
   void _handleSave() {
-    final name = _nameController.text.trim();
-    final priceText = _priceController.text.trim().replaceAll(',', '.');
-    final description = _descriptionController.text.trim();
-    
-    final price = double.tryParse(priceText);
+    if (_formKey.currentState!.validate()) {
+      final name = _nameController.text.trim();
+      final priceText = _priceController.text.trim().replaceAll(',', '.');
+      final description = _descriptionController.text.trim();
+      final price = double.parse(priceText);
 
-    if (name.isNotEmpty && price != null) {
       widget.onSave(name, price, description);
       Navigator.pop(context);
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Lütfen geçerli isim ve fiyat giriniz'),
-          backgroundColor: AppColors.error,
-          behavior: SnackBarBehavior.floating,
-          margin: EdgeInsets.all(20),
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(12))),
-        ),
-      );
     }
   }
 
@@ -228,8 +243,8 @@ class _EditProductDialogState extends State<EditProductDialog> {
       builder: (context) => AlertDialog(
         title: const Text('Ürünü Sil'),
         content: Text('${widget.product.name} ürününü silmek istediğinize emin misiniz?'),
-      actions: [
-        TextButton(
+        actions: [
+          TextButton(
             onPressed: () => Navigator.pop(context),
             child: const Text('İptal', style: TextStyle(color: AppColors.textSecondary)),
           ),

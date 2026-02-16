@@ -126,8 +126,8 @@ void main() {
       await tester.tap(find.text('Kaydet'));
       await tester.pumpAndSettle();
 
-      // Should show validation snackbar
-      expect(find.text('Lütfen geçerli isim ve fiyat giriniz'), findsOneWidget);
+      // Should show validation error inline
+      expect(find.text('Lütfen ürün adı giriniz'), findsOneWidget);
     });
 
     testWidgets('cancel button closes dialog', (tester) async {

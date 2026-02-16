@@ -205,8 +205,9 @@ void main() {
       await tester.tap(find.text('Ekle'));
       await tester.pump();
 
-      // Verify: Error snackbar shown, dialog still open
-      expect(find.text('Lütfen geçerli isim ve fiyat giriniz'), findsOneWidget);
+      // Verify: Inline error messages shown, dialog still open
+      expect(find.text('Lütfen ürün adı giriniz'), findsOneWidget);
+      expect(find.text('Lütfen fiyat giriniz'), findsOneWidget);
       expect(find.byType(AddProductDialog), findsOneWidget);
     });
   });
