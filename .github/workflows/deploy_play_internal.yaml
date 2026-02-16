@@ -2,9 +2,9 @@ name: Deploy Android - Internal Testing (prod)
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - main
+  # push:
+  #   branches:
+  #     - main
 
 jobs:
   deploy:
